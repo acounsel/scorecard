@@ -1,0 +1,9 @@
+Boto3
+django
+django-debug-toolbar
+django-extensions
+django-model-utils
+django-heroku
+django-storages
+gunicorn
+Pillow
