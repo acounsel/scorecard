@@ -1,5 +1,22 @@
 {% extends 'base.html' %}
 
 {% block body %}
-{{ overview }}
+  <div id="hero">
+    <div class="VideoContainer">
+      <iframe class="videoContainer__video" width="100%" height="700px" src="https://www.youtube.com/embed/wiNaYiCYI14?rel=0" frameborder="0">
+      </iframe>
+    </div>
+  </div>
+  <div id="story" class="Section">
+    <span class="Tab-Overview">Overview</span>
+    <h2 class="text-center BlueGreen">The Story</h2>
+    <p class="SectionContent"><span class="text-uppercase"><strong>{{ overview.story_part1|slice:":30" }}</strong></span>{{ overview.story_part1|slice:"30:" }}</p>
+  </div>
 {% endblock %}
+
+
+font-family: Montserrat-SemiBold;
+font-size: 21px;
+color: #FFFFFF;
+line-height: 40px;
+

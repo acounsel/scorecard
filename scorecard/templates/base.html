@@ -10,7 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Montserrat:200,400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Montserrat:200,400,600&display=swap" rel="stylesheet">
     <link href="{% static 'css/footable.bootstrap.min.css' %}" rel="stylesheet">
     <script src="https://kit.fontawesome.com/c12b0758b8.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
@@ -20,12 +20,134 @@
   </head>
   <body>
     <style>
-      .navbar {
-        height: 180px;
-        padding: 45px 120px 0 70px;
+      p, a, li, .nav-item {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 21px;
+        line-height: 40px;
       }
+      p {
+        color: #494949;
+      }
+      h2 {
+        font-size: 66px;
+        font-family: 'Fjalla One', sans-serif;
+        padding: 30px 0;
+        text-transform: uppercase;
+      }
+      .BlueGreen {
+        color: #007D8A;
+      }
+      .TitleBar {
+        display: flex;
+        padding: 45px 120px 20px 70px;
+        align-items: flex-start;
+      }
+      .navbar {
+        padding: 0 120px 0 0;
+      }
+        .navbar .nav-item {
+          color: #FFFFFF !important;
+          font-size: 21px;
+          text-transform: uppercase;
+          font-weight: 600;
+          padding: 0;
+        }
+          .navbar .nav-item:first-of-type {
+            padding-right: 50px;
+          }
+        .navbar .nav-item .nav-link {
+          color: #FFFFFF;
+          padding: 0 0 15px;
+          border-bottom: 10px solid #494949;
+          transition: all 0.4s;
+        }
+          .navbar .nav-item .nav-link:hover,
+          .navbar .nav-item .nav-link.Active {
+            border-bottom: 10px solid #FFCC00;
+            color: #FFFFFF;
+          }
       .bg-dark {
         background-color: #494949 !important;
+      }
+      .Logo {
+        height: 50px;
+        padding-right: 30px;
+      }
+      .Title {
+        color: #74D6DB;
+        font-family: 'Fjalla One', sans-serif;
+        font-size: 59px;
+        text-transform: uppercase;
+        margin: 0;
+      }
+      .Translate {
+        color: #FFCC00;
+        font-size: 20px;
+        text-decoration: underline;
+        transition: 0.3s all;
+      }
+        .Translate:hover {
+          color: #FFCC00;
+          font-weight: 600;
+        }
+
+      .dropdown-menu {
+        border-radius: 0;
+        border-top: 15px solid transparent;
+        padding: 20px 0;
+      }
+      .dropdown-menu:before {
+        content: "";
+        position: absolute;
+        top:-20px;
+        left: 10%;
+        border: solid 10px transparent;
+        border-bottom-color: #494949;
+
+      }
+      .dropdown-menu .dropdown-item {
+        color: #FFFFFF;
+        font-size: 16px;
+        line-height: 20px;
+        padding: 13px 32px 13px 27px;
+        transition: 0.3s all;
+      }
+      .dropdown-menu .dropdown-item:hover {
+        background-color: #2D2D2D;
+      }
+      .VideoContainer {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      #hero {
+        position: relative;
+        min-height: 700px;
+      }
+      iframe {
+        /* optional */
+        width: 100%;
+        height: 100%;
+      }
+      .Section {
+        padding: 70px 0;
+      }
+        .SectionContent {
+          max-width: 1000px;
+          margin: 0 auto;
+        }
+      .Tab-Overview {
+        padding: 25px 120px;
+        background-color: #FFCC00;
+        box-shadow: 4px 4px 9px 1px rgba(0,0,0,0.21);
       }
     </style>
     <header>
@@ -35,10 +157,8 @@
     </header>
     <main class="bg-light" style="min-height: 700px;">
       {% block main %}
-        <div class="py-5 w-75 w-100-r mx-auto mb-5">
         {% block body %}
         {% endblock %}
-        </div>
       {% endblock %}
     </main>
     <footer>
@@ -52,5 +172,29 @@
         </div>
       </div>
     </footer>
+    <script>
+      var $dropdown = $(".dropdown");
+      var $dropdownMenu = $(".dropdown-menu");
+      var showClass = "show";
+       
+      $(window).on("load resize", function() {
+        if (this.matchMedia("(min-width: 768px)").matches) {
+          $dropdown.hover(
+            function() {
+              const $this = $(this);
+              $this.addClass(showClass);
+              $this.find($dropdownMenu).addClass(showClass);
+            },
+            function() {
+              const $this = $(this);
+              $this.removeClass(showClass);
+              $this.find($dropdownMenu).removeClass(showClass);
+            }
+          );
+        } else {
+          $dropdown.off("mouseenter mouseleave");
+        }
+      });
+    </script>
   </body>
 </html>

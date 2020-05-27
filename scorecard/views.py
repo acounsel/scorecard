@@ -11,11 +11,13 @@ class Home(DetailView):
         return Overview.objects.first()
 
     def get_context_data(self, **kwargs):
-        context = {
+        context = super().get_context_data(**kwargs)
+        context.update({
             'achievement_list': Achievement.objects.all(),
             'challenge_list': Challenge.objects.all(),
             'recommendation_list': Recommendation.objects.all(),
-        }
+            'title': 'Overview',
+        })
         return context
 
 

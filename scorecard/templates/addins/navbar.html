@@ -1,5 +1,30 @@
 {% load static %}
 {% load admin_urls %}
+<div class="TitleBar bg-dark">
+  <a class="navbar-brand" href="https://www.accountabilitycounsel.org"><img class="Logo" src="https://scorecard-static.s3-us-west-1.amazonaws.com/Accountability+Counsel_Logo_White2.png"></a>
+  <h1 class="Title mr-auto">{{ overview.name }}</h1>
+  <a href="" class="Translate">Монгол</a>
+
+</div>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="https://www.accountabilitycounsel.org"><img src=""></a></a>
+  <div class="collapse navbar-collapse navbar-expand-xlg" id="navbarNav">
+    <ul class="navbar-nav w-100">
+      <li class="nav-item dropdown mr-3 ml-auto">
+        <a class="nav-link {% if title == 'Overview' %}Active{% endif %}" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Overview
+        </a>
+        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuOverview">
+          <a class="dropdown-item" href="">The Story</a>
+          <a class="dropdown-item" href="">Achievements to Date</a>
+          <a class="dropdown-item" href="">Challenges Ahead</a>
+          <a class="dropdown-item" href="">Recommendations</a>
+        </div>
+      </li>
+      <li class="nav-item {% if title == 'Commitments' %}Active{% endif %}">
+        <a class="nav-link" href="" id="navbarCommitments" role="button">
+          Commitments
+        </a>
+      </li>
+    </ul>
+  </div>
 </nav>
