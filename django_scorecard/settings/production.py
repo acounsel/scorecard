@@ -6,4 +6,4 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['cryptic-falls-54884.herokuapp.com']
 
-DATABASES = {'default': dj_database_url.config()}
+# DATABASES = {'default': dj_database_url.config()}
