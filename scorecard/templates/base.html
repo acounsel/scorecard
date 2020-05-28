@@ -28,14 +28,26 @@
       p {
         color: #494949;
       }
+      h1, h2, h3, h4 {
+        font-family: 'Fjalla One', sans-serif;
+      }
       h2 {
         font-size: 66px;
-        font-family: 'Fjalla One', sans-serif;
         padding: 30px 0;
         text-transform: uppercase;
       }
+      h3 {
+        font-size: 40px;
+        line-height: 60px;
+      }
       .BlueGreen {
         color: #007D8A;
+      }
+      .Yellow {
+        color: #FFCC00;
+      }
+      .LightGray {
+        color: #E4E4E4;
       }
       .TitleBar {
         display: flex;
@@ -144,11 +156,34 @@
           max-width: 1000px;
           margin: 0 auto;
         }
+          .SectionContent p {
+            max-width: 465px;
+          }
       .Tab-Overview {
         padding: 25px 120px;
         background-color: #FFCC00;
         box-shadow: 4px 4px 9px 1px rgba(0,0,0,0.21);
       }
+      .BgImage {
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        height: 500px;
+      }
+      .BgImage-1 {
+        background-image: url('https://scorecard-static.s3-us-west-1.amazonaws.com/Camels+(1).JPG');
+      }
+      #achievements {
+        background-color: #264151;
+        height: 1500px;
+      }
+      .AccentBar {
+        border: 6px solid #FFCC00;
+        max-width: 25%;
+        margin: 0;
+      }
+
     </style>
     <header>
       {% include 'addins/navbar.html' %}
