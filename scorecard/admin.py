@@ -41,7 +41,9 @@ class StatusAdmin(admin.ModelAdmin):
 class AchievementAdmin(admin.ModelAdmin):
     list_items = (
         'name',
-        'image'
+        'image',
+        'order_id',
+        'is_featured',
     )
     list_display = list_items
     list_display_links = list_items
@@ -50,7 +52,9 @@ class AchievementAdmin(admin.ModelAdmin):
 class ChallengeAdmin(admin.ModelAdmin):
     list_items = (
         'name',
-        'image'
+        'image',
+        'order_id',
+        'is_featured',
     )
     list_display = list_items
     list_display_links = list_items
@@ -60,7 +64,9 @@ class ChallengeAdmin(admin.ModelAdmin):
 class RecommendationAdmin(admin.ModelAdmin):
     list_items = (
         'name',
-        'image'
+        'image',
+        'order_id',
+        'is_featured',
     )
     list_display = list_items
     list_display_links = list_items

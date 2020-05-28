@@ -10,11 +10,17 @@ class Overview(TimeStampedModel):
     name = models.CharField(max_length=255)
     hero_video = models.CharField(max_length=255, blank=True)
     hero_image = models.CharField(max_length=255, blank=True)
+    story_image = models.ImageField(
+        storage=storage_backends.PublicMediaStorage(), 
+        upload_to='images/', blank=True, null=True)
     story_part1 = models.TextField(blank=True)
     story_part2 = models.TextField(blank=True)
     story_part3 = models.TextField(blank=True)
     achievements_text = models.TextField(blank=True)
     challenges_text = models.TextField(blank=True)
+    commitments_image = models.ImageField(
+        storage=storage_backends.PublicMediaStorage(), 
+        upload_to='images/', blank=True, null=True)
     report = models.URLField(max_length=255, blank=True)
 
 class CommitmentCategory(models.Model):
@@ -63,9 +69,12 @@ class OverviewModel(models.Model):
         upload_to='images/', blank=True, null=True)
     commitments = models.ManyToManyField(Commitment, 
         blank=True)
+    order_id = models.PositiveSmallIntegerField(default=0)
+    is_featured = models.BooleanField(default=False)
 
     class Meta:
         abstract = True
+        ordering = ('order_id',)
 
     def __str__(self):
         return self.name

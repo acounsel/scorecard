@@ -20,11 +20,31 @@
     </div>
   </div>
   <div id="achievements" class="Section">
-    <h2 class="text-center Yellow">Achievements to Date</h2>
+    <h2 class="text-center Yellow mb-5">Achievements to Date</h2>
     <div id="achievements_carousel" class="Carousel">
     </div>
     <hr class="AccentBar"></hr>
     <h3 class="SectionContent LightGray mt-5">{{ overview.achievements_text }}</h3>
   </div>
-
+  <div id="challenges" class="Section bg-dark">
+    <h2 class="text-center LightBlue mb-5">Challenges Ahead</h2>
+    <div class="SectionContent Grid">
+      {% for challenge in challenge_list %}
+      <div class="Challenge {% if challenge.is_featured %}Featured{% endif %}">
+        <div class="Challenge-title">{{ challenge.name }}</div>
+        <img src="{{ challenge.image.url }}">
+        <div class="Challenge-description">{{ challenge.description }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
+{% block javascript %}
+  <script>
+    $( '.Challenge' ).hover(function() {
+      $(this).find( '.Challenge-description' ).slideDown();
+    }, function() {
+      $(this).find( '.Challenge-description' ).slideUp();
+    })
+  </script>
 {% endblock %}

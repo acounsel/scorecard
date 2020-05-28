@@ -20,12 +20,12 @@
   </head>
   <body>
     <style>
-      p, a, li, .nav-item {
+      p, a, li, div, .nav-item {
         font-family: 'Montserrat', sans-serif;
         font-size: 21px;
         line-height: 40px;
       }
-      p {
+      p, div {
         color: #494949;
       }
       h1, h2, h3, h4 {
@@ -45,6 +45,9 @@
       }
       .Yellow {
         color: #FFCC00;
+      }
+      .LightBlue {
+        color: #74D6DB;
       }
       .LightGray {
         color: #E4E4E4;
@@ -186,7 +189,43 @@
         max-width: 25%;
         margin: 0;
       }
-
+      .Grid {
+        display: grid;
+        grid-template-columns: repeat(3, 380px);
+        grid-template-rows: repeat(3, 380px);
+        grid-gap: 30px;
+      }
+      .Challenge {
+        cursor: pointer;
+        transition: all 0.4s;
+      }
+        .Challenge.Featured {
+          grid-column-end: span 2;
+        }
+      .Challenge img {
+        object-fit: cover;
+        height: 320px;
+        width: 100%;
+        transition: all 0.4s;
+      }
+        .Challenge-title {
+          background-color: #FFCC00;
+          font-weight: 600;
+          padding: 10px 37px;
+          text-transform: uppercase;
+          transition: all 0.4s;
+        }
+        .Challenge-description {
+          background-color: white;
+          display: none;
+          font-size: 16px;
+          line-height: 26px;
+          padding: 30px;
+          position: relative;
+        }
+        .Challenge:hover img, .Challenge:hover .Challenge-title {
+          opacity: 0.8;
+        }
     </style>
     <header>
       {% include 'addins/navbar.html' %}
@@ -234,5 +273,7 @@
         }
       });
     </script>
+    {% block javascript %}
+    {% endblock %}
   </body>
 </html>
