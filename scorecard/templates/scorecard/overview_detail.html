@@ -47,11 +47,12 @@
     <div class="SectionContent p-3">
       <ul class="White">
         {% for recommendation in recommendation_list %}
-        <li><span class="White text-uppercase">{{ recommendation.name }}</span><span class="LightBlue">{{ recommendation.description }}</span></li>
+        <li><span class="White text-uppercase pr-2">{{ recommendation.name }}</span><span class="LightBlue">{{ recommendation.description }}</span></li>
         {% endfor %}
       </ul>
     </div>
   </div>
+  <a href="" class="CommitmentsButton">Commitments <i class="fal fa-angle-right"></i></a>
 {% endblock %}
 {% block javascript %}
   <script>
