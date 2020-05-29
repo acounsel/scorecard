@@ -11,7 +11,7 @@ class Overview(TimeStampedModel):
     hero_video = models.CharField(max_length=255, blank=True)
     hero_image = models.CharField(max_length=255, blank=True)
     story_image = models.ImageField(
-        storage=storage_backends.PublicMediaStorage(), 
+        storage=storage_backends.PrivateMediaStorage(), 
         upload_to='images/', blank=True, null=True)
     story_part1 = models.TextField(blank=True)
     story_part2 = models.TextField(blank=True)
@@ -19,14 +19,20 @@ class Overview(TimeStampedModel):
     achievements_text = models.TextField(blank=True)
     challenges_text = models.TextField(blank=True)
     commitments_image = models.ImageField(
-        storage=storage_backends.PublicMediaStorage(), 
+        storage=storage_backends.PrivateMediaStorage(), 
         upload_to='images/', blank=True, null=True)
     report = models.URLField(max_length=255, blank=True)
+
+    def __str__(self):
+        return self.name
 
 class CommitmentCategory(models.Model):
 
     name = models.CharField(max_length=255)
     order_num = models.PositiveSmallIntegerField(default=0)
+
+    class Meta:
+        verbose_name_plural = 'commitment categories'
 
     def __str__(self):
         return self.name
@@ -57,6 +63,9 @@ class Status(StatusModel, TimeStampedModel):
         on_delete=models.CASCADE)
     description = models.TextField(blank=True)
 
+    class Meta:
+        verbose_name_plural = 'statuses'
+
     def __str__(self):
         return self.get_status_display()
 
@@ -65,7 +74,7 @@ class OverviewModel(models.Model):
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     image = models.ImageField(
-        storage=storage_backends.PublicMediaStorage(), 
+        storage=storage_backends.PrivateMediaStorage(), 
         upload_to='images/', blank=True, null=True)
     commitments = models.ManyToManyField(Commitment, 
         blank=True)
