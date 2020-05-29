@@ -44,14 +44,21 @@
   </div>
   <div id="recommendations" class="Section bg-bluegreen">
     <h2 class="text-center Yellow mb-5">Recommendations</h2>
+    <div class="SectionContent p-3">
+      <ul class="White">
+        {% for recommendation in recommendation_list %}
+        <li><span class="White text-uppercase">{{ recommendation.name }}</span><span class="LightBlue">{{ recommendation.description }}</span></li>
+        {% endfor %}
+      </ul>
+    </div>
   </div>
 {% endblock %}
 {% block javascript %}
   <script>
     $( '.Challenge' ).hover(function() {
-      $(this).find( '.Challenge-description' ).slideDown( "slow" );
+      $(this).find( '.Challenge-description' ).slideDown( 'slow' );
     }, function() {
-      $(this).find( '.Challenge-description' ).slideUp( "fast" );
+      $(this).find( '.Challenge-description' ).slideUp( 'fast' );
     })
   </script>
 {% endblock %}
