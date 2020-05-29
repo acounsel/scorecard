@@ -1,9 +1,13 @@
+import csv
+import io
+
 from django.db import models
 
 from django_scorecard import storage_backends
 
 from model_utils.models import StatusModel, TimeStampedModel
 from model_utils import Choices
+
 
 class Overview(TimeStampedModel):
 
@@ -37,7 +41,41 @@ class CommitmentCategory(models.Model):
     def __str__(self):
         return self.name
 
+class CommitmentManager(models.Manager):
+
+    def import_commitments(self, import_file):
+        categories = ('Pasture', 'Water', 'Monitoring',
+            'Individual Compensation', 
+            'Collective Compensation',
+            'Undai River Diversion')
+        for cat in categories:
+            CommitmentCategory.objects.get_or_create(
+                name=cat
+            )
+        reader = csv.DictReader(import_file)
+        for index, c_dict in enumerate(
+            reader, start=1):
+            print(c_dict)
+            commitment, created = self.get_or_create(
+                order_num=c_dict['\ufefforder_num'],
+                name=c_dict['name'],
+                original_timeline=c_dict['original_timeline'],
+                description=c_dict['description'],
+            )
+            category = CommitmentCategory.objects.get(
+                name=c_dict['category']
+            )
+            commitment.category = category
+            commitment.save()
+            Status.objects.create(
+                commitment=commitment,
+                status=c_dict['status'],
+                description=c_dict.get('status_description')
+            )
+
+
 class Commitment(models.Model):
+    objects = CommitmentManager()
 
     name = models.CharField(max_length=255)
     category = models.ForeignKey(CommitmentCategory, 
@@ -47,6 +85,10 @@ class Commitment(models.Model):
         max_length=255,blank=True)
     order_num = models.PositiveSmallIntegerField(default=0)
     order_letter = models.CharField(max_length=3, blank=True)
+    has_detailed_plan = models.NullBooleanField()
+    has_approved_funding = models.NullBooleanField()
+    has_begun_implementation = models.NullBooleanField()
+    is_complete = models.NullBooleanField()
 
     def __str__(self):
         return self.name
