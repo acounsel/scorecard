@@ -8,7 +8,7 @@
     </div>
   </div>
   <div id="story1" class="Section">
-    <span class="Tab-Overview">Overview</span>
+    <div class="Tab-Overview">Overview</div>
     <h2 class="text-center BlueGreen">The Story</h2>
     <p class="SectionContent"><span class="text-uppercase"><strong>{{ overview.story_part1|slice:":30" }}</strong></span>{{ overview.story_part1|slice:"30:" }}</p>
   </div>
@@ -33,18 +33,22 @@
       <div class="Challenge {% if challenge.is_featured %}Featured{% endif %}">
         <div class="Challenge-title">{{ challenge.name }}</div>
         <img src="{{ challenge.image.url }}">
-        <div class="Challenge-description">{{ challenge.description }}</div>
+        <div class="Challenge-description">{{ challenge.description|safe }}</div>
       </div>
       {% endfor %}
+    </div>
+    <hr class="AccentBar"></hr>
+    <div class="SectionContent White p-3">
+      {{ overview.challenges_text|safe }}
     </div>
   </div>
 {% endblock %}
 {% block javascript %}
   <script>
     $( '.Challenge' ).hover(function() {
-      $(this).find( '.Challenge-description' ).slideDown();
+      $(this).find( '.Challenge-description' ).slideDown( "slow" );
     }, function() {
-      $(this).find( '.Challenge-description' ).slideUp();
+      $(this).find( '.Challenge-description' ).slideUp( "fast" );
     })
   </script>
 {% endblock %}

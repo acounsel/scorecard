@@ -28,6 +28,13 @@
       p, div {
         color: #494949;
       }
+      a {
+        color: #00B9D4;
+        text-decoration: underline;
+      }
+      a:hover {
+        color: #00B9D4;
+      }
       h1, h2, h3, h4 {
         font-family: 'Fjalla One', sans-serif;
       }
@@ -57,6 +64,9 @@
         padding: 45px 120px 20px 70px;
         align-items: flex-start;
       }
+      .White {
+        color: #FFFFFF;
+      }
       .navbar {
         padding: 0 120px 0 0;
       }
@@ -74,6 +84,7 @@
           color: #FFFFFF;
           padding: 0 0 15px;
           border-bottom: 10px solid #494949;
+          text-decoration: none;
           transition: all 0.4s;
         }
           .navbar .nav-item .nav-link:hover,
@@ -89,7 +100,6 @@
         padding-right: 30px;
       }
       .Title {
-        color: #74D6DB;
         font-family: 'Fjalla One', sans-serif;
         font-size: 59px;
         text-transform: uppercase;
@@ -167,7 +177,7 @@
         padding: 25px 120px;
         background-color: #FFCC00;
         box-shadow: 4px 4px 9px 1px rgba(0,0,0,0.21);
-        display: inline-block;
+        max-width: 25%;
         margin-top: -15px;
       }
       .BgImage {
@@ -216,12 +226,14 @@
           transition: all 0.4s;
         }
         .Challenge-description {
-          background-color: white;
           display: none;
+          position: relative;
+          padding: 30px;
+        }
+        .Challenge-description, .Challenge-description a {
+          background-color: white;
           font-size: 16px;
           line-height: 26px;
-          padding: 30px;
-          position: relative;
         }
         .Challenge:hover img, .Challenge:hover .Challenge-title {
           opacity: 0.8;
