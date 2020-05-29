@@ -60,9 +60,7 @@
         color: #E4E4E4;
       }
       .TitleBar {
-        display: flex;
         padding: 45px 120px 20px 70px;
-        align-items: flex-start;
       }
       .White {
         color: #FFFFFF;
@@ -177,11 +175,15 @@
             max-width: 465px;
           }
       .Tab-Overview {
-        padding: 25px 120px;
+        color: #264151;
+        padding: 25px 120px 22px;
         background-color: #FFCC00;
         box-shadow: 4px 4px 9px 1px rgba(0,0,0,0.21);
+        font-family: 'Fjalla One', sans-serif;
+        font-size: 35px;
         max-width: 25%;
         margin-top: -15px;
+        text-transform: uppercase;
       }
       .BgImage {
         background-attachment: fixed;
@@ -267,9 +269,13 @@
       }
       .footer {
         background-color: #264151;
-        padding: 50px 250px;
+        padding: 50px 0;
         color: #FFFFFF;
       }
+        .footer .container {
+          max-width: 1000px;
+          margin: 0 auto;
+        }
       .footer i {
         background-color: #FFFFFF;
         color: #264151;
@@ -286,6 +292,27 @@
       }
       .footer ul li {
         margin-bottom: 15px;
+      }
+      @media only screen and (max-width: 800px) {
+        h2 {
+          font-size: 48px;
+        }
+        .TitleBar {
+          padding: 20px;
+        }
+        .Tab-Overview {
+          padding: 25px 20px 22px;
+          max-width: 50%
+        }
+        .SectionContent {
+          padding: 20px;
+        }
+        .Grid {
+          grid-template-columns: repeat(1, 380px);
+        }
+          .Challenge.Featured {
+            grid-column-end: span 1;
+          }
       }
     </style>
     <header>
@@ -307,7 +334,7 @@
     <footer class="footer">
       <div class="container">
         <p class="White text-center text-uppercase font-weight-bold">For More Information</p>
-        <div class="d-flex text-white">
+        <div class="d-flex flex-column flex-md-row text-white">
           <div class="d-flex"><i class="fas fa-chart-area"></i><span>Read our full progress report</span></div>
           <div class="d-flex"><i class="fas fa-file-alt"></i><span>Read our blog</span></div>
           <div class="d-flex"><i class="fas fa-briefcase"></i><span>Explore other case related documents</span></div>
