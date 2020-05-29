@@ -24,7 +24,7 @@
     <div id="achievements_carousel" class="Carousel">
     </div>
     <hr class="AccentBar"></hr>
-    <h3 class="SectionContent LightGray mt-5">{{ overview.achievements_text }}</h3>
+    <h3 class="SectionContent LightGray">{{ overview.achievements_text }}</h3>
   </div>
   <div id="challenges" class="Section bg-dark">
     <h2 class="text-center LightBlue mb-5">Challenges Ahead</h2>
@@ -41,6 +41,9 @@
     <div class="SectionContent White p-3">
       {{ overview.challenges_text|safe }}
     </div>
+  </div>
+  <div id="recommendations" class="Section bg-bluegreen">
+    <h2 class="text-center Yellow mb-5">Recommendations</h2>
   </div>
 {% endblock %}
 {% block javascript %}
