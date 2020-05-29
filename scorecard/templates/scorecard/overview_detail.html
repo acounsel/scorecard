@@ -8,7 +8,7 @@
     </div>
   </div>
   <div id="story1" class="Section">
-    <span class="Tab-Overview">Overview</span>
+    <div class="Tab-Overview">Overview</div>
     <h2 class="text-center BlueGreen">The Story</h2>
     <p class="SectionContent"><span class="text-uppercase"><strong>{{ overview.story_part1|slice:":30" }}</strong></span>{{ overview.story_part1|slice:"30:" }}</p>
   </div>
@@ -27,18 +27,33 @@
       <div class="Challenge {% if challenge.is_featured %}Featured{% endif %}">
         <div class="Challenge-title">{{ challenge.name }}</div>
         <img src="{{ challenge.image.url }}">
-        <div class="Challenge-description">{{ challenge.description }}</div>
+        <div class="Challenge-description">{{ challenge.description|safe }}</div>
       </div>
       {% endfor %}
     </div>
+    <hr class="AccentBar"></hr>
+    <div class="SectionContent White p-3">
+      {{ overview.challenges_text|safe }}
+    </div>
   </div>
+  <div id="recommendations" class="Section bg-bluegreen">
+    <h2 class="text-center Yellow mb-5">Recommendations</h2>
+    <div class="SectionContent p-3">
+      <ul class="White">
+        {% for recommendation in recommendation_list %}
+        <li><span class="White text-uppercase pr-2">{{ recommendation.name }}</span><span class="LightBlue">{{ recommendation.description }}</span></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <a href="" class="CommitmentsButton">Commitments <i class="fal fa-angle-right"></i></a>
 {% endblock %}
 {% block javascript %}
   <script>
     $( '.Challenge' ).hover(function() {
-      $(this).find( '.Challenge-description' ).slideDown();
+      $(this).find( '.Challenge-description' ).slideDown( 'slow' );
     }, function() {
-      $(this).find( '.Challenge-description' ).slideUp();
+      $(this).find( '.Challenge-description' ).slideUp( 'fast' );
     })
   </script>
 {% endblock %}
