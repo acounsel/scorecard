@@ -20,10 +20,16 @@
   </head>
   <body>
     <style>
+      body {
+        background-color: #F9F7F4;
+      }
       p, a, li, div, .nav-item {
         font-family: 'Montserrat', sans-serif;
         font-size: 21px;
         line-height: 40px;
+      }
+      .Commitments p, .Commitments div {
+        line-height: 30px;
       }
       p, div {
         color: #494949;
@@ -42,6 +48,7 @@
         font-size: 66px;
         padding: 30px 0;
         text-transform: uppercase;
+        margin: 0;
       }
       h3 {
         font-size: 40px;
@@ -90,6 +97,9 @@
             border-bottom: 10px solid #FFCC00;
             color: #FFFFFF;
           }
+      .bg-light {
+        background-color: #F9F7F4 !important;
+      }
       .bg-dark {
         background-color: #494949 !important;
       }
@@ -173,6 +183,9 @@
           .SectionContent p {
             padding-bottom: 10px;
             max-width: 465px;
+          }
+          .SectionContent.Commitments {
+            max-width: 1200px;
           }
       .Tab-Overview {
         color: #264151;
@@ -269,6 +282,76 @@
         padding-left: 10px;
         font-size: 80px;
         vertical-align: sub;
+      }
+      .Commitments-hero {
+        background-position: center;
+        padding-top: 80px;
+      }
+      .Commitment-category {
+        padding: 0 100px;
+      }
+        .Commitment-category h2 {
+          padding: 26px 0;
+        }
+      .Commitment {
+        cursor: pointer;
+      }
+      .Commitment-status {
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        background-color: #548A3D;
+        border: 2px solid #548A3D;
+      }
+        .Commitment-status.Progress div {
+          width: 18px;
+          height: 19px;
+          border-radius: 19px 0 0 0;
+          background-color: #F9F7F4;
+        }
+        .Commitment-status.Delayed, 
+        .Commitment-status.Started {
+          background-color: #F9F7F4;
+          border: 2px solid #A22524;
+        }
+          .Commitment-status.Delayed div {
+            margin-left: 18px;
+            width: 19px;
+            height: 19px;
+            border-radius: 0 19px 0 0;
+            background-color: #A22524;
+          }
+      .Commitment-number {
+        width: 40px;
+        line-height: 30px;
+        transition: all 0.3s;
+      }
+      .Commitment-name {
+        max-width: 365px;
+        transition: all 0.3s;
+      }
+        .Commitment.Active .Commitment-name, 
+        .Commitment.Active .Commitment-number,
+        .Commitment:hover .Commitment-name,
+        .Commitment:hover .Commitment-number {
+          background-color: #E7E1DB;
+        }
+      .Commitment-descriptions {
+        flex: 1;
+        background-color: #E7E1DB;
+        padding: 20px 30px;
+      }
+      .Commitment-descriptionandstatus {
+        display: none;
+      }
+        .Commitment-descriptionandstatus.Active {
+          display: block;
+        }
+      .Commitment-description {
+        color: #000000;
+        font-size: 18px;
+        line-height: 25px;
+        margin: 0;
       }
       footer {
         background-color: #264151;

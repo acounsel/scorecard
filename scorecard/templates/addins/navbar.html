@@ -10,7 +10,7 @@
   <div class="collapse navbar-collapse navbar-expand-xlg" id="navbarNav">
     <ul class="navbar-nav w-100">
       <li class="nav-item dropdown mr-3 ml-auto">
-        <a class="nav-link {% if title == 'Overview' %}Active{% endif %}" href="" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <a class="nav-link {% if title == 'Overview' %}Active{% endif %}" href="{% url 'home' %}" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Overview
         </a>
         <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuOverview">
@@ -20,8 +20,8 @@
           <a class="dropdown-item" href="">Recommendations</a>
         </div>
       </li>
-      <li class="nav-item {% if title == 'Commitments' %}Active{% endif %}">
-        <a class="nav-link" href="" id="navbarCommitments" role="button">
+      <li class="nav-item">
+        <a class="nav-link {% if title == 'Commitments' %}Active{% endif %}" href="{% url 'commitment-list' %}" id="navbarCommitments" role="button">
           Commitments
         </a>
       </li>

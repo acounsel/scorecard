@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div id="hero" class="Commitments-hero" style="background-image: url('{{ overview.commitments_image.url  }}')">
+  <hi class="Tab-Overview">Commitments</h1>
+</div>
+<div class="SectionContent Commitments my-5">
+  {% regroup commitment_list by category as category_list %}
+  {% for category in category_list %}
+  <div class="Commitment-category d-flex justify-content-between align-items-center bg-bluegreen text-white">
+    <h2 class="">{{ category.grouper }}</h2>
+    <i class="far fa-angle-up fa-5x"></i>
+  </div>
+  <div class="SectionContent my-5 d-flex">
+    <div class="Commitment-list">
+    {% for commitment in category.list %}
+    <div class="Commitment {% if commitment.id == category.list.0.id %}Active{% endif %} d-flex font-weight-bold">
+      <div class="Commitment-status {{ commitment.get_status.get_status_display }} mr-2 my-3"><div class="Commitment-status--adjustment"></div></div>
+      <div class="Commitment-number py-3 pl-3">{{ commitment.order_num }}.</div>
+      <div class="Commitment-name py-3 pr-4">{{ commitment.name }}</div>
+    </div>
+    {% endfor %}
+    </div>
+    <div class="Commitment-descriptions">
+      <p class="font-weight-bold">About this commitment</p>
+        {% for commitment in category.list %}
+          <div class="Commitment-descriptionandstatus {% if commitment.id == category.list.0.id %}Active{% endif %}">
+            <p class="Commitment-description">{{ commitment.description }}</p>
+            <p class="font-weight-bold">Implementation status of this commitment</p>
+            <p class="Commitment-description">{{ commitment.get_status.description }}</p>
+          </div>
+        {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+
+</div>
+{% endblock %}

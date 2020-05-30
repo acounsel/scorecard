@@ -22,6 +22,7 @@ class Overview(TimeStampedModel):
     story_part3 = models.TextField(blank=True)
     achievements_text = models.TextField(blank=True)
     challenges_text = models.TextField(blank=True)
+    commitment_chart_text = models.TextField(blank=True)
     commitments_image = models.ImageField(
         storage=storage_backends.PrivateMediaStorage(), 
         upload_to='images/', blank=True, null=True)
@@ -36,6 +37,7 @@ class CommitmentCategory(models.Model):
     order_num = models.PositiveSmallIntegerField(default=0)
 
     class Meta:
+        ordering = ('order_num',)
         verbose_name_plural = 'commitment categories'
 
     def __str__(self):
@@ -73,7 +75,6 @@ class CommitmentManager(models.Manager):
                 description=c_dict.get('status_description')
             )
 
-
 class Commitment(models.Model):
     objects = CommitmentManager()
 
@@ -90,8 +91,14 @@ class Commitment(models.Model):
     has_begun_implementation = models.NullBooleanField()
     is_complete = models.NullBooleanField()
 
+    class Meta:
+        ordering = ('order_num', 'order_letter')
+
     def __str__(self):
         return self.name
+
+    def get_status(self):
+        return self.status_set.last()
 
 class Status(StatusModel, TimeStampedModel):
 
@@ -104,6 +111,7 @@ class Status(StatusModel, TimeStampedModel):
     commitment = models.ForeignKey(Commitment, 
         on_delete=models.CASCADE)
     description = models.TextField(blank=True)
+    is_current = models.BooleanField(default=True)
 
     class Meta:
         verbose_name_plural = 'statuses'
