@@ -1,8 +1,131 @@
+<style>
+.carousel-control-prev {
+    justify-content: flex-start;
+    margin-left: -100px;
+    opacity:1;
+    text-decoration:none;
+}
+.carousel-control-next {
+    justify-content: flex-end;
+    margin-right: -100px;
+    opacity:1;
+    text-decoration:none;
+}
+.carousel-inner .carousel-item.active,
+.carousel-inner .carousel-item-next,
+.carousel-inner .carousel-item-prev {
+  display: flex;
+}
+.fa-chevron-right, 
+.fa-chevron-left {
+  color: white;
+}
+.carousel-inner .carousel-item-right.active,
+.carousel-inner .carousel-item-next {
+  transform: translateX(50%);
+}
+.carousel-inner .carousel-item-left.active, 
+.carousel-inner .carousel-item-prev {
+  transform: translateX(-50%);
+}
+.carousel-inner .carousel-item-right,
+.carousel-inner .carousel-item-left{ 
+  transform: translateX(0); 
+}
+.card, .card-img-top {
+  border-radius:0;
+}
+.carousel-indicators {
+    position: absolute;
+    right: 0;
+    bottom:0;
+    left: 0;
+    z-index:15;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    padding-left: 0;
+    margin-right: 15%;
+    margin-left: 15%;
+    list-style: none;
+    margin-bottom:-1.5em;
+}
+  .carousel-indicators li {
+    width: 1.25rem;
+    max-width: 1.25rem;
+    height: 1.25rem;
+    margin-bottom: -3.75rem;
+    background-color: lightgray;
+    cursor:pointer;
+    border-radius:50%;
+  }
+    .carousel-indicators .active li {
+      background-color:white;
+    }
+</style>
 
+{% block body %}
   <div id="achievements" class="Section">
     <h2 class="text-center Yellow mb-5">Achievements to Date</h2>
-    <div id="achievements_carousel" class="Carousel">
+    <div class="container my-3">
+      <div class="row mx-auto my-auto">
+        <div id="achievements_carousel" class="carousel slide w-100" data-ride="carousel">
+          <div class="carousel-inner w-100" role="listbox">
+            {% for achievement in achievement_list %}
+              <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                <div class="col-sm-6">
+                  <div class="card">
+                    <img style="object-fit:cover;height:300px" class="d-block card-img-top" src="{{ achievement.image.url }}" alt="{{ achievement.name }}">
+                    <div style="object-fit:cover;height:360px" class="card-body">
+                      <div class="Achievement-title MediumBlue">{{ achievement.name }}</div>
+                      <p class="Achievement-description">{{ achievement.description|safe }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        <a class="carousel-control-prev" href="#achievement-carousel" role="button" data-slide="prev">
+          <span class="fas fa-chevron-left fa-3x" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#achievement-carousel" role="button" data-slide="next">
+          <span class="fas fa-chevron-right fa-3x" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+        <ol class="carousel-indicators">
+          {% for achievement in achievement_list %}
+            <li data-target="#achievement-carousel" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}active{% endif %}"></li>
+          {% endfor %}
+        </ol>
+      </div>
+      </div>
     </div>
     <hr class="AccentBar"></hr>
     <h3 class="SectionContent LightGray mt-5">{{ overview.achievements_text }}</h3>
   </div>
+{% endblock %}
+
+{% block javascript %}
+<script>
+    $('#attachment-carousel').carousel({ 
+        interval: 10000             
+      });
+      $('.carousel .carousel-item').each(function(){
+        var next = $(this).next();
+        if (!next.length) {
+          next = $(this).siblings(':first');
+        }
+        next.children(':first-child').clone().appendTo($(this));
+        for (var i=0;i<4;i++) {
+          next=next.next();
+          if (!next.length) {
+            next = $(this).siblings(':first');
+          }
+          
+          next.children(':first-child').clone().appendTo($(this));
+        }
+      });         
+</script>
+{% endblock %}
