@@ -312,10 +312,22 @@
       }
       .Commitment-category {
         padding: 0 100px;
+        cursor: pointer;
       }
         .Commitment-category h2 {
           padding: 26px 0;
         }
+        .Commitment-category i {
+          transition-duration: 0.5s;
+        }
+        .Commitment-category.Inactive i {
+          transform: rotate(180deg);
+          transition-duration: 0.5s;
+        }
+
+      .Commitment-category-list {
+        display: flex;
+      }
       .Commitment {
         cursor: pointer;
       }
@@ -364,10 +376,10 @@
         background-color: #E7E1DB;
         padding: 20px 30px;
       }
-      .Commitment-descriptionandstatus {
+      .Commitment-copy {
         display: none;
       }
-        .Commitment-descriptionandstatus.Active {
+        .Commitment-copy.Active {
           display: block;
         }
       .Commitment-description {
@@ -375,6 +387,9 @@
         font-size: 18px;
         line-height: 25px;
         margin: 0;
+      }
+      .Commitment-description-separator {
+        border: 1px solid #FFFFFF;
       }
       footer {
         background-color: #264151;
