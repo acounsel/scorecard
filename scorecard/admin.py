@@ -9,8 +9,8 @@ admin.site.register(Overview)
 @admin.register(CommitmentCategory)
 class CommitmentCategoryAdmin(admin.ModelAdmin):
     list_items = (
+        'order_num',
         'name',
-        'order_num'
     )
     list_display = list_items
     list_display_links = list_items
@@ -18,10 +18,10 @@ class CommitmentCategoryAdmin(admin.ModelAdmin):
 @admin.register(Commitment)
 class CommitmentAdmin(admin.ModelAdmin):
     list_items = (
+        'order_num',
+        'order_letter',
         'name',
         'category',
-        'order_num',
-        'order_letter'
     )
     list_display = list_items
     list_display_links = list_items
@@ -32,6 +32,8 @@ class StatusAdmin(admin.ModelAdmin):
     list_items = (
         'commitment',
         'status',
+        'date',
+        'is_current',
     )
     list_display = list_items
     list_display_links = list_items
@@ -40,9 +42,9 @@ class StatusAdmin(admin.ModelAdmin):
 @admin.register(Achievement)
 class AchievementAdmin(admin.ModelAdmin):
     list_items = (
+        'order_id',
         'name',
         'image',
-        'order_id',
         'is_featured',
     )
     list_display = list_items
@@ -51,9 +53,9 @@ class AchievementAdmin(admin.ModelAdmin):
 @admin.register(Challenge)
 class ChallengeAdmin(admin.ModelAdmin):
     list_items = (
+        'order_id',
         'name',
         'image',
-        'order_id',
         'is_featured',
     )
     list_display = list_items
@@ -63,9 +65,9 @@ class ChallengeAdmin(admin.ModelAdmin):
 @admin.register(Recommendation)
 class RecommendationAdmin(admin.ModelAdmin):
     list_items = (
+        'order_id',
         'name',
         'image',
-        'order_id',
         'is_featured',
     )
     list_display = list_items
@@ -75,7 +77,7 @@ class RecommendationAdmin(admin.ModelAdmin):
 class DocumentAdmin(admin.ModelAdmin):
     list_items = (
         'name',
-        'document'
+        'document',
     )
     list_display = list_items
     list_display_links = list_items

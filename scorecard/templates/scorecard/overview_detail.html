@@ -78,8 +78,8 @@
       data.addColumn('number', 'Not yet started');
 
       data.addRows([
-        ['January 2019', 18, 5, 5, 3],
-        ['March 2020', 22, 7, 9, 11],
+        ['January 2019', {{ chart_dict.2019.completed }}, {{ chart_dict.2019.in_progress }}, {{ chart_dict.2019.delayed }}, {{ chart_dict.2019.not_started }}],
+        ['March 2020', {{ chart_dict.2020.completed }}, {{ chart_dict.2020.in_progress }}, {{ chart_dict.2020.delayed }}, {{ chart_dict.2020.not_started }}],
       ]);
 
       var options = {
