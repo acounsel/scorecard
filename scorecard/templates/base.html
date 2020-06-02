@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{{ overview.name|default:"Scorecard" }}</title>
+    <title>{{ overview.name|default:"Scorecard" }} {{ title }}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -41,7 +41,7 @@
       a:hover {
         color: #00B9D4;
       }
-      h1, h2, h3, h4 {
+      h1, h2, h3, .h1 {
         font-family: 'Fjalla One', sans-serif;
       }
       h2 {
@@ -53,6 +53,12 @@
       h3 {
         font-size: 40px;
         line-height: 60px;
+      }
+      h4 {
+        line-height: 30px;
+        font-size: 30px;
+        font-weight: 600;
+        text-transform: uppercase;
       }
       .BlueGreen {
         color: #007D8A;
@@ -118,7 +124,12 @@
         font-size: 59px;
         text-transform: uppercase;
         margin: 0;
+        text-decoration: none;
       }
+        .Title:hover {
+          color: #74D6DB;
+          text-decoration: none;
+        }
       .Translate {
         color: #FFCC00;
         font-size: 20px;
@@ -150,6 +161,7 @@
         line-height: 20px;
         padding: 13px 32px 13px 27px;
         transition: 0.3s all;
+        text-decoration: none;
       }
       .dropdown-menu .dropdown-item:hover {
         background-color: #2D2D2D;
@@ -202,7 +214,8 @@
         text-transform: uppercase;
       }
       .BgImage {
-        background-attachment: fixed;
+        /*background-attachment: fixed;*/
+        background-attachment: scroll;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
@@ -280,6 +293,12 @@
         .Challenge:hover img, .Challenge:hover .Challenge-title {
           opacity: 0.8;
         }
+      .ChartArea p {
+        font-size: 15px;
+        font-style: italic;
+        line-height: 19px;
+        max-width: 100%;
+      }
       #recommendations ul li {
         margin-bottom: 15px;
       }
@@ -420,13 +439,16 @@
           margin: 0 auto;
         }
         .Footer-info {
+          color: #FFFFFF;
           flex: 1;
+          font-size: 18px;
+          line-height: 22px;
           padding: 0 10px;
+          text-decoration: none;
         }
-          .Footer-info {
+          .Footer-info:hover {
+            text-decoration: none; 
             color: #FFFFFF;
-            font-size: 18px;
-            line-height: 22px;
           }
           footer .Icon {
             background-color: #FFFFFF;
@@ -436,6 +458,7 @@
             font-size: 30px;
             margin-right: 15px;
           }
+
       @media only screen and (max-width: 800px) {
         h2 {
           font-size: 48px;

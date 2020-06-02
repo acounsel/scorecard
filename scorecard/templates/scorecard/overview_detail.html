@@ -34,6 +34,11 @@
     <hr class="AccentBar"></hr>
     <div class="SectionContent White p-3">
       {{ overview.challenges_text|safe }}
+      <div class="ChartArea bg-white pl-5 pr-3 pt-4 pb-5 mt-5">
+        <h4 class="pt-2">Status of Commitments</h4>
+        <div id="id_commitmentChart" width="100%"></div>
+        <p>{{ overview.commitment_chart_text }}</p>
+      </div>
     </div>
   </div>
   <div id="recommendations" class="Section bg-bluegreen">
@@ -46,14 +51,78 @@
       </ul>
     </div>
   </div>
-  <a href="" class="CommitmentsButton">Commitments <i class="fal fa-angle-right"></i></a>
+  <a href="{% url 'commitment-list' %}" class="CommitmentsButton">Commitments <i class="fal fa-angle-right"></i></a>
 {% endblock %}
 {% block javascript %}
   <script>
-    $( '.Challenge' ).hover(function() {
-      $(this).find( '.Challenge-description' ).slideDown( 'slow' );
-    }, function() {
-      $(this).find( '.Challenge-description' ).slideUp( 'fast' );
+    $( '.Challenge' ).click(function() {
+      $( this ).find( '.Challenge-description' ).slideToggle( 'slow' );
     })
+    // $( '.Challenge' ).hover(function() {
+    //   $(this).find( '.Challenge-description' ).slideDown( 'slow' );
+    // }, function() {
+    //   $(this).find( '.Challenge-description' ).slideUp( 'fast' );
+    // })
+  </script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script>
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    google.charts.setOnLoadCallback(drawCommitmentChart);
+
+    function drawCommitmentChart() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('string', 'Date');
+      data.addColumn('number', 'Completed');
+      data.addColumn('number', 'In progress');
+      data.addColumn('number', 'Delayed');
+      data.addColumn('number', 'Not yet started');
+
+      data.addRows([
+        ['January 2019', 18, 5, 5, 3],
+        ['March 2020', 22, 7, 9, 11],
+      ]);
+
+      var options = {
+        animation: {
+          startup: true,
+          duration: 1000,
+          easing: 'out',
+        },
+        isStacked: true,
+        colors: ['#74D6DB', '#007D8A', '#FFCC00', '#494949'],
+        chartArea: {
+          left: 30,
+          width: '75%', 
+          height: '80%',
+        },
+        height: 520,
+        hAxis: {
+          gridlines: {
+            count: 2,
+            color: 'transparent',
+          },
+          textStyle: {
+            fontName: 'Montserrat',
+          },
+        },
+        vAxis: {
+          ticks: [0,20,40,60,80],
+          textStyle: {
+            fontName: 'Montserrat',
+          },
+          // title: 'Rating (scale of 1-10)'
+        },
+        legend: {
+          textStyle: {
+            fontName: 'Montserrat',
+          },
+        },
+        bar: { groupWidth: '55%' },
+      };
+
+      var chart = new google.visualization.ColumnChart(
+        document.getElementById('id_commitmentChart'));
+      chart.draw(data, options);
+    }
   </script>
 {% endblock %}

@@ -35,6 +35,8 @@ class CommitmentCategory(models.Model):
 
     name = models.CharField(max_length=255)
     order_num = models.PositiveSmallIntegerField(default=0)
+    overview = models.ForeignKey(Overview, 
+        on_delete=models.SET_NULL, blank=True, null=True)
 
     class Meta:
         ordering = ('order_num',)
@@ -82,6 +84,8 @@ class Commitment(models.Model):
     category = models.ForeignKey(CommitmentCategory, 
         on_delete=models.SET_NULL, blank=True, null=True)
     description = models.TextField(blank=True)
+    overview = models.ForeignKey(Overview, 
+        on_delete=models.SET_NULL, blank=True, null=True)
     original_timeline = models.CharField(
         max_length=255,blank=True)
     order_num = models.PositiveSmallIntegerField(default=0)
@@ -112,6 +116,7 @@ class Status(StatusModel, TimeStampedModel):
         on_delete=models.CASCADE)
     description = models.TextField(blank=True)
     is_current = models.BooleanField(default=True)
+    date = models.DateField(blank=True, null=True)
 
     class Meta:
         verbose_name_plural = 'statuses'
@@ -128,6 +133,8 @@ class OverviewModel(models.Model):
         upload_to='images/', blank=True, null=True)
     commitments = models.ManyToManyField(Commitment, 
         blank=True)
+    overview = models.ForeignKey(Overview, 
+        on_delete=models.SET_NULL, blank=True, null=True)
     order_id = models.PositiveSmallIntegerField(default=0)
     is_featured = models.BooleanField(default=False)
 
@@ -157,6 +164,8 @@ class Document(TimeStampedModel):
         storage=storage_backends.PrivateMediaStorage(), 
         upload_to='cases/', blank=True, null=True)
     description = models.TextField(blank=True)
+    overview = models.ForeignKey(Overview, 
+        on_delete=models.SET_NULL, blank=True, null=True)
 
     def __str__(self):
         return self.name

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import View, DetailView, ListView
 
 from .models import Overview, Commitment, Status, Achievement
-from .models import Challenge, Recommendation
+from .models import Challenge, Recommendation, Document
 
 class Home(DetailView):
     model = Overview
@@ -23,6 +23,15 @@ class Home(DetailView):
 
 class CommitmentList(ListView):
     model = Commitment
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['overview'] = Overview.objects.first()
+        context['title'] = 'Commitments'
+        return context
+
+class DocumentList(ListView):
+    model = Document
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

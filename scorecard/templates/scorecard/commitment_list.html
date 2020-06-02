@@ -2,14 +2,12 @@
 
 {% block body %}
 <div id="hero" class="Commitments-hero" style="background-image: url('{{ overview.commitments_image.url  }}')">
-  <hi class="Tab-Overview">Commitments</h1>
+  <h1 class="Tab-Overview">Commitments</h1>
 </div>
 <div class="SectionContent Commitments my-5">
   <div class="font-weight-bold text-uppercase text-right mb-3">Download Commitments Chart
     <a href="" class="Icon-download"><i class="fas fa-file-pdf fa-fw"></i></a>
-    <a href="" class="Icon-download">
-      <i class="fas fa-file-csv fa-fw"></i>
-    </a>
+    <a href="" class="Icon-download"><i class="fas fa-file-csv fa-fw"></i></a>
   </div>
   {% regroup commitment_list by category as category_list %}
   {% for category in category_list %}
@@ -17,50 +15,52 @@
     <h2 class="">{{ category.grouper }}</h2>
     <i class="far fa-angle-up fa-5x"></i>
   </div>
-  <div class="SectionContent mt-5 mb-4 Commitment-category-list">
-    <div class="Commitment-list">
-    {% for commitment in category.list %}
-      <div class="Commitment {% if commitment.id == category.list.0.id %}Active{% endif %} d-flex font-weight-bold" commitment="Commitment_{{ commitment.id }}">
-        <div class="Commitment-status {{ commitment.get_status.get_status_display }} mr-3 my-3">
-          <div class="Commitment-status--adjustment"></div>
-        </div>
-        <div class="Commitment-number py-3 pl-3">{{ commitment.order_num }}.</div>
-        <div class="Commitment-name py-3 pr-4">{{ commitment.name }}</div>
-      </div>
-    {% endfor %}
-    </div>
-    <div class="Commitment-descriptions">
-      <p class="font-weight-bold">About this commitment</p>
+  <div class="Commitment-category--slidedown">
+    <div class="SectionContent mt-5 mb-4 Commitment-category-list">
+      <div class="Commitment-list">
       {% for commitment in category.list %}
-      <div class="Commitment-copy Commitment_{{ commitment.id }} {% if commitment.id == category.list.0.id %}Active{% endif %}">
-        <p class="Commitment-description">{{ commitment.description }}</p>
-        <p class="font-weight-bold">Implementation status of this commitment</p>
-        <p class="Commitment-description">{{ commitment.get_status.description }}</p>
-        <hr class="Commitment-description-separator"></hr>
-        <p class="Commitment-description"><span class=" text-uppercase">Original Timeline: </span>{{ commitment.original_timeline }}</p>
-      </div>
+        <div class="Commitment {% if commitment.id == category.list.0.id %}Active{% endif %} d-flex font-weight-bold" commitment="Commitment_{{ commitment.id }}">
+          <div class="Commitment-status {{ commitment.get_status.get_status_display }} mr-3 my-3">
+            <div class="Commitment-status--adjustment"></div>
+          </div>
+          <div class="Commitment-number py-3 pl-3">{{ commitment.order_num }}.</div>
+          <div class="Commitment-name py-3 pr-4">{{ commitment.name }}</div>
+        </div>
       {% endfor %}
+      </div>
+      <div class="Commitment-descriptions">
+        <p class="font-weight-bold">About this commitment</p>
+        {% for commitment in category.list %}
+        <div class="Commitment-copy Commitment_{{ commitment.id }} {% if commitment.id == category.list.0.id %}Active{% endif %}">
+          <p class="Commitment-description">{{ commitment.description }}</p>
+          <p class="font-weight-bold">Implementation status of this commitment</p>
+          <p class="Commitment-description">{{ commitment.get_status.description }}</p>
+          <hr class="Commitment-description-separator">
+          <p class="Commitment-description"><span class=" text-uppercase">Original Timeline: </span>{{ commitment.original_timeline }}</p>
+        </div>
+        {% endfor %}
+      </div>
     </div>
-  </div>
-  <div class="SectionContent mb-5">
-    <div class="StatusKey ml-auto">
-      <div class="mx-2 d-flex align-items-center">
-        <div class="Commitment-status mr-2"></div>Completed
-      </div>
-      <div class="mx-2 d-flex align-items-center">
-        <div class="Commitment-status Progress mr-2">
-          <div class="Commitment-status--adjustment"></div>
-        </div>In Progress
-      </div>
-      <div class="mx-2 d-flex align-items-center">
-        <div class="Commitment-status Delayed mr-2">
-          <div class="Commitment-status--adjustment"></div>
-        </div>Delayed
-      </div>
-      <div class="mx-2 d-flex align-items-center">
-        <div class="Commitment-status Started mr-2">
-          <div class="Commitment-status--adjustment"></div>
-        </div>Not Started
+    <div class="StatusKey-parent SectionContent mb-5">
+      <div class="StatusKey ml-auto">
+        <div class="mx-2 d-flex align-items-center">
+          <div class="Commitment-status mr-2"></div>Completed
+        </div>
+        <div class="mx-2 d-flex align-items-center">
+          <div class="Commitment-status Progress mr-2">
+            <div class="Commitment-status--adjustment"></div>
+          </div>In Progress
+        </div>
+        <div class="mx-2 d-flex align-items-center">
+          <div class="Commitment-status Delayed mr-2">
+            <div class="Commitment-status--adjustment"></div>
+          </div>Delayed
+        </div>
+        <div class="mx-2 d-flex align-items-center">
+          <div class="Commitment-status Started mr-2">
+            <div class="Commitment-status--adjustment"></div>
+          </div>Not Started
+        </div>
       </div>
     </div>
   </div>
@@ -72,7 +72,7 @@
 {% block javascript %}
 <script>
   $( '.Commitment-category' ).click(function() {
-    $( this ).next( '.Commitment-category-list' ).slideToggle();
+    $( this ).next( '.Commitment-category--slidedown' ).slideToggle();
     $( this ).toggleClass( 'Inactive' );
   });
   $( '.Commitment' ).click(function() {
