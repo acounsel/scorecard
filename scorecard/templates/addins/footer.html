@@ -1,21 +1,22 @@
+{% load i18n %}
 <div class="container">
-  <p class="White text-center text-uppercase font-weight-bold">For More Information</p>
+  <p class="White text-center text-uppercase font-weight-bold">{% trans "For More Information" %}</p>
   <div class="d-flex align-items-center flex-column flex-md-row text-white">
     <a href="" class="Footer-info d-flex align-items-center">
       <div class="Icon"><i class="fas fa-chart-area fa-fw"></i></div>
-      <span>Read our full progress report</span>
+      <span>{% trans "Read our full progress report" %}</span>
     </a>
     <a href="" class="Footer-info d-flex align-items-center">
       <div class="Icon"><i class="fas fa-file-alt fa-fw"></i></div>
-      <span>Read our blog</span>
+      <span>{% trans "Read our blog" %}</span>
     </a>
     <a href="{% url 'document-list' %}" class="Footer-info d-flex align-items-center">
       <div class="Icon"><i class="fas fa-briefcase fa-fw"></i></div>
-      <span>Explore other case related documents</span>
+      <span>{% trans "Explore other case related documents" %}</span>
     </a>
     <a class="Footer-info d-flex align-items-center">
       <div class="Icon"><i class="fas fa-file-pdf fa-fw"></i></div>
-      <span>Download Commitments Chart</span>
+      <span>{% trans "Download Commitments Chart" %}</span>
     </a>
   </div>
 </div>

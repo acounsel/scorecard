@@ -15,15 +15,15 @@
           {% trans "Overview" %}
         </a>
         <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuOverview">
-          <a class="dropdown-item" href="{% if title == 'Commitments' %}{% url 'home' %}{% endif %}#story1">The Story</a>
-          <a class="dropdown-item" href="{% if title == 'Commitments' %}{% url 'home' %}{% endif %}">Achievements to Date</a>
-          <a class="dropdown-item" href="{% if title == 'Commitments' %}{% url 'home' %}{% endif %}#challenges">Challenges Ahead</a>
-          <a class="dropdown-item" href="{% if title == 'Commitments' %}{% url 'home' %}{% endif %}#recommendations">Recommendations</a>
+          <a class="dropdown-item" href="{% if title == 'Commitments' %}{% url 'home' %}{% endif %}#story1">{% trans "The Story" %}</a>
+          <a class="dropdown-item" href="{% if title == 'Commitments' %}{% url 'home' %}{% endif %}">{% trans "Achievements to Date" %}</a>
+          <a class="dropdown-item" href="{% if title == 'Commitments' %}{% url 'home' %}{% endif %}#challenges">{% trans "Challenges Ahead" %}</a>
+          <a class="dropdown-item" href="{% if title == 'Commitments' %}{% url 'home' %}{% endif %}#recommendations">{% trans "Recommendations" %}</a>
         </div>
       </li>
       <li class="nav-item">
         <a class="nav-link {% if title == 'Commitments' %}Active{% endif %}" href="{% url 'commitment-list' %}" id="navbarCommitments" role="button">
-          Commitments
+          {% trans "Commitments" %}
         </a>
       </li>
     </ul>

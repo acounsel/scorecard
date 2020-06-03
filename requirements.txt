@@ -3,7 +3,9 @@ django
 django-debug-toolbar
 django-extensions
 django-model-utils
+django-modeltranslation
 django-heroku
+django-rosetta
 django-storages
 gunicorn
 Pillow
