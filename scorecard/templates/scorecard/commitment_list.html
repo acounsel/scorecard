@@ -20,7 +20,7 @@
     <div class="SectionContent mt-5 mb-4 Commitment-category-list">
       <div class="Commitment-list">
       {% for commitment in category.list %}
-        <div class="Commitment {% if commitment.id == category.list.0.id %}Active{% endif %} d-flex font-weight-bold" commitment="Commitment_{{ commitment.id }}">
+        <div id="commitment-{{ commitment.id }}" class="Commitment {% if commitment.id == category.list.0.id %}Active{% endif %} d-flex font-weight-bold" commitment="Commitment_{{ commitment.id }}">
           <div class="Commitment-status {{ commitment.get_status.get_status_display }} mr-3 my-3">
             <div class="Commitment-status--adjustment"></div>
           </div>
