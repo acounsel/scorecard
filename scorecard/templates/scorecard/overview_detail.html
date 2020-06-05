@@ -1,18 +1,19 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block body %}
   <div id="hero">
     <div class="VideoContainer">
-      <iframe class="videoContainer__video" width="100%" height="700px" src="https://www.youtube.com/embed/wiNaYiCYI14?rel=0" frameborder="0">
+      <iframe class="videoContainer__video" width="100%" height="700px" src="{{ overview.hero_video }}" frameborder="0">
       </iframe>
     </div>
   </div>
   <div id="story1" class="Section">
-    <div class="Tab-Overview">Overview</div>
-    <h2 class="text-center BlueGreen">The Story</h2>
+    <div class="Tab-Overview">{% trans "Overview" %}</div>
+    <h2 class="text-center BlueGreen">{% trans "The Story" %}</h2>
     <p class="SectionContent"><span class="text-uppercase"><strong>{{ overview.story_part1|slice:":30" }}</strong></span>{{ overview.story_part1|slice:"30:" }}</p>
   </div>
-  <div id="image1" class="BgImage BgImage-1"></div>
+  <div id="image1" class="BgImage" style="background-image:url('{{ overview.story_image.url }}')"></div>
   <div id="story2" class="Section">
     <div class="SectionContent d-flex flex-column flex-md-row justify-content-between">
       <p>{{ overview.story_part2 }}</p>
@@ -21,7 +22,7 @@
   </div>
   {% include 'scorecard/achievements.html' %}
   <div id="challenges" class="Section bg-dark">
-    <h2 class="text-center LightBlue mb-5">Challenges Ahead</h2>
+    <h2 class="text-center LightBlue mb-5">{% trans "Challenges Ahead" %}</h2>
     <div class="SectionContent Grid">
       {% for challenge in challenge_list %}
       <div class="Challenge {% if challenge.is_featured %}Featured{% endif %}">
@@ -35,14 +36,14 @@
     <div class="SectionContent White p-3">
       {{ overview.challenges_text|safe }}
       <div class="ChartArea bg-white pl-5 pr-3 pt-4 pb-5 mt-5">
-        <h4 class="pt-2">Status of Commitments</h4>
+        <h4 class="pt-2">{% trans "Status of Commitments" %}</h4>
         <div id="id_commitmentChart" width="100%"></div>
         <p>{{ overview.commitment_chart_text }}</p>
       </div>
     </div>
   </div>
   <div id="recommendations" class="Section bg-bluegreen">
-    <h2 class="text-center Yellow mb-5">Recommendations</h2>
+    <h2 class="text-center Yellow mb-5">{% trans "Recommendations" %}</h2>
     <div class="SectionContent p-3">
       <ul class="White">
         {% for recommendation in recommendation_list %}
@@ -51,7 +52,7 @@
       </ul>
     </div>
   </div>
-  <a href="{% url 'commitment-list' %}" class="CommitmentsButton">Commitments <i class="fal fa-angle-right"></i></a>
+  <a href="{% url 'commitment-list' %}" class="CommitmentsButton">{% trans "Commitments" %} <i class="fal fa-angle-right"></i></a>
 {% endblock %}
 {% block javascript %}
   <script>
@@ -72,10 +73,10 @@
     function drawCommitmentChart() {
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Date');
-      data.addColumn('number', 'Completed');
-      data.addColumn('number', 'In progress');
-      data.addColumn('number', 'Delayed');
-      data.addColumn('number', 'Not yet started');
+      data.addColumn('number', '{% trans "Completed" %}');
+      data.addColumn('number', '{% trans "In progress" %}');
+      data.addColumn('number', '{% trans "Delayed" %}');
+      data.addColumn('number', '{% trans "Not yet started" %}');
 
       data.addRows([
         ['January 2019', {{ chart_dict.2019.completed }}, {{ chart_dict.2019.in_progress }}, {{ chart_dict.2019.delayed }}, {{ chart_dict.2019.not_started }}],

@@ -22,6 +22,7 @@ ADMINS = (
 )
 
 INSTALLED_APPS = [
+    'modeltranslation',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -30,6 +31,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'scorecard',
     'django_extensions',
+    'rosetta',
 ]
 
 MIDDLEWARE = [
@@ -95,6 +97,13 @@ USE_L10N = True
 
 USE_TZ = True
 
+LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale'),]
+
+gettext = lambda s: s
+LANGUAGES = (
+    ('en', gettext('English')),
+    ('mo', gettext('Mongolian')),
+)
 
 AWS_ACCESS_KEY_ID = get_env_variable('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = get_env_variable('AWS_SECRET_ACCESS_KEY')

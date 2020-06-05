@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block body %}
 <div id="hero" class="Commitments-hero" style="background-image: url('{{ overview.commitments_image.url  }}')">
-  <h1 class="Tab-Overview">Commitments</h1>
+  <h1 class="Tab-Overview">{% trans "Commitments" %}</h1>
 </div>
 <div class="SectionContent Commitments my-5">
-  {{ chart_dict }}
-  <div class="font-weight-bold text-uppercase text-right mb-3">Download Commitments Chart
+  <div class="font-weight-bold text-uppercase text-right mb-3">{% trans "Download Commitments Chart" %}
     <a href="" class="Icon-download"><i class="fas fa-file-pdf fa-fw"></i></a>
     <a href="" class="Icon-download"><i class="fas fa-file-csv fa-fw"></i></a>
   </div>
@@ -20,7 +20,7 @@
     <div class="SectionContent mt-5 mb-4 Commitment-category-list">
       <div class="Commitment-list">
       {% for commitment in category.list %}
-        <div class="Commitment {% if commitment.id == category.list.0.id %}Active{% endif %} d-flex font-weight-bold" commitment="Commitment_{{ commitment.id }}">
+        <div id="commitment-{{ commitment.order_num }}{{ commitment.order_letter }}" class="Commitment {% if commitment.id == category.list.0.id %}Active{% endif %} d-flex font-weight-bold" commitment="Commitment_{{ commitment.id }}">
           <div class="Commitment-status {{ commitment.get_status.get_status_display }} mr-3 my-3">
             <div class="Commitment-status--adjustment"></div>
           </div>
@@ -30,14 +30,14 @@
       {% endfor %}
       </div>
       <div class="Commitment-descriptions">
-        <p class="font-weight-bold">About this commitment</p>
+        <p class="font-weight-bold">{% trans "About this commitment" %}</p>
         {% for commitment in category.list %}
         <div class="Commitment-copy Commitment_{{ commitment.id }} {% if commitment.id == category.list.0.id %}Active{% endif %}">
           <p class="Commitment-description">{{ commitment.description }}</p>
-          <p class="font-weight-bold">Implementation status of this commitment</p>
+          <p class="font-weight-bold">{% trans "Implementation status of this commitment" %}</p>
           <p class="Commitment-description">{{ commitment.get_status.description }}</p>
           <hr class="Commitment-description-separator">
-          <p class="Commitment-description"><span class=" text-uppercase">Original Timeline: </span>{{ commitment.original_timeline }}</p>
+          <p class="Commitment-description"><span class=" text-uppercase">{% trans "Original Timeline" %}: </span>{{ commitment.original_timeline }}</p>
         </div>
         {% endfor %}
       </div>
@@ -45,22 +45,22 @@
     <div class="StatusKey-parent SectionContent mb-5">
       <div class="StatusKey ml-auto">
         <div class="mx-2 d-flex align-items-center">
-          <div class="Commitment-status mr-2"></div>Completed
+          <div class="Commitment-status mr-2"></div>{% trans "Completed" %}
         </div>
         <div class="mx-2 d-flex align-items-center">
           <div class="Commitment-status Progress mr-2">
             <div class="Commitment-status--adjustment"></div>
-          </div>In Progress
+          </div>{% trans "In Progress" %}
         </div>
         <div class="mx-2 d-flex align-items-center">
           <div class="Commitment-status Delayed mr-2">
             <div class="Commitment-status--adjustment"></div>
-          </div>Delayed
+          </div>{% trans "Delayed" %}
         </div>
         <div class="mx-2 d-flex align-items-center">
           <div class="Commitment-status Started mr-2">
             <div class="Commitment-status--adjustment"></div>
-          </div>Not Started
+          </div>{% trans "Not Started" %}
         </div>
       </div>
     </div>

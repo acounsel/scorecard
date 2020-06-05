@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-
+{% load i18n %}
 {% block body %}
 <div id="hero" class="Commitments-hero" style="background-image: url('{{ overview.commitments_image.url  }}')">
-  <h1 class="Tab-Overview">Case Documents</h1>
+  <h1 class="Tab-Overview">{% trans "Case Documents" %}</h1>
 </div>
 <div id="documents" class="Section bg-dark">
   <div class="SectionContent Grid">
