@@ -48,9 +48,9 @@ class Overview(TimeStampedModel):
                     order_id=cdict['order_id'],
                     overview=self,
                 )
-                if cdict.get('image_url'):
-                    instance.image = cdict['image_url']
-                    instance.save()
+                # if cdict.get('image_url'):
+                #     instance.image = cdict['image_url']
+                #     instance.save()
                 print(instance)
 
 
