@@ -3,7 +3,10 @@
 {% load i18n %}
 <div class="TitleBar d-flex align-items-start flex-column flex-md-row bg-dark">
   <a class="navbar-brand" href="https://www.accountabilitycounsel.org"><img class="Logo" src="https://scorecard-static.s3-us-west-1.amazonaws.com/Accountability+Counsel_Logo_White2.png"></a>
-  <h1 class="mr-auto"><a class="h1 Title LightBlue" href="{% url 'home' %}">{{ overview.name }}</a></h1>
+  <div class="d-flex flex-column mr-auto">
+    <h1><a class="h1 Title LightBlue" href="{% url 'home' %}">{{ overview.name }}</a></h1>
+    <h2 class="Subtitle">Tracking agreements between nomadic herders and Mongolia's largest copper mine</h2>
+  </div>
   <a href="" class="Translate">Монгол</a>
 
 </div>

@@ -3,17 +3,29 @@
 {% block body %}
 <div id="hero" class="Commitments-hero" style="background-image: url('{{ overview.commitments_image.url  }}')">
   <h1 class="Tab-Overview">{% trans "Case Documents" %}</h1>
-</div>
-<div id="documents" class="Section bg-dark">
-  <div class="SectionContent Grid">
-    {% for document in document_list %}
-    <div class="Challenge">
-      <div class="Challenge-title">{{ document.name }}</div>
-      <img src="{{ challenge.image.url }}">
-      <div class="Challenge-description">{{ document.description }}</div>
+  <div class="container-fluid pt-5 SectionContent">
+    <div class="Documents card mx-auto mt-5 p-4 h-75">
+      <table class="table my-3 w-100" style="opacity: 0.9;">
+        <thead>
+          <tr>
+            <th scope="col">{% trans "Document" %}</th>
+            <th scope="col">{% trans "Description" %}</th>
+            <th scope="col">{% trans "Date" %}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for document in document_list %}
+            <tr>
+              <th scope="row"><a class="text-dark" target="_blank" href="{{ document.document.url }}">{{ document.name }}</a></th>
+              <td><a class="text-dark" target="_blank" href="{{ document.document.url }}">{{ document.description }}</a></td>
+              <td><a class="text-dark" target="_blank" href="{{ document.document.url }}">{{ document.date|date:"M Y" }}</a></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
-    {% endfor %}
   </div>
 </div>
+
 {% endblock %}
 

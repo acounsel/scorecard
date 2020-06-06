@@ -6,6 +6,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{% trans overview.name|default:"Scorecard" %} {{ title }}</title>
+    <link rel="icon" type="image/png" href="https://scorecard-static.s3-us-west-1.amazonaws.com/media/public/images/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="https://scorecard-static.s3-us-west-1.amazonaws.com/media/public/images/favicon-16x16.png" sizes="16x16">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
@@ -14,8 +16,6 @@
     <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Montserrat:200,400,600&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/c12b0758b8.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-footable/3.1.6/footable.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/footable.min.js' %}"></script>
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   </head>
   <body>
@@ -36,8 +36,11 @@
       }
       a {
         color: #00B9D4;
-        text-decoration: underline;
+        text-decoration: none;
       }
+        p a {
+          text-decoration: none;
+        }
       a:hover {
         color: #00B9D4;
       }
@@ -76,7 +79,7 @@
         color: #E4E4E4;
       }
       .TitleBar {
-        padding: 45px 120px 20px 70px;
+        padding: 45px 120px 0 70px;
       }
       .White {
         color: #FFFFFF;
@@ -121,7 +124,7 @@
       }
       .Title {
         font-family: 'Fjalla One', sans-serif;
-        font-size: 59px;
+        font-size: 50px;
         text-transform: uppercase;
         margin: 0;
         text-decoration: none;
@@ -129,6 +132,12 @@
         .Title:hover {
           color: #74D6DB;
           text-decoration: none;
+        }
+        .Subtitle {
+          color: white;
+          font-size: 30px;
+          padding: 0;
+          text-transform: none
         }
       .Translate {
         color: #FFCC00;
@@ -255,10 +264,10 @@
       }
       .Grid {
         display: grid;
-        grid-template-columns: repeat(3, 380px);
-        grid-template-rows: repeat(3, 380px);
-        grid-gap: 30px;
-        max-width: 1200px;
+        grid-template-columns: repeat(3, 320px);
+        grid-template-rows: repeat(3, 320px);
+        grid-gap: 20px;
+        max-width: 1000px;
       }
       .Challenge {
         cursor: pointer;
@@ -269,14 +278,15 @@
         }
       .Challenge img {
         object-fit: cover;
-        height: 320px;
+        height: 260px;
         width: 100%;
         transition: all 0.4s;
       }
         .Challenge-title {
           background-color: #FFCC00;
+          font-size: 19px;
           font-weight: 600;
-          padding: 10px 37px;
+          padding: 10px 15px;
           text-transform: uppercase;
           transition: all 0.4s;
         }
@@ -346,6 +356,9 @@
         .Commitment-category i {
           transition-duration: 0.5s;
         }
+        .Commitment-category--slidedown.Inactive {
+          display: none;
+        }
         .Commitment-category.Inactive i {
           transform: rotate(180deg);
           transition-duration: 0.5s;
@@ -398,12 +411,15 @@
           background-color: #E7E1DB;
         }
       .Commitment-descriptions {
-        flex: 1;
+        position: sticky;
+        top:0;
         background-color: #E7E1DB;
         padding: 20px 30px;
       }
       .Commitment-copy {
         display: none;
+        position: sticky;
+        top: 10px;
       }
         .Commitment-copy.Active {
           display: block;
@@ -501,9 +517,6 @@
         {% include 'addins/footer.html' %}
       {% endblock %}
     </footer>
-    <script type="text/javascript">
-      $( '.table' ).footable();
-    </script>
     <script>
       var $dropdown = $(".dropdown");
       var $dropdownMenu = $(".dropdown-menu");

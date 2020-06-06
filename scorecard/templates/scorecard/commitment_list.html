@@ -16,7 +16,7 @@
     <h2 class="">{{ category.grouper }}</h2>
     <i class="far fa-angle-up fa-5x"></i>
   </div>
-  <div class="Commitment-category--slidedown">
+  <div class="Commitment-category--slidedown {% if category.grouper.id != category_list.0.grouper.id %}Inactive{% endif %}">
     <div class="SectionContent mt-5 mb-4 Commitment-category-list">
       <div class="Commitment-list">
       {% for commitment in category.list %}
@@ -35,7 +35,7 @@
         <div class="Commitment-copy Commitment_{{ commitment.id }} {% if commitment.id == category.list.0.id %}Active{% endif %}">
           <p class="Commitment-description">{{ commitment.description }}</p>
           <p class="font-weight-bold">{% trans "Implementation status of this commitment" %}</p>
-          <p class="Commitment-description">{{ commitment.get_status.description }}</p>
+          <p class="Commitment-description">{{ commitment.get_status.description|safe }}</p>
           <hr class="Commitment-description-separator">
           <p class="Commitment-description"><span class=" text-uppercase">{% trans "Original Timeline" %}: </span>{{ commitment.original_timeline }}</p>
         </div>
@@ -45,12 +45,9 @@
     <div class="StatusKey-parent SectionContent mb-5">
       <div class="StatusKey ml-auto">
         <div class="mx-2 d-flex align-items-center">
-          <div class="Commitment-status mr-2"></div>{% trans "Completed" %}
-        </div>
-        <div class="mx-2 d-flex align-items-center">
-          <div class="Commitment-status Progress mr-2">
+          <div class="Commitment-status Started mr-2">
             <div class="Commitment-status--adjustment"></div>
-          </div>{% trans "In Progress" %}
+          </div>{% trans "Not Started" %}
         </div>
         <div class="mx-2 d-flex align-items-center">
           <div class="Commitment-status Delayed mr-2">
@@ -58,9 +55,12 @@
           </div>{% trans "Delayed" %}
         </div>
         <div class="mx-2 d-flex align-items-center">
-          <div class="Commitment-status Started mr-2">
+          <div class="Commitment-status Progress mr-2">
             <div class="Commitment-status--adjustment"></div>
-          </div>{% trans "Not Started" %}
+          </div>{% trans "In Progress" %}
+        </div>
+        <div class="mx-2 d-flex align-items-center">
+          <div class="Commitment-status mr-2"></div>{% trans "Completed" %}
         </div>
       </div>
     </div>
