@@ -24,7 +24,7 @@
           <div class="Commitment-status {{ commitment.get_status.get_status_display }} mr-3 my-3">
             <div class="Commitment-status--adjustment"></div>
           </div>
-          <div class="Commitment-number py-3 pl-3">{{ commitment.order_num }}.</div>
+          <div class="Commitment-number py-3 pl-3">{{ commitment.order_num }}{{ commitment.order_letter }}.</div>
           <div class="Commitment-name py-3 pr-4">{{ commitment.name }}</div>
         </div>
       {% endfor %}

@@ -219,6 +219,7 @@
         font-family: 'Fjalla One', sans-serif;
         font-size: 35px;
         max-width: 25%;
+        min-width: 400px;
         margin-top: -15px;
         text-transform: uppercase;
       }
@@ -396,8 +397,9 @@
             background-color: #A22524;
           }
       .Commitment-number {
-        width: 50px;
+        width: 75px;
         line-height: 30px;
+        text-align: center;
         transition: all 0.3s;
       }
       .Commitment-name {
@@ -476,8 +478,26 @@
           }
 
       @media only screen and (max-width: 800px) {
+        .navbar-brand {
+          padding-bottom: 30px;
+        }
+        .Title {
+          font-size: 40px;
+        }
+        .Subtitle {
+          font-size: 24px;
+          line-height: 36px;
+        }
         h2 {
           font-size: 48px;
+        }
+        h3 {
+          font-size: 26px;
+          line-height: 50px;
+        }
+        div {
+          font-size: 19px;
+          line-height: 30px;
         }
         .TitleBar {
           padding: 20px;
@@ -485,12 +505,16 @@
         .Tab-Overview {
           padding: 25px 20px 22px;
           max-width: 50%
+          min-width: 30%;
+        }
+        .AccentBar {
+          margin: 100px 0 30px 0;
         }
         .SectionContent {
-          padding: 20px;
+          padding: 30px;
         }
         .Grid {
-          grid-template-columns: repeat(1, 380px);
+          grid-template-columns: repeat(1, 1fr);
         }
           .Challenge.Featured {
             grid-column-end: span 1;
