@@ -4,8 +4,8 @@
 {% block body %}
   <div id="hero">
     <div class="VideoContainer">
-      <iframe class="videoContainer__video" width="100%" height="700px" src="{{ overview.hero_video }}" frameborder="0">
-      </iframe>
+      <div class="Video" id="player"></div>
+    <img id="play_vid" src="{{ overview.hero_image }}" />
     </div>
   </div>
   <div id="story1" class="Section">
@@ -125,5 +125,36 @@
         document.getElementById('id_commitmentChart'));
       chart.draw(data, options);
     }
+  </script>
+  <script>
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+            videoId: 'wiNaYiCYI14',
+            events: {
+              'onReady': onPlayerReady,
+            },
+            playerVars: {rel: 0, modestbranding: 1, ecver: 2, hl:'mn'},
+        });
+    }
+
+    function onPlayerReady(event) {
+        $('#play_vid').click(function() {
+            event.target.playVideo();
+        });
+    }
+
+    $(document).ready(function() {
+        $('#player').hide();
+        $('#play_vid').click(function() {
+            $('#player').show();
+            $('#play_vid').hide();
+        });
+    });
   </script>
 {% endblock %}
