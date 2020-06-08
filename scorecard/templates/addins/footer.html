@@ -1,22 +1,22 @@
 {% load i18n %}
 <div class="container">
-  <p class="White text-center text-uppercase font-weight-bold">{% trans "For More Information" %}</p>
-  <div class="d-flex align-items-center flex-column flex-md-row text-white">
-    <a href="" class="Footer-info d-flex align-items-center">
-      <div class="Icon"><i class="fas fa-chart-area fa-fw"></i></div>
-      <span>{% trans "Read our full progress report" %}</span>
-    </a>
-    <a href="" class="Footer-info d-flex align-items-center">
-      <div class="Icon"><i class="fas fa-file-alt fa-fw"></i></div>
-      <span>{% trans "Read our blog" %}</span>
-    </a>
-    <a href="{% url 'document-list' %}" class="Footer-info d-flex align-items-center">
-      <div class="Icon"><i class="fas fa-briefcase fa-fw"></i></div>
-      <span>{% trans "Explore other case related documents" %}</span>
-    </a>
-    <a class="Footer-info d-flex align-items-center">
-      <div class="Icon"><i class="fas fa-file-pdf fa-fw"></i></div>
-      <span>{% trans "Download Commitments Chart" %}</span>
-    </a>
+<!--   <p class="White text-center text-uppercase font-weight-bold">{% trans "For More Information" %}</p> -->
+  <div class="d-flex align-items-start flex-column flex-md-row text-white">
+    <div class="Footer-info d-flex flex-column">
+      <p>{% trans "Read" %}</p>
+      <a href="">{% trans "Our full progress report" %}</a>
+      <a href="">{% trans "Our methodology" %}</a>
+    </div>
+    <div class="Footer-info d-flex flex-column">
+      <p>{% trans "Explore" %}</p>
+      <a href="">{% trans "Case documents" %}</a>
+      <a href="">{% trans "Our case page" %}</a>
+      <a href="">{% trans "Commitments" %}</a>
+    </div>
+    <div class="Footer-info d-flex flex-column">
+      <p>{% trans "Download" %}</p>
+      <a href="">{% trans "Commitments Chart PDF" %}</a>
+      <a href="">{% trans "Commitments Chart CSV" %}</a>
+    </div>
   </div>
 </div>
