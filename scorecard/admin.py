@@ -11,6 +11,7 @@ class CommitmentCategoryAdmin(admin.ModelAdmin):
     list_items = (
         'order_num',
         'name',
+        'overview',
     )
     list_display = list_items
     list_display_links = list_items
@@ -22,6 +23,7 @@ class CommitmentAdmin(admin.ModelAdmin):
         'order_letter',
         'name',
         'category',
+        'overview',
     )
     list_display = list_items
     list_display_links = list_items
@@ -45,6 +47,7 @@ class AchievementAdmin(admin.ModelAdmin):
         'order_id',
         'name',
         'image',
+        'overview',
         'is_featured',
     )
     list_display = list_items
@@ -56,6 +59,7 @@ class ChallengeAdmin(admin.ModelAdmin):
         'order_id',
         'name',
         'image',
+        'overview',
         'is_featured',
     )
     list_display = list_items
@@ -68,6 +72,7 @@ class RecommendationAdmin(admin.ModelAdmin):
         'order_id',
         'name',
         'image',
+        'overview',
         'is_featured',
     )
     list_display = list_items
@@ -78,6 +83,7 @@ class DocumentAdmin(admin.ModelAdmin):
     list_items = (
         'name',
         'document',
+        'overview',
     )
     list_display = list_items
     list_display_links = list_items

@@ -5,6 +5,9 @@ from django.views.generic import View, DetailView, ListView
 from .models import Overview, Commitment, Status, Achievement
 from .models import Challenge, Recommendation, Document
 
+
+
+
 class Home(DetailView):
     model = Overview
 
@@ -46,11 +49,19 @@ class CommitmentList(ListView):
         context['title'] = 'Commitments'
         return context
 
+class CommitmentExport(CommitmentList):
+
+    def get(self, request, **kwargs):
+        resp = super().get(request, **kwargs)
+        context = super().get_context_data(**kwargs)
+        response = context['overview'].export_commitments()
+        return response
+
 class DocumentList(ListView):
     model = Document
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['overview'] = Overview.objects.first()
-        context['title'] = 'Commitments'
+        context['title'] = 'Documents'
         return context
