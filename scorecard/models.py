@@ -4,12 +4,22 @@ import io
 
 from django.apps import apps
 from django.db import models
+from django.http import StreamingHttpResponse
 
 from django_scorecard import storage_backends
 
 from model_utils.models import StatusModel, TimeStampedModel
 from model_utils import Choices
 
+class Echo:
+    """An object that implements just the write method
+    of the file-like interface.
+    """
+    def write(self, value):
+        """Write the value by returning it, instead of
+        storing in a buffer.
+        """
+        return value
 
 class Overview(TimeStampedModel):
 
@@ -109,6 +119,36 @@ class Overview(TimeStampedModel):
                     date=datetime.date(2019,2,1),
                 )
 
+    def export_commitments(self):
+        pseudo_buffer = Echo()
+        writer = csv.writer(pseudo_buffer)
+        rows = self.get_export_rows()
+        response = StreamingHttpResponse(
+            (writer.writerow(row) for row in rows),
+            content_type="text/csv")
+        cont_disp = 'attatchment;filename="commitment_export.csv"'
+        response['Content-Disposition'] = cont_disp
+        return response
+
+    def get_export_rows(self, queryset=None):
+        if not queryset:
+            queryset = self.commitment_set.all()
+        rows = [
+            ['category', 'id', 'commitment', 
+                'description', 'original_timeline', 
+                'has_detailed_plan', 'has_approved_funding', 
+                'has_begun_implementation', 'is_complete', 
+                'latest_status', 'status_date',
+                'status_decription', 'previous status',
+                'previous_status_date', 
+                'previous_status_description',
+            ],
+        ]
+        for commitment in queryset:
+            row = commitment.get_export_row()
+            rows.append(row)
+        return rows
+
 class CommitmentCategory(models.Model):
 
     name = models.CharField(max_length=255)
@@ -148,6 +188,18 @@ class Commitment(models.Model):
 
     def get_status(self):
         return self.status_set.last()
+
+    def get_export_row(self):
+        row = [self.category.name, 
+            str(self.order_num) + self.order_letter, self.name,
+            self.description, self.original_timeline,
+            self.has_detailed_plan, self.has_approved_funding,
+            self.has_begun_implementation, self.is_complete,
+        ]
+        for status in self.status_set.order_by('-date'):
+            row.extend([status.status, status.date, 
+                status.description])
+        return row
 
 class Status(StatusModel, TimeStampedModel):
 

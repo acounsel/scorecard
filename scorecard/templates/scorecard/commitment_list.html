@@ -8,7 +8,7 @@
 <div class="SectionContent Commitments my-5">
   <div class="font-weight-bold text-uppercase text-right mb-3">{% trans "Download Commitments Chart" %}
     <a href="" class="Icon-download"><i class="fas fa-file-pdf fa-fw"></i></a>
-    <a href="" class="Icon-download"><i class="fas fa-file-csv fa-fw"></i></a>
+    <a href="{% url 'export' %}" class="Icon-download"><i class="fas fa-file-csv fa-fw"></i></a>
   </div>
   {% regroup commitment_list by category as category_list %}
   {% for category in category_list %}
