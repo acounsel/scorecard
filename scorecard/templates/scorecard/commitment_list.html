@@ -3,7 +3,8 @@
 
 {% block body %}
 <div id="hero" class="Commitments-hero" style="background-image: url('{{ overview.commitments_image.url  }}')">
-  <h1 class="Tab-Overview">{% trans "Commitments" %}</h1>
+  <h1 class="Tab-Overview">{% trans "Commitments" %}
+</h1>
 </div>
 <div class="SectionContent Commitments my-5">
   <div class="font-weight-bold text-uppercase text-right mb-3">{% trans "Download Commitments Chart" %}
@@ -16,11 +17,11 @@
     <h2 class="">{{ category.grouper }}</h2>
     <i class="far fa-angle-up fa-5x"></i>
   </div>
-  <div class="Commitment-category--slidedown {% if category.grouper.id != category_list.0.grouper.id %}Inactive{% endif %}">
+  <div class="Commitment-category--slidedown {% if category.grouper.id != active.category.id %}Inactive{% endif %}">
     <div class="SectionContent mt-5 mb-4 Commitment-category-list">
       <div class="Commitment-list">
       {% for commitment in category.list %}
-        <div id="commitment-{{ commitment.order_num }}{{ commitment.order_letter }}" class="Commitment {% if commitment.id == category.list.0.id %}Active{% endif %} d-flex font-weight-bold" commitment="Commitment_{{ commitment.id }}">
+        <div id="commitment-{{ commitment.order_num }}{{ commitment.order_letter }}" class="Commitment {% if commitment.category.id == active.category.id %}{% if commitment.id == active.id %}Active{% endif %}{% elif commitment.id == category.list.0.id %}Active{% endif %} d-flex font-weight-bold" commitment="Commitment_{{ commitment.id }}">
           <div class="Commitment-status {{ commitment.get_status.get_status_display }} mr-3 my-3">
             <div class="Commitment-status--adjustment"></div>
           </div>
@@ -32,7 +33,7 @@
       <div class="Commitment-descriptions">
         <p class="font-weight-bold">{% trans "About this commitment" %}</p>
         {% for commitment in category.list %}
-        <div class="Commitment-copy Commitment_{{ commitment.id }} {% if commitment.id == category.list.0.id %}Active{% endif %}">
+        <div class="Commitment-copy Commitment_{{ commitment.id }}  {% if commitment.category.id == active.category.id %}{% if commitment.id == active.id %}Active{% endif %}{% elif commitment.id == category.list.0.id %}Active{% endif %}">
           <p class="Commitment-description">{{ commitment.description }}</p>
           <p class="font-weight-bold">{% trans "Implementation status of this commitment" %}</p>
           <p class="Commitment-description">{{ commitment.get_status.description|safe }}</p>
@@ -72,10 +73,14 @@
 
 {% block javascript %}
 <script>
+  $( 'html, body' ).animate({
+    scrollTop: $( '.Commitment_{{ active.id }}' ).offset().top
+    }, 1000);
   $( '.Commitment-category' ).click(function() {
     $( this ).next( '.Commitment-category--slidedown' ).slideToggle();
     $( this ).toggleClass( 'Inactive' );
   });
+
   $( '.Commitment' ).click(function() {
     var commitment_id = $( this ).attr('commitment');
     var commitment_section = $( this ).parent().parent();
