@@ -73,9 +73,11 @@
 
 {% block javascript %}
 <script>
+  {% if request.GET.commitment %}
   $( 'html, body' ).animate({
     scrollTop: $( '.Commitment_{{ active.id }}' ).offset().top
     }, 1000);
+  {% endif %}
   $( '.Commitment-category' ).click(function() {
     $( this ).next( '.Commitment-category--slidedown' ).slideToggle();
     $( this ).toggleClass( 'Inactive' );
