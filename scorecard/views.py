@@ -6,8 +6,6 @@ from .models import Overview, Commitment, Status, Achievement
 from .models import Challenge, Recommendation, Document
 
 
-
-
 class Home(DetailView):
     model = Overview
 
@@ -79,3 +77,13 @@ class DocumentList(ListView):
         context['overview'] = Overview.objects.first()
         context['title'] = 'Documents'
         return context
+
+class Methodology(DetailView):
+    model = Overview
+    template_name = 'scorecard/methodology.html'
+
+    def get_object(self, queryset=None):
+        return Overview.objects.first()
+
+
+

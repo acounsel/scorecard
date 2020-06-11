@@ -53,7 +53,7 @@
         text-transform: uppercase;
         margin: 0;
       }
-      h3 {
+      h3, .h3 {
         font-size: 40px;
         line-height: 60px;
       }
@@ -206,21 +206,23 @@
           max-width: 1000px;
           margin: 0 auto;
         }
+          .SectionContent .HalfWidth {
+            max-width: 465px;
+          }
           .SectionContent p {
             padding-bottom: 10px;
-            max-width: 465px;
           }
           .SectionContent.Commitments {
             max-width: 1200px;
           }
       .Tab-Overview {
         color: #264151;
-        padding: 25px 120px 22px;
+        padding: 25px 50px 22px 5%;
         background-color: #FFCC00;
         box-shadow: 4px 4px 9px 1px rgba(0,0,0,0.21);
         font-family: 'Fjalla One', sans-serif;
         font-size: 35px;
-        max-width: 25%;
+        max-width: 30%;
         min-width: 400px;
         margin-top: -15px;
         text-transform: uppercase;
@@ -357,10 +359,13 @@
         .Commitment-category i {
           transition-duration: 0.5s;
         }
-        .Commitment-category--slidedown.Inactive {
+        .Commitment-category--slidedown {
           display: none;
         }
-        .Commitment-category.Inactive i {
+          .Commitment-category--slidedown.Active {
+            display: block;
+          }
+        .Commitment-category.Active i {
           transform: rotate(180deg);
           transition-duration: 0.5s;
         }
@@ -475,11 +480,10 @@
           font-size: 18px;
           line-height: 22px;
           padding: 10px;
-          text-decoration: none;
         }
-          .Footer-info a:hover {
+/*          .Footer-info a:hover {
             text-decoration: none; 
-          }
+          }*/
          /* footer .Icon {
             background-color: #FFFFFF;
             color: #264151;

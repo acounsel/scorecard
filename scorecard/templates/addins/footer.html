@@ -5,18 +5,18 @@
     <div class="Footer-info d-flex flex-column">
       <p>{% trans "Read" %}</p>
       <a href="">{% trans "Our full progress report" %}</a>
-      <a href="">{% trans "Our methodology" %}</a>
+      <a href="{% url 'methodology' %}">{% trans "Our methodology" %}</a>
     </div>
     <div class="Footer-info d-flex flex-column">
       <p>{% trans "Explore" %}</p>
-      <a href="">{% trans "Case documents" %}</a>
+      <a href="{% url 'document-list' %}">{% trans "Case documents" %}</a>
       <a href="">{% trans "Our case page" %}</a>
       <a href="">{% trans "Commitments" %}</a>
     </div>
     <div class="Footer-info d-flex flex-column">
       <p>{% trans "Download" %}</p>
       <a href="">{% trans "Commitments Chart PDF" %}</a>
-      <a href="">{% trans "Commitments Chart CSV" %}</a>
+      <a href="{% url 'export' %}">{% trans "Commitments Chart CSV" %}</a>
     </div>
   </div>
 </div>

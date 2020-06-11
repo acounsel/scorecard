@@ -13,11 +13,11 @@
   </div>
   {% regroup commitment_list by category as category_list %}
   {% for category in category_list %}
-  <div class="Commitment-category d-flex justify-content-between align-items-center bg-bluegreen text-white">
+  <div class="Commitment-category d-flex justify-content-between align-items-center bg-bluegreen text-white {% if category.grouper.id == active.category.id %}Active{% endif %}">
     <h2 class="">{{ category.grouper }}</h2>
-    <i class="far fa-angle-up fa-5x"></i>
+    <i class="far fa-angle-down fa-5x"></i>
   </div>
-  <div class="Commitment-category--slidedown {% if category.grouper.id != active.category.id %}Inactive{% endif %}">
+  <div class="Commitment-category--slidedown {% if category.grouper.id == active.category.id %}Active{% endif %}">
     <div class="SectionContent mt-5 mb-4 Commitment-category-list">
       <div class="Commitment-list">
       {% for commitment in category.list %}
@@ -31,9 +31,9 @@
       {% endfor %}
       </div>
       <div class="Commitment-descriptions">
-        <p class="font-weight-bold">{% trans "About this commitment" %}</p>
         {% for commitment in category.list %}
         <div class="Commitment-copy Commitment_{{ commitment.id }}  {% if commitment.category.id == active.category.id %}{% if commitment.id == active.id %}Active{% endif %}{% elif commitment.id == category.list.0.id %}Active{% endif %}">
+          <p class="font-weight-bold">{% trans "About this commitment" %}</p>
           <p class="Commitment-description">{{ commitment.description }}</p>
           <p class="font-weight-bold">{% trans "Implementation status of this commitment" %}</p>
           <p class="Commitment-description">{{ commitment.get_status.description|safe }}</p>
@@ -80,7 +80,7 @@
   {% endif %}
   $( '.Commitment-category' ).click(function() {
     $( this ).next( '.Commitment-category--slidedown' ).slideToggle();
-    $( this ).toggleClass( 'Inactive' );
+    $( this ).toggleClass( 'Active' );
   });
 
   $( '.Commitment' ).click(function() {
