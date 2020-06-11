@@ -39,6 +39,8 @@ class Overview(TimeStampedModel):
     commitments_image = models.ImageField(
         storage=storage_backends.PrivateMediaStorage(), 
         upload_to='images/', blank=True, null=True)
+    about_us = models.TextField(blank=True)
+    methodology = models.TextField(blank=True)
     report = models.URLField(max_length=255, blank=True)
 
     def __str__(self):
@@ -181,7 +183,7 @@ class Commitment(models.Model):
     is_complete = models.NullBooleanField()
 
     class Meta:
-        ordering = ('order_num', 'order_letter')
+        ordering = ('order_num', 'id', 'order_letter')
 
     def __str__(self):
         return self.name

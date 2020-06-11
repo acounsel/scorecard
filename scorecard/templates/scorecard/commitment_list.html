@@ -3,7 +3,8 @@
 
 {% block body %}
 <div id="hero" class="Commitments-hero" style="background-image: url('{{ overview.commitments_image.url  }}')">
-  <h1 class="Tab-Overview">{% trans "Commitments" %}</h1>
+  <h1 class="Tab-Overview">{% trans "Commitments" %}
+</h1>
 </div>
 <div class="SectionContent Commitments my-5">
   <div class="font-weight-bold text-uppercase text-right mb-3">{% trans "Download Commitments Chart" %}
@@ -12,15 +13,15 @@
   </div>
   {% regroup commitment_list by category as category_list %}
   {% for category in category_list %}
-  <div class="Commitment-category d-flex justify-content-between align-items-center bg-bluegreen text-white">
+  <div class="Commitment-category d-flex justify-content-between align-items-center bg-bluegreen text-white {% if category.grouper.id == active.category.id %}Active{% endif %}">
     <h2 class="">{{ category.grouper }}</h2>
-    <i class="far fa-angle-up fa-5x"></i>
+    <i class="far fa-angle-down fa-5x"></i>
   </div>
-  <div class="Commitment-category--slidedown {% if category.grouper.id != category_list.0.grouper.id %}Inactive{% endif %}">
+  <div class="Commitment-category--slidedown {% if category.grouper.id == active.category.id %}Active{% endif %}">
     <div class="SectionContent mt-5 mb-4 Commitment-category-list">
       <div class="Commitment-list">
       {% for commitment in category.list %}
-        <div id="commitment-{{ commitment.order_num }}{{ commitment.order_letter }}" class="Commitment {% if commitment.id == category.list.0.id %}Active{% endif %} d-flex font-weight-bold" commitment="Commitment_{{ commitment.id }}">
+        <div id="commitment-{{ commitment.order_num }}{{ commitment.order_letter }}" class="Commitment {% if commitment.category.id == active.category.id %}{% if commitment.id == active.id %}Active{% endif %}{% elif commitment.id == category.list.0.id %}Active{% endif %} d-flex font-weight-bold" commitment="Commitment_{{ commitment.id }}">
           <div class="Commitment-status {{ commitment.get_status.get_status_display }} mr-3 my-3">
             <div class="Commitment-status--adjustment"></div>
           </div>
@@ -30,14 +31,22 @@
       {% endfor %}
       </div>
       <div class="Commitment-descriptions">
-        <p class="font-weight-bold">{% trans "About this commitment" %}</p>
         {% for commitment in category.list %}
-        <div class="Commitment-copy Commitment_{{ commitment.id }} {% if commitment.id == category.list.0.id %}Active{% endif %}">
-          <p class="Commitment-description">{{ commitment.description }}</p>
+        <div class="Commitment-copy Commitment_{{ commitment.id }}  {% if commitment.category.id == active.category.id %}{% if commitment.id == active.id %}Active{% endif %}{% elif commitment.id == category.list.0.id %}Active{% endif %}">
+          <p class="font-weight-bold">{% trans "About this commitment" %}</p>
+          <p class="Commitment-description">{{ commitment.description|safe }}</p>
           <p class="font-weight-bold">{% trans "Implementation status of this commitment" %}</p>
           <p class="Commitment-description">{{ commitment.get_status.description|safe }}</p>
           <hr class="Commitment-description-separator">
-          <p class="Commitment-description"><span class=" text-uppercase">{% trans "Original Timeline" %}: </span>{{ commitment.original_timeline }}</p>
+          <p class="Commitment-description"><span class=" text-uppercase pr-3">{% trans "Original Timeline" %}: </span><strong>{{ commitment.original_timeline }}</strong></p>
+          {% for status in commitment.status_set.all %}
+          <div class="d-flex align-items-center py-2 w-50">
+            <div class="Commitment-description text-uppercase col p-0">{{ status.date.year }} Status:</div>
+            <div class="Commitment-status {{ status.get_status_display }}">
+              <div class="Commitment-status--adjustment"></div>
+            </div>
+          </div>
+          {% endfor %}
         </div>
         {% endfor %}
       </div>
@@ -72,10 +81,16 @@
 
 {% block javascript %}
 <script>
+  {% if request.GET.commitment %}
+  $( 'html, body' ).animate({
+    scrollTop: $( '.Commitment_{{ active.id }}' ).offset().top
+    }, 1000);
+  {% endif %}
   $( '.Commitment-category' ).click(function() {
     $( this ).next( '.Commitment-category--slidedown' ).slideToggle();
-    $( this ).toggleClass( 'Inactive' );
+    $( this ).toggleClass( 'Active' );
   });
+
   $( '.Commitment' ).click(function() {
     var commitment_id = $( this ).attr('commitment');
     var commitment_section = $( this ).parent().parent();

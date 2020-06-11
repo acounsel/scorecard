@@ -7,7 +7,7 @@ from .models import Document
 class OverviewTranslationOptions(TranslationOptions):
     fields = ('name', 'story_part1', 'story_part2', 'story_part3',
         'achievements_text', 'challenges_text',
-        'commitment_chart_text')
+        'commitment_chart_text', 'about_us', 'methodology')
 
 @register(CommitmentCategory)
 class CommitmentCategoryOptions(TranslationOptions):
@@ -20,7 +20,7 @@ class CommitmentOptions(TranslationOptions):
 
 @register(Status)
 class StatusOptions(TranslationOptions):
-    fields = ('status', 'description')
+    fields = ('description',)
 
 @register(Achievement)
 class AchievementOptions(TranslationOptions):

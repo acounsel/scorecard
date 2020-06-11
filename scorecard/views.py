@@ -6,8 +6,6 @@ from .models import Overview, Commitment, Status, Achievement
 from .models import Challenge, Recommendation, Document
 
 
-
-
 class Home(DetailView):
     model = Overview
 
@@ -47,7 +45,21 @@ class CommitmentList(ListView):
         context = super().get_context_data(**kwargs)
         context['overview'] = Overview.objects.first()
         context['title'] = 'Commitments'
+        context['active'] = self.get_active_commitment(
+            commitments=context['object_list'],
+            order_num=self.request.GET.get('commitment'),
+            order_letter=self.request.GET.get('section')
+        )
         return context
+
+    def get_active_commitment(self, commitments, order_num, 
+        order_letter):
+        if not order_num:
+            order_num = 1
+        kwargs = {'order_num': order_num}
+        if order_letter:
+            kwargs['order_letter':order_letter]
+        return Commitment.objects.get(**kwargs)
 
 class CommitmentExport(CommitmentList):
 
@@ -65,3 +77,13 @@ class DocumentList(ListView):
         context['overview'] = Overview.objects.first()
         context['title'] = 'Documents'
         return context
+
+class Methodology(DetailView):
+    model = Overview
+    template_name = 'scorecard/methodology.html'
+
+    def get_object(self, queryset=None):
+        return Overview.objects.first()
+
+
+

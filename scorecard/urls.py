@@ -1,7 +1,7 @@
 from django.urls import include, path
 
 from .views import Home, CommitmentList, CommitmentExport
-from .views import DocumentList
+from .views import DocumentList, Methodology
 
 urlpatterns = [
     path('', Home.as_view(), name='home'),
@@ -11,4 +11,6 @@ urlpatterns = [
         name='document-list'),
     path('export', CommitmentExport.as_view(), 
         name='export'),
+    path('methodology', Methodology.as_view(), 
+        name='methodology')
 ]  

@@ -53,7 +53,7 @@
         text-transform: uppercase;
         margin: 0;
       }
-      h3 {
+      h3, .h3 {
         font-size: 40px;
         line-height: 60px;
       }
@@ -79,13 +79,13 @@
         color: #E4E4E4;
       }
       .TitleBar {
-        padding: 45px 120px 0 70px;
+        padding: 45px 50px 0 70px;
       }
       .White {
         color: #FFFFFF;
       }
       .navbar {
-        padding: 0 120px 0 0;
+        padding: 0 50px 0 0;
       }
         .navbar .nav-item {
           color: #FFFFFF !important;
@@ -206,21 +206,23 @@
           max-width: 1000px;
           margin: 0 auto;
         }
+          .SectionContent .HalfWidth {
+            max-width: 465px;
+          }
           .SectionContent p {
             padding-bottom: 10px;
-            max-width: 465px;
           }
           .SectionContent.Commitments {
             max-width: 1200px;
           }
       .Tab-Overview {
         color: #264151;
-        padding: 25px 120px 22px;
+        padding: 25px 50px 22px 5%;
         background-color: #FFCC00;
         box-shadow: 4px 4px 9px 1px rgba(0,0,0,0.21);
         font-family: 'Fjalla One', sans-serif;
         font-size: 35px;
-        max-width: 25%;
+        max-width: 30%;
         min-width: 400px;
         margin-top: -15px;
         text-transform: uppercase;
@@ -273,9 +275,14 @@
       .Challenge {
         cursor: pointer;
         transition: all 0.4s;
+        background-color: white;
       }
         .Challenge.Featured {
           grid-column-end: span 2;
+        }
+        .Challenge.Open {
+          grid-column-end: span 2;
+          grid-row-end: span 2;
         }
       .Challenge img {
         object-fit: cover;
@@ -357,10 +364,13 @@
         .Commitment-category i {
           transition-duration: 0.5s;
         }
-        .Commitment-category--slidedown.Inactive {
+        .Commitment-category--slidedown {
           display: none;
         }
-        .Commitment-category.Inactive i {
+          .Commitment-category--slidedown.Active {
+            display: block;
+          }
+        .Commitment-category.Active i {
           transform: rotate(180deg);
           transition-duration: 0.5s;
         }
@@ -370,6 +380,7 @@
       }
       .Commitment {
         cursor: pointer;
+        min-width: 400px;
       }
       .Commitment-status {
         width: 40px;
@@ -377,6 +388,7 @@
         border-radius: 20px;
         background-color: #548A3D;
         border: 2px solid #548A3D;
+        min-width: 40px;
       }
         .Commitment-status.Progress div {
           width: 18px;
@@ -393,7 +405,7 @@
             margin-left: 18px;
             width: 19px;
             height: 19px;
-            border-radius: 0 19px 0 0;
+            border-radius: 0 15px 0 0;
             background-color: #A22524;
           }
       .Commitment-number {
@@ -430,12 +442,14 @@
         .Commitment-copy.Active {
           display: block;
         }
-      .Commitment-description {
-        color: #000000;
+      .Commitment-description, .Commitment-description a {
         font-size: 18px;
         line-height: 25px;
         margin: 0;
       }
+        .Commitment-description {
+          color: #000000;
+        }
       .Commitment-description-separator {
         border: 1px solid #FFFFFF;
       }
@@ -475,11 +489,10 @@
           font-size: 18px;
           line-height: 22px;
           padding: 10px;
-          text-decoration: none;
         }
-          .Footer-info a:hover {
+/*          .Footer-info a:hover {
             text-decoration: none; 
-          }
+          }*/
          /* footer .Icon {
             background-color: #FFFFFF;
             color: #264151;
@@ -499,6 +512,9 @@
         .Subtitle {
           font-size: 24px;
           line-height: 36px;
+        }
+        .VideoContainer img {
+          min-height: 700px;
         }
         h2 {
           font-size: 48px;
