@@ -90,6 +90,11 @@
   .carousel-indicator > li.selected {
       opacity:1;
     }
+@media (min-width:768px) {
+  .carousel-indicator >li:nth-child(even) {
+    display:none;
+  }
+}
 </style>
 
 {% block body %}
@@ -104,7 +109,7 @@
                 <div class="col-sm-6">
                   <div class="card">
                     <img style="object-fit:cover;height:250px" class="d-block card-img-top" src="{{ achievement.image.url }}" alt="{{ achievement.name }}">
-                    <div style="object-fit:cover;height:300px; overflow-y:scroll" class="card-body">
+                    <div style="object-fit:cover;height:300px; overflow-y:scroll; margin-bottom:3px" class="card-body">
                       <div class="Achievement-title MediumBlue">{{ achievement.name }}</div>
                       <p class="Achievement-description">{{ achievement.description|safe }}</p>
                     </div>
@@ -123,9 +128,7 @@
         </a>
         <ol id="carousel-indicators" class="carousel-indicator">
           {% for achievement in achievement_list %}
-            {% if forloop.counter0|divisibleby:2 %}
               <li data-target="#achievements_carousel" data-slide-to="{{ forloop.counter0 }}" class="{% if forloop.first %}selected{% endif %}"></li>
-            {% endif %}
           {% endfor %}
         </ol>
       </div>
@@ -165,7 +168,7 @@
 
   selectCarousel.on('slide.bs.carousel', function (e) {
     var indexTarget = $(e.relatedTarget).index();
-    indexTarget = indexTarget - indexTarget % 2;
+    indexTarget = indexTarget - indexTarget % 1;
     
     var selectTarget = $(CLASS_INDICATORS + '>li[data-slide-to="' + indexTarget + '"]');
     if ( !selectTarget.hasClass('selected') ) {
