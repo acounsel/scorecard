@@ -38,7 +38,15 @@
           <p class="font-weight-bold">{% trans "Implementation status of this commitment" %}</p>
           <p class="Commitment-description">{{ commitment.get_status.description|safe }}</p>
           <hr class="Commitment-description-separator">
-          <p class="Commitment-description"><span class=" text-uppercase">{% trans "Original Timeline" %}: </span>{{ commitment.original_timeline }}</p>
+          <p class="Commitment-description"><span class=" text-uppercase pr-3">{% trans "Original Timeline" %}: </span><strong>{{ commitment.original_timeline }}</strong></p>
+          {% for status in commitment.status_set.all %}
+          <div class="d-flex align-items-center py-2 w-50">
+            <div class="Commitment-description text-uppercase col p-0">{{ status.date.year }} Status:</div>
+            <div class="Commitment-status {{ status.get_status_display }}">
+              <div class="Commitment-status--adjustment"></div>
+            </div>
+          </div>
+          {% endfor %}
         </div>
         {% endfor %}
       </div>
