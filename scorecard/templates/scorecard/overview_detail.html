@@ -56,9 +56,22 @@
 {% endblock %}
 {% block javascript %}
   <script>
-    $( '.Challenge' ).click(function() {
+    $( 'body' ).on( 'click', '.Challenge:not(.Open)', function() {
+      console.log('there');
       $( this ).find( '.Challenge-description' ).slideToggle( 'slow' );
-    })
+      $( this ).toggleClass( 'Open' );
+      $( this ).animate({
+        width: 660
+      });
+    });
+   $( 'body' ).on( 'click', '.Challenge.Open', function() {
+      console.log('here');
+      $( this ).find( '.Challenge-description' ).slideToggle( 'slow' );
+      $( this ).toggleClass( 'Open' );
+      $( this ).animate({
+        width: 320
+      });
+    });
     // $( '.Challenge' ).hover(function() {
     //   $(this).find( '.Challenge-description' ).slideDown( 'slow' );
     // }, function() {

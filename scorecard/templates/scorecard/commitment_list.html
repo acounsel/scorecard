@@ -34,7 +34,7 @@
         {% for commitment in category.list %}
         <div class="Commitment-copy Commitment_{{ commitment.id }}  {% if commitment.category.id == active.category.id %}{% if commitment.id == active.id %}Active{% endif %}{% elif commitment.id == category.list.0.id %}Active{% endif %}">
           <p class="font-weight-bold">{% trans "About this commitment" %}</p>
-          <p class="Commitment-description">{{ commitment.description }}</p>
+          <p class="Commitment-description">{{ commitment.description|safe }}</p>
           <p class="font-weight-bold">{% trans "Implementation status of this commitment" %}</p>
           <p class="Commitment-description">{{ commitment.get_status.description|safe }}</p>
           <hr class="Commitment-description-separator">
