@@ -24,15 +24,15 @@ class StatusOptions(TranslationOptions):
 
 @register(Achievement)
 class AchievementOptions(TranslationOptions):
-    fields = ('name', 'description', 'order_id')
+    fields = ('name', 'description')
 
 @register(Challenge)
 class ChallengeOptions(TranslationOptions):
-    fields = ('name', 'description', 'order_id')
+    fields = ('name', 'description')
 
 @register(Recommendation)
 class RecommendationOptions(TranslationOptions):
-    fields = ('name', 'description', 'order_id')
+    fields = ('name', 'description')
 
 @register(Document)
 class DocumentOptions(TranslationOptions):
