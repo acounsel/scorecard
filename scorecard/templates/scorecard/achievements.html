@@ -165,10 +165,15 @@
   var CLASS_INDICATORS  = '#carousel-indicators';
   var CLASS_ACTIVE      = CLASS_INDICATORS + '>li.selected';
   var selectCarousel    = $(CLASS_CAROUSEL); 
+  var mediaSize = window.matchMedia("(min-width:768px)")
 
   selectCarousel.on('slide.bs.carousel', function (e) {
     var indexTarget = $(e.relatedTarget).index();
-    indexTarget = indexTarget - indexTarget % 1;
+    if (mediaSize.matches) {
+      indexTarget = indexTarget - indexTarget % 2;
+    } else {
+      indexTarget = indexTarget - indexTarget % 1;
+    }
     
     var selectTarget = $(CLASS_INDICATORS + '>li[data-slide-to="' + indexTarget + '"]');
     if ( !selectTarget.hasClass('selected') ) {
