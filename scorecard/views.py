@@ -16,13 +16,27 @@ class Home(DetailView):
         context = super().get_context_data(**kwargs)
         context.update({
             'achievement_list': Achievement.objects.all(),
-            'challenge_list': Challenge.objects.all(),
+            'challenge_list': self.get_challenges(),
             'recommendation_list': Recommendation.objects.all(),
             'chart_dict': self.get_chart_dict(
                 context['object'].commitment_set.all()),
             'title': 'Overview',
         })
         return context
+
+    def get_challenges(self):
+        challenge_list = []
+        i = 0
+        for challenge in Challenge.objects.filter(
+            overview=self.get_object()):
+            challenge_list.append(challenge)
+            i += 1
+            if challenge.is_featured:
+                i +=1
+            if i == 3:
+                challenge_list.append('DescriptionBlock')
+                i = 0
+        return challenge_list
 
     def get_chart_dict(self, commitment_list):
         statuses = Status.objects.filter(
