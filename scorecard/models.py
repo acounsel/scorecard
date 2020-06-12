@@ -210,6 +210,7 @@ class Status(StatusModel, TimeStampedModel):
         ('in_progress', 'In Progress'),
         ('delayed', 'Delayed'),
         ('not_started', 'Not Started'),
+        ('na' 'N/A'),
     )
     commitment = models.ForeignKey(Commitment, 
         on_delete=models.CASCADE)

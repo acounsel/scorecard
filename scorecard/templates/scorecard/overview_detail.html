@@ -11,6 +11,7 @@
   <div id="story1" class="Section">
     <div class="Tab-Overview">{% trans "Overview" %}</div>
     <h2 class="text-center BlueGreen">{% trans "The Story" %}</h2>
+    {{ challenge_list }}
     <p class="SectionContent"><span class="text-uppercase"><strong>{{ overview.story_part1|slice:":30" }}</strong></span>{{ overview.story_part1|slice:"30:" }}</p>
   </div>
   <div id="image1" class="BgImage" style="background-image:url('{{ overview.story_image.url }}')"></div>
@@ -25,11 +26,17 @@
     <h2 class="text-center LightBlue mb-5">{% trans "Challenges Ahead" %}</h2>
     <div class="SectionContent Grid">
       {% for challenge in challenge_list %}
-      <div class="Challenge {% if challenge.is_featured %}Featured{% endif %}">
-        <div class="Challenge-title">{{ challenge.name }}</div>
-        <img src="{{ challenge.image.url }}">
-        <div class="Challenge-description">{{ challenge.description|safe }}</div>
+      {% if challenge.name %}
+        <div class="Challenge{% if challenge.is_featured %} Featured{% endif %}">
+          <div class="Challenge-title">{{ challenge.name }}</div>
+          <img src="{{ challenge.image.url }}">
+          <div class="Challenge-description">{{ challenge.description|safe }}</div>
+        </div>
+      {% else %}
+      <div class="ChallengeDescriptions">
+        
       </div>
+      {% endif %}
       {% endfor %}
     </div>
     <hr class="AccentBar"></hr>
@@ -57,20 +64,18 @@
 {% block javascript %}
   <script>
     $( 'body' ).on( 'click', '.Challenge:not(.Open)', function() {
-      console.log('there');
-      $( this ).find( '.Challenge-description' ).slideToggle( 'slow' );
-      $( this ).toggleClass( 'Open' );
-      $( this ).animate({
-        width: 660
-      });
+      // $( this ).find( '.Challenge-description' ).slideToggle( 'slow' );
+      $( '.Challenge.Open' ).removeClass( 'Open' );
+      $( '.ChallengeDescriptions' ).slideUp( 'fast' );
+      $( this ).addClass( 'Open' );
+      var text = $( this ).find( '.Challenge-description' ).html()
+      $( this ).nextAll( '.ChallengeDescriptions:first' ).html( text );
+      $( this ).nextAll( '.ChallengeDescriptions:first' ).slideDown();
+
     });
-   $( 'body' ).on( 'click', '.Challenge.Open', function() {
-      console.log('here');
-      $( this ).find( '.Challenge-description' ).slideToggle( 'slow' );
-      $( this ).toggleClass( 'Open' );
-      $( this ).animate({
-        width: 320
-      });
+    $( 'body' ).on( 'click', '.Challenge.Open', function() {
+      $( '.ChallengeDescriptions' ).slideUp( 'fast' );
+      $( this ).removeClass( 'Open' );
     });
     // $( '.Challenge' ).hover(function() {
     //   $(this).find( '.Challenge-description' ).slideDown( 'slow' );
@@ -86,14 +91,14 @@
     function drawCommitmentChart() {
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Date');
-      data.addColumn('number', '{% trans "Completed" %}');
-      data.addColumn('number', '{% trans "In progress" %}');
+      data.addColumn('number', '{% trans "Not started" %}');
       data.addColumn('number', '{% trans "Delayed" %}');
-      data.addColumn('number', '{% trans "Not yet started" %}');
+      data.addColumn('number', '{% trans "In progress" %}');
+      data.addColumn('number', '{% trans "Completed" %}');
 
       data.addRows([
-        ['February 2019', {{ chart_dict.2019.completed }}, {{ chart_dict.2019.in_progress }}, {{ chart_dict.2019.delayed }}, {{ chart_dict.2019.not_started }}],
-        ['June 2020', {{ chart_dict.2020.completed }}, {{ chart_dict.2020.in_progress }}, {{ chart_dict.2020.delayed }}, {{ chart_dict.2020.not_started }}],
+        ['February 2019', {{ chart_dict.2019.not_started }}, {{ chart_dict.2019.delayed }}, {{ chart_dict.2019.in_progress }}, {{ chart_dict.2019.completed }}],
+        ['June 2020', {{ chart_dict.2020.not_started }}, {{ chart_dict.2020.delayed }}, {{ chart_dict.2020.in_progress }}, {{ chart_dict.2020.completed }}],
       ]);
 
       var options = {
@@ -103,7 +108,7 @@
           easing: 'out',
         },
         isStacked: 'percent',
-        colors: ['#74D6DB', '#007D8A', '#FFCC00', '#494949'],
+        colors: ['#000000', '#494949', '#FFCC00', '#007D8A', '#74D6DB'],
         chartArea: {
           left: 60,
           width: '75%', 

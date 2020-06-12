@@ -267,22 +267,19 @@
       }
       .Grid {
         display: grid;
-        grid-template-columns: repeat(3, 320px);
-        grid-template-rows: repeat(3, 320px);
-        grid-gap: 20px;
+/*        grid-auto-flow: dense;*/
+        grid-template-columns: repeat(3, 1fr);
+/*        grid-template-rows: repeat(3, 1fr);*/
+        grid-gap: 2%;
         max-width: 1000px;
       }
       .Challenge {
         cursor: pointer;
         transition: all 0.4s;
-        background-color: white;
+        position: relative;
       }
         .Challenge.Featured {
           grid-column-end: span 2;
-        }
-        .Challenge.Open {
-          grid-column-end: span 2;
-          grid-row-end: span 2;
         }
       .Challenge img {
         object-fit: cover;
@@ -290,6 +287,14 @@
         width: 100%;
         transition: all 0.4s;
       }
+        .Challenge.Open::after {
+          content:"";
+          position: absolute;
+          bottom: -20px;
+          left: 50%;
+          border: solid 15px transparent;
+          border-bottom-color: #FFFFFF;
+        }
         .Challenge-title {
           background-color: #FFCC00;
           font-size: 19px;
@@ -300,14 +305,24 @@
         }
         .Challenge-description {
           display: none;
-          position: relative;
-          padding: 30px;
+          background-color: #FFFFFF;
+          padding: 20px;
+          transition: all 0.3s;
         }
-        .Challenge-description, .Challenge-description a {
-          background-color: white;
+        .ChallengeDescriptions {
+          grid-column-end: span 3;
+          background-color: #FFFFFF;
+          display: none;
+          margin-top: -7px;
+          padding: 20px;
+        }
+        .ChallengeDescriptions, .ChallengeDescriptions a, .Challenge-description, .Challenge-description a {
           font-size: 16px;
           line-height: 26px;
         }
+          .Challenge.Open .Challenge-description {
+            height: auto;
+          }
         .Challenge:hover img, .Challenge:hover .Challenge-title {
           opacity: 0.8;
         }
@@ -535,17 +550,50 @@
           max-width: 50%
           min-width: 30%;
         }
-        .AccentBar {
+/*        .AccentBar {
           margin: 100px 0 30px 0;
-        }
+        }*/
         .SectionContent {
           padding: 30px;
+          margin-top: 100px;
         }
         .Grid {
           grid-template-columns: repeat(1, 1fr);
         }
           .Challenge.Featured {
             grid-column-end: span 1;
+          }
+          .Challenge.Open .Challenge-description {
+            display: block;
+          }
+          .Challenge.Open::after {
+            display: none;
+          }
+          .ChallengeDescriptions {
+            grid-column-end: span 1;
+            display: none !important;
+          }
+        #recommendations ul {
+          padding-left: 20px;
+        }
+        .Commitment-category {
+          padding: 0 20px;
+        }
+          .Commitment-category i {
+            font-size: 3em;
+          }
+        .Commitment-category h2 {
+          font-size: 30px;
+        }
+        .Commitment-descriptions {
+          display: none;
+        }
+        .StatusKey {
+          flex-wrap: wrap;
+          justify-content: flex-start;
+        }
+          .StatusKey .d-flex {
+            margin: 10px;
           }
         .Footer-info {
           margin-bottom: 20px;
