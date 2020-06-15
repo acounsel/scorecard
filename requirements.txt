@@ -9,3 +9,4 @@ django-rosetta
 django-storages
 gunicorn
 Pillow
+reportlab

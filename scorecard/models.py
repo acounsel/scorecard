@@ -10,6 +10,7 @@ from django_scorecard import storage_backends
 
 from model_utils.models import StatusModel, TimeStampedModel
 from model_utils import Choices
+from reportlab.pdfgen import canvas
 
 class Echo:
     """An object that implements just the write method
@@ -132,17 +133,25 @@ class Overview(TimeStampedModel):
         response['Content-Disposition'] = cont_disp
         return response
 
+    def export_pdf(self):
+        buffer = io.BytesIO()
+        p = canvas.Canvas(buffer)
+        p.drawString(50, 780, self.name)
+        p.drawString(50, 750, self.subtitle)
+        p.showPage()
+        p.save()
+        buffer.seek(0)
+        return buffer
+
     def get_export_rows(self, queryset=None):
         if not queryset:
             queryset = self.commitment_set.all()
         rows = [
             ['category', 'id', 'commitment', 
                 'description', 'original_timeline', 
-                'has_detailed_plan', 'has_approved_funding', 
-                'has_begun_implementation', 'is_complete', 
                 'latest_status', 'status_date',
-                'status_decription', 'previous status',
-                'previous_status_date', 
+                'status_description', 'previous_status_date',  
+                'previous status', 
                 'previous_status_description',
             ],
         ]
@@ -195,11 +204,9 @@ class Commitment(models.Model):
         row = [self.category.name, 
             str(self.order_num) + self.order_letter, self.name,
             self.description, self.original_timeline,
-            self.has_detailed_plan, self.has_approved_funding,
-            self.has_begun_implementation, self.is_complete,
         ]
         for status in self.status_set.order_by('-date'):
-            row.extend([status.status, status.date, 
+            row.extend([status.date, status.status,
                 status.description])
         return row
 
@@ -210,7 +217,7 @@ class Status(StatusModel, TimeStampedModel):
         ('in_progress', 'In Progress'),
         ('delayed', 'Delayed'),
         ('not_started', 'Not Started'),
-        ('na' 'N/A'),
+        ('na', 'N/A'),
     )
     commitment = models.ForeignKey(Commitment, 
         on_delete=models.CASCADE)

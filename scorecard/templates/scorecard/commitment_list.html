@@ -22,7 +22,7 @@
       <div class="Commitment-list">
       {% for commitment in category.list %}
         <div id="commitment-{{ commitment.order_num }}{{ commitment.order_letter }}" class="Commitment {% if commitment.category.id == active.category.id %}{% if commitment.id == active.id %}Active{% endif %}{% elif commitment.id == category.list.0.id %}Active{% endif %} d-flex font-weight-bold" commitment="Commitment_{{ commitment.id }}">
-          <div class="Commitment-status {{ commitment.get_status.get_status_display }} mr-3 my-3">
+          <div class="Commitment-status {{ commitment.get_status.get_status_display }} mr-3 my-3" title="{{ commitment.get_status.get_status_display }}">
             <div class="Commitment-status--adjustment"></div>
           </div>
           <div class="Commitment-number py-3 pl-3">{{ commitment.order_num }}{{ commitment.order_letter }}.</div>
@@ -75,8 +75,9 @@
     </div>
   </div>
   {% endfor %}
-
 </div>
+<a href="{% url 'commitment-list' %}" class="CommitmentsButton"><i class="fal fa-angle-left pr-4"></i>{% trans "Overview" %}</a>
+
 {% endblock %}
 
 {% block javascript %}

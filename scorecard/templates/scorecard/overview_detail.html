@@ -11,7 +11,6 @@
   <div id="story1" class="Section">
     <div class="Tab-Overview">{% trans "Overview" %}</div>
     <h2 class="text-center BlueGreen">{% trans "The Story" %}</h2>
-    {{ challenge_list }}
     <p class="SectionContent"><span class="text-uppercase"><strong>{{ overview.story_part1|slice:":30" }}</strong></span>{{ overview.story_part1|slice:"30:" }}</p>
   </div>
   <div id="image1" class="BgImage" style="background-image:url('{{ overview.story_image.url }}')"></div>
@@ -91,14 +90,15 @@
     function drawCommitmentChart() {
       var data = new google.visualization.DataTable();
       data.addColumn('string', 'Date');
+      data.addColumn('number', '{% trans "N/A" %}');
       data.addColumn('number', '{% trans "Not started" %}');
       data.addColumn('number', '{% trans "Delayed" %}');
       data.addColumn('number', '{% trans "In progress" %}');
       data.addColumn('number', '{% trans "Completed" %}');
 
       data.addRows([
-        ['February 2019', {{ chart_dict.2019.not_started }}, {{ chart_dict.2019.delayed }}, {{ chart_dict.2019.in_progress }}, {{ chart_dict.2019.completed }}],
-        ['June 2020', {{ chart_dict.2020.not_started }}, {{ chart_dict.2020.delayed }}, {{ chart_dict.2020.in_progress }}, {{ chart_dict.2020.completed }}],
+        ['February 2019', {{ chart_dict.2019.na }}, {{ chart_dict.2019.not_started }}, {{ chart_dict.2019.delayed }}, {{ chart_dict.2019.in_progress }}, {{ chart_dict.2019.completed }}],
+        ['June 2020', {{ chart_dict.2019.na }}, {{ chart_dict.2020.not_started }}, {{ chart_dict.2020.delayed }}, {{ chart_dict.2020.in_progress }}, {{ chart_dict.2020.completed }}],
       ]);
 
       var options = {

@@ -5,7 +5,7 @@ from .models import Document
 
 @register(Overview)
 class OverviewTranslationOptions(TranslationOptions):
-    fields = ('name', 'story_part1', 'story_part2', 'story_part3',
+    fields = ('name', 'subtitle', 'story_part1', 'story_part2', 'story_part3',
         'achievements_text', 'challenges_text',
         'commitment_chart_text', 'about_us', 'methodology')
 
@@ -24,15 +24,15 @@ class StatusOptions(TranslationOptions):
 
 @register(Achievement)
 class AchievementOptions(TranslationOptions):
-    fields = ('name', 'description', 'order_id')
+    fields = ('name', 'description')
 
 @register(Challenge)
 class ChallengeOptions(TranslationOptions):
-    fields = ('name', 'description', 'order_id')
+    fields = ('name', 'description')
 
 @register(Recommendation)
 class RecommendationOptions(TranslationOptions):
-    fields = ('name', 'description', 'order_id')
+    fields = ('name', 'description')
 
 @register(Document)
 class DocumentOptions(TranslationOptions):
