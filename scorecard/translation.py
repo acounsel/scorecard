@@ -5,7 +5,7 @@ from .models import Document
 
 @register(Overview)
 class OverviewTranslationOptions(TranslationOptions):
-    fields = ('name', 'story_part1', 'story_part2', 'story_part3',
+    fields = ('name', 'subtitle', 'story_part1', 'story_part2', 'story_part3',
         'achievements_text', 'challenges_text',
         'commitment_chart_text', 'about_us', 'methodology')
 

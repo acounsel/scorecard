@@ -37,6 +37,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -102,7 +103,7 @@ LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale'),]
 gettext = lambda s: s
 LANGUAGES = (
     ('en', gettext('English')),
-    ('mo', gettext('Mongolian')),
+    ('mn', gettext('Mongolian')),
 )
 
 AWS_ACCESS_KEY_ID = get_env_variable('AWS_ACCESS_KEY_ID')

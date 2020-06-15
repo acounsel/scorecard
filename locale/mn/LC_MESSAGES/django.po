@@ -1,0 +1,169 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-06-12 19:39-0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: scorecard/templates/addins/footer.html:3
+msgid "For More Information"
+msgstr ""
+
+#: scorecard/templates/addins/footer.html:6
+msgid "Read"
+msgstr ""
+
+#: scorecard/templates/addins/footer.html:7
+msgid "Our full progress report"
+msgstr ""
+
+#: scorecard/templates/addins/footer.html:8
+msgid "Our methodology"
+msgstr ""
+
+#: scorecard/templates/addins/footer.html:11
+msgid "Explore"
+msgstr ""
+
+#: scorecard/templates/addins/footer.html:12
+msgid "Case documents"
+msgstr ""
+
+#: scorecard/templates/addins/footer.html:13
+msgid "Our case page"
+msgstr ""
+
+#: scorecard/templates/addins/footer.html:14
+#: scorecard/templates/addins/navbar.html:32
+#: scorecard/templates/scorecard/commitment_list.html:6
+#: scorecard/templates/scorecard/overview_detail.html:61
+msgid "Commitments"
+msgstr ""
+
+#: scorecard/templates/addins/footer.html:17
+msgid "Download"
+msgstr ""
+
+#: scorecard/templates/addins/footer.html:18
+msgid "Commitments Chart PDF"
+msgstr ""
+
+#: scorecard/templates/addins/footer.html:19
+msgid "Commitments Chart CSV"
+msgstr ""
+
+#: scorecard/templates/addins/navbar.html:21
+#: scorecard/templates/scorecard/overview_detail.html:12
+msgid "Overview"
+msgstr ""
+
+#: scorecard/templates/addins/navbar.html:24
+#: scorecard/templates/scorecard/overview_detail.html:13
+msgid "The Story"
+msgstr ""
+
+#: scorecard/templates/addins/navbar.html:25
+#: scorecard/templates/scorecard/achievements.html:102
+msgid "Achievements to Date"
+msgstr ""
+
+#: scorecard/templates/addins/navbar.html:26
+#: scorecard/templates/scorecard/overview_detail.html:25
+msgid "Challenges Ahead"
+msgstr ""
+
+#: scorecard/templates/addins/navbar.html:27
+#: scorecard/templates/scorecard/overview_detail.html:52
+msgid "Recommendations"
+msgstr ""
+
+#: scorecard/templates/scorecard/achievements.html:123
+msgid "Previous"
+msgstr ""
+
+#: scorecard/templates/scorecard/achievements.html:127
+msgid "Next"
+msgstr ""
+
+#: scorecard/templates/scorecard/commitment_list.html:10
+msgid "Download Commitments Chart"
+msgstr ""
+
+#: scorecard/templates/scorecard/commitment_list.html:36
+msgid "About this commitment"
+msgstr ""
+
+#: scorecard/templates/scorecard/commitment_list.html:38
+msgid "Implementation status of this commitment"
+msgstr ""
+
+#: scorecard/templates/scorecard/commitment_list.html:41
+msgid "Original Timeline"
+msgstr ""
+
+#: scorecard/templates/scorecard/commitment_list.html:59
+msgid "Not Started"
+msgstr ""
+
+#: scorecard/templates/scorecard/commitment_list.html:64
+#: scorecard/templates/scorecard/overview_detail.html:95
+msgid "Delayed"
+msgstr ""
+
+#: scorecard/templates/scorecard/commitment_list.html:69
+msgid "In Progress"
+msgstr ""
+
+#: scorecard/templates/scorecard/commitment_list.html:72
+#: scorecard/templates/scorecard/overview_detail.html:97
+msgid "Completed"
+msgstr ""
+
+#: scorecard/templates/scorecard/document_list.html:5
+msgid "Case Documents"
+msgstr ""
+
+#: scorecard/templates/scorecard/document_list.html:11
+msgid "Document"
+msgstr ""
+
+#: scorecard/templates/scorecard/document_list.html:12
+msgid "Description"
+msgstr ""
+
+#: scorecard/templates/scorecard/document_list.html:13
+msgid "Date"
+msgstr ""
+
+#: scorecard/templates/scorecard/methodology.html:5
+msgid "About &amp; Methodology"
+msgstr ""
+
+#: scorecard/templates/scorecard/overview_detail.html:45
+msgid "Status of Commitments"
+msgstr ""
+
+#: scorecard/templates/scorecard/overview_detail.html:93
+msgid "N/A"
+msgstr ""
+
+#: scorecard/templates/scorecard/overview_detail.html:94
+msgid "Not started"
+msgstr ""
+
+#: scorecard/templates/scorecard/overview_detail.html:96
+msgid "In progress"
+msgstr ""

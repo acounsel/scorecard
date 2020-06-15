@@ -1,4 +1,5 @@
 from django.db.models import Count
+from django.http import FileResponse
 from django.shortcuts import render
 from django.views.generic import View, DetailView, ListView
 
@@ -81,6 +82,16 @@ class CommitmentExport(CommitmentList):
         resp = super().get(request, **kwargs)
         context = super().get_context_data(**kwargs)
         response = context['overview'].export_commitments()
+        return response
+
+class CommitmentPDFExport(CommitmentList):
+
+    def get(self, request, **kwargs):
+        resp = super().get(request, **kwargs)
+        context = super().get_context_data(**kwargs)
+        response = context['overview'].export_pdf()
+        return FileResponse(response, 
+            as_attachment=True, filename='commitments.pdf')
         return response
 
 class DocumentList(ListView):
