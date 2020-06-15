@@ -11,13 +11,18 @@
   <div id="story1" class="Section">
     <div class="Tab-Overview">{% trans "Overview" %}</div>
     <h2 class="text-center BlueGreen">{% trans "The Story" %}</h2>
-    <p class="SectionContent"><span class="text-uppercase"><strong>{{ overview.story_part1|slice:":30" }}</strong></span>{{ overview.story_part1|slice:"30:" }}</p>
+    <div class="SectionContent">
+      <p>
+        <span class="text-uppercase pr-2">
+          <strong>{{ overview.story_part1 }}</strong>
+        </span>{{ overview.story_part2|safe }}
+      </p>
+    </div>
   </div>
   <div id="image1" class="BgImage" style="background-image:url('{{ overview.story_image.url }}')"></div>
   <div id="story2" class="Section">
-    <div class="SectionContent d-flex flex-column flex-md-row justify-content-between">
-      <p class="HalfWidth">{{ overview.story_part2 }}</p>
-      <p class="HalfWidth">{{ overview.story_part3 }}</p>
+    <div class="SectionContent">
+      <p>{{ overview.story_part3|safe }}</p>
     </div>
   </div>
   {% include 'scorecard/achievements.html' %}
