@@ -54,18 +54,19 @@ class Overview(TimeStampedModel):
                 reader, start=1):
                 print(index, cdict)
                 Model = apps.get_model(
-                    app_label='scorecard', model_name=cdict['type'])
+                    app_label='scorecard', model_name=cdict['\ufefftype'])
                 instance, created = Model.objects.get_or_create(
-                    name=cdict['name'],
-                    description=cdict['description'],
-                    order_id=cdict['order_id'],
+                    name=cdict['name_en'],
                     overview=self,
                 )
+                for field in ('description_en', 
+                    'description_mn', 'name_mn', 'order_id'):
+                    setattr(instance, field, cdict[field])
+                instance.save()
                 # if cdict.get('image_url'):
                 #     instance.image = cdict['image_url']
                 #     instance.save()
                 print(instance)
-
 
     def import_commitments(self):
         with open('commitments.csv', 'r') as import_file:
