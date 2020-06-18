@@ -83,6 +83,7 @@ class DocumentAdmin(admin.ModelAdmin):
     list_items = (
         'name',
         'document',
+        'date',
         'overview',
     )
     list_display = list_items

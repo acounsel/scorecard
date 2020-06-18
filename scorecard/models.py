@@ -89,23 +89,29 @@ class Overview(TimeStampedModel):
             reader = csv.DictReader(import_file)
             for index, c_dict in enumerate(
                 reader, start=1):
-                print(c_dict['name'])
+                print(c_dict)
                 commitment, created = Commitment.objects \
                     .get_or_create(
-                    order_num=c_dict['order_num'],
+                    order_num=c_dict['\ufefforder_num'],
                     order_letter=c_dict['order_letter'],
-                    name=c_dict['name'][:255],
-                    original_timeline=c_dict.get(
-                        'original_timeline'),
-                    description=c_dict['description'],
                     overview=self,
                 )
-                if len(c_dict['name']) > 250:
-                    print('TOO LONG!')
+                for field in ('name', 'original_timeline',
+                    'description'):
+                    for lang in ('en', 'mn'):
+                        lang_field = '{0}_{1}'.format(
+                            field, lang)
+                        setattr(commitment, 
+                            lang_field,
+                            c_dict[lang_field]
+                        )
                 category, created = CommitmentCategory \
                     .objects.get_or_create(
-                    name=c_dict['category']
+                    name_en=c_dict['category_en']
                 )
+                category.name_mn = c_dict['category_mn']
+                category.overview = self
+                category.save()
                 commitment.category = category
                 for field in (
                     'has_detailed_plan', 
@@ -120,18 +126,22 @@ class Overview(TimeStampedModel):
                         value = None
                     setattr(commitment, field, value)
                 commitment.save()
-                Status.objects.get_or_create(
+                status, new = Status.objects.get_or_create(
                     commitment=commitment,
-                    status=c_dict['status'],
-                    description=c_dict.get(
-                        'status_description'),
                     date=datetime.date(2020,6,1),
                 )
-                Status.objects.get_or_create(
+                status.status = c_dict['status']
+                status.description_en = c_dict.get(
+                    'status_description_en')
+                status.description_mn = c_dict.get(
+                    'status_description_mn')
+                status.save()
+                status, new = Status.objects.get_or_create(
                     commitment=commitment,
-                    status=c_dict['status_2019'],
                     date=datetime.date(2019,2,1),
                 )
+                status.status = c_dict['status_2019']
+                status.save()
 
     def export_commitments(self):
         pseudo_buffer = Echo()
@@ -292,3 +302,5 @@ class Document(TimeStampedModel):
     def __str__(self):
         return self.name
 
+    class Meta:
+        ordering = ('date',)
