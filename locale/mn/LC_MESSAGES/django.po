@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-12 19:39-0700\n"
+"POT-Creation-Date: 2020-06-16 22:44-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -27,7 +27,7 @@ msgid "Read"
 msgstr ""
 
 #: scorecard/templates/addins/footer.html:7
-msgid "Our full progress report"
+msgid "2019 Progress Report"
 msgstr ""
 
 #: scorecard/templates/addins/footer.html:8
@@ -47,9 +47,9 @@ msgid "Our case page"
 msgstr ""
 
 #: scorecard/templates/addins/footer.html:14
-#: scorecard/templates/addins/navbar.html:32
+#: scorecard/templates/addins/navbar.html:35
 #: scorecard/templates/scorecard/commitment_list.html:6
-#: scorecard/templates/scorecard/overview_detail.html:61
+#: scorecard/templates/scorecard/overview_detail.html:66
 msgid "Commitments"
 msgstr ""
 
@@ -65,36 +65,37 @@ msgstr ""
 msgid "Commitments Chart CSV"
 msgstr ""
 
-#: scorecard/templates/addins/navbar.html:21
+#: scorecard/templates/addins/navbar.html:24
+#: scorecard/templates/scorecard/commitment_list.html:79
 #: scorecard/templates/scorecard/overview_detail.html:12
 msgid "Overview"
 msgstr ""
 
-#: scorecard/templates/addins/navbar.html:24
+#: scorecard/templates/addins/navbar.html:27
 #: scorecard/templates/scorecard/overview_detail.html:13
 msgid "The Story"
 msgstr ""
 
-#: scorecard/templates/addins/navbar.html:25
-#: scorecard/templates/scorecard/achievements.html:102
+#: scorecard/templates/addins/navbar.html:28
+#: scorecard/templates/scorecard/achievements.html:109
 msgid "Achievements to Date"
 msgstr ""
 
-#: scorecard/templates/addins/navbar.html:26
-#: scorecard/templates/scorecard/overview_detail.html:25
+#: scorecard/templates/addins/navbar.html:29
+#: scorecard/templates/scorecard/overview_detail.html:30
 msgid "Challenges Ahead"
 msgstr ""
 
-#: scorecard/templates/addins/navbar.html:27
-#: scorecard/templates/scorecard/overview_detail.html:52
+#: scorecard/templates/addins/navbar.html:30
+#: scorecard/templates/scorecard/overview_detail.html:57
 msgid "Recommendations"
 msgstr ""
 
-#: scorecard/templates/scorecard/achievements.html:123
+#: scorecard/templates/scorecard/achievements.html:130
 msgid "Previous"
 msgstr ""
 
-#: scorecard/templates/scorecard/achievements.html:127
+#: scorecard/templates/scorecard/achievements.html:134
 msgid "Next"
 msgstr ""
 
@@ -119,7 +120,7 @@ msgid "Not Started"
 msgstr ""
 
 #: scorecard/templates/scorecard/commitment_list.html:64
-#: scorecard/templates/scorecard/overview_detail.html:95
+#: scorecard/templates/scorecard/overview_detail.html:100
 msgid "Delayed"
 msgstr ""
 
@@ -128,7 +129,7 @@ msgid "In Progress"
 msgstr ""
 
 #: scorecard/templates/scorecard/commitment_list.html:72
-#: scorecard/templates/scorecard/overview_detail.html:97
+#: scorecard/templates/scorecard/overview_detail.html:102
 msgid "Completed"
 msgstr ""
 
@@ -152,18 +153,18 @@ msgstr ""
 msgid "About &amp; Methodology"
 msgstr ""
 
-#: scorecard/templates/scorecard/overview_detail.html:45
+#: scorecard/templates/scorecard/overview_detail.html:50
 msgid "Status of Commitments"
 msgstr ""
 
-#: scorecard/templates/scorecard/overview_detail.html:93
+#: scorecard/templates/scorecard/overview_detail.html:98
 msgid "N/A"
 msgstr ""
 
-#: scorecard/templates/scorecard/overview_detail.html:94
+#: scorecard/templates/scorecard/overview_detail.html:99
 msgid "Not started"
 msgstr ""
 
-#: scorecard/templates/scorecard/overview_detail.html:96
+#: scorecard/templates/scorecard/overview_detail.html:101
 msgid "In progress"
 msgstr ""
