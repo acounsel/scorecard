@@ -16,8 +16,7 @@ class CommitmentCategoryOptions(TranslationOptions):
 
 @register(Commitment)
 class CommitmentOptions(TranslationOptions):
-    fields = ('name', 'description', 'original_timeline',
-        'order_num', 'order_letter')
+    fields = ('name', 'description', 'original_timeline')
 
 @register(Status)
 class StatusOptions(TranslationOptions):
@@ -37,4 +36,4 @@ class RecommendationOptions(TranslationOptions):
 
 @register(Document)
 class DocumentOptions(TranslationOptions):
-    fields = ('name', 'description')
+    fields = ('name', 'description', 'document')

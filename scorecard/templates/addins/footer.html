@@ -4,13 +4,13 @@
   <div class="d-flex align-items-start flex-column flex-md-row text-white">
     <div class="Footer-info d-flex flex-column">
       <p>{% trans "Read" %}</p>
-      <a href="">{% trans "2019 Progress Report" %}</a>
+      <a href="{{ overview.report }}">{{ overview.report_name }}</a>
       <a href="{% url 'methodology' %}">{% trans "Our methodology" %}</a>
     </div>
     <div class="Footer-info d-flex flex-column">
       <p>{% trans "Explore" %}</p>
       <a href="{% url 'document-list' %}">{% trans "Case documents" %}</a>
-      <a href="https://www.accountabilitycounsel.org/client-case/mongolia-south-gobi-mining/">{% trans "Our case page" %}</a>
+      <a href="{{ overview.case_page }}">{% trans "Our case page" %}</a>
       <a href="{% url 'commitment-list' %}">{% trans "Commitments" %}</a>
     </div>
     <div class="Footer-info d-flex flex-column">
