@@ -1,6 +1,7 @@
 from django.db.models import Count
 from django.http import FileResponse
 from django.shortcuts import render
+from django.urls import reverse
 from django.views.generic import View, DetailView, ListView
 
 from .models import Overview, Commitment, Status, Achievement
@@ -22,6 +23,7 @@ class Home(DetailView):
             'chart_dict': self.get_chart_dict(
                 context['object'].commitment_set.all()),
             'title': 'Overview',
+            'redirect_to': reverse('home'),
         })
         return context
 
