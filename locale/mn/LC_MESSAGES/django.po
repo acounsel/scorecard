@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-16 22:44-0700\n"
+"POT-Creation-Date: 2020-06-18 13:17-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,10 +24,6 @@ msgstr ""
 
 #: scorecard/templates/addins/footer.html:6
 msgid "Read"
-msgstr ""
-
-#: scorecard/templates/addins/footer.html:7
-msgid "2019 Progress Report"
 msgstr ""
 
 #: scorecard/templates/addins/footer.html:8
@@ -103,6 +99,10 @@ msgstr ""
 msgid "Download Commitments Chart"
 msgstr ""
 
+#: scorecard/templates/scorecard/commitment_list.html:29
+msgid "* Denotes commitments listed in both Agreement 1 and Agreement 2."
+msgstr ""
+
 #: scorecard/templates/scorecard/commitment_list.html:36
 msgid "About this commitment"
 msgstr ""
@@ -116,6 +116,7 @@ msgid "Original Timeline"
 msgstr ""
 
 #: scorecard/templates/scorecard/commitment_list.html:59
+#: scorecard/templates/scorecard/overview_detail.html:99
 msgid "Not Started"
 msgstr ""
 
@@ -125,6 +126,7 @@ msgid "Delayed"
 msgstr ""
 
 #: scorecard/templates/scorecard/commitment_list.html:69
+#: scorecard/templates/scorecard/overview_detail.html:101
 msgid "In Progress"
 msgstr ""
 
@@ -159,12 +161,4 @@ msgstr ""
 
 #: scorecard/templates/scorecard/overview_detail.html:98
 msgid "N/A"
-msgstr ""
-
-#: scorecard/templates/scorecard/overview_detail.html:99
-msgid "Not started"
-msgstr ""
-
-#: scorecard/templates/scorecard/overview_detail.html:101
-msgid "In progress"
 msgstr ""
