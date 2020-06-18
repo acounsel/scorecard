@@ -25,9 +25,12 @@ class Echo:
 class Overview(TimeStampedModel):
 
     name = models.CharField(max_length=255)
-    subtitle = models.CharField(max_length=255, blank=True)
-    hero_video = models.CharField(max_length=255, blank=True)
-    hero_image = models.CharField(max_length=255, blank=True)
+    subtitle = models.CharField(max_length=255, 
+        blank=True)
+    hero_video = models.CharField(max_length=255, 
+        blank=True)
+    hero_image = models.CharField(max_length=255, 
+        blank=True)
     story_image = models.ImageField(
         storage=storage_backends.PrivateMediaStorage(), 
         upload_to='images/', blank=True, null=True)
@@ -42,7 +45,10 @@ class Overview(TimeStampedModel):
         upload_to='images/', blank=True, null=True)
     about_us = models.TextField(blank=True)
     methodology = models.TextField(blank=True)
+    report_name = models.CharField(max_length=255, 
+        blank=True)
     report = models.URLField(max_length=255, blank=True)
+    case_page = models.URLField(max_length=255, blank=True)
 
     def __str__(self):
         return self.name
@@ -54,13 +60,15 @@ class Overview(TimeStampedModel):
                 reader, start=1):
                 print(index, cdict)
                 Model = apps.get_model(
-                    app_label='scorecard', model_name=cdict['\ufefftype'])
-                instance, created = Model.objects.get_or_create(
+                    app_label='scorecard', 
+                    model_name=cdict['\ufefftype'])
+                instance, new = Model.objects.get_or_create(
                     name=cdict['name_en'],
                     overview=self,
                 )
                 for field in ('description_en', 
-                    'description_mn', 'name_mn', 'order_id'):
+                    'description_mn', 'name_mn', 
+                    'order_id'):
                     setattr(instance, field, cdict[field])
                 instance.save()
                 # if cdict.get('image_url'):
@@ -87,7 +95,8 @@ class Overview(TimeStampedModel):
                     order_num=c_dict['order_num'],
                     order_letter=c_dict['order_letter'],
                     name=c_dict['name'][:255],
-                    original_timeline=c_dict['original_timeline'],
+                    original_timeline=c_dict.get(
+                        'original_timeline'),
                     description=c_dict['description'],
                     overview=self,
                 )
@@ -114,7 +123,8 @@ class Overview(TimeStampedModel):
                 Status.objects.get_or_create(
                     commitment=commitment,
                     status=c_dict['status'],
-                    description=c_dict.get('status_description'),
+                    description=c_dict.get(
+                        'status_description'),
                     date=datetime.date(2020,6,1),
                 )
                 Status.objects.get_or_create(
@@ -130,7 +140,9 @@ class Overview(TimeStampedModel):
         response = StreamingHttpResponse(
             (writer.writerow(row) for row in rows),
             content_type="text/csv")
-        cont_disp = 'attatchment;filename="commitment_export.csv"'
+        filename ='commitment_export.csv'
+        cont_disp = 'attatchment;filename="{}"'.format(
+            filename)
         response['Content-Disposition'] = cont_disp
         return response
 
@@ -148,11 +160,10 @@ class Overview(TimeStampedModel):
         if not queryset:
             queryset = self.commitment_set.all()
         rows = [
-            ['category', 'id', 'commitment', 
-                'description', 'original_timeline', 
-                'latest_status', 'status_date',
-                'status_description', 'previous_status_date',  
-                'previous status', 
+            ['category', 'id', 'commitment', 'description', 
+                'original_timeline', 'latest_status', 
+                'status_date', 'status_description', 
+                'previous_status_date', 'previous status', 
                 'previous_status_description',
             ],
         ]
@@ -203,8 +214,9 @@ class Commitment(models.Model):
 
     def get_export_row(self):
         row = [self.category.name, 
-            str(self.order_num) + self.order_letter, self.name,
-            self.description, self.original_timeline,
+            str(self.order_num) + self.order_letter, 
+            self.name, self.description, 
+            self.original_timeline,
         ]
         for status in self.status_set.order_by('-date'):
             row.extend([status.date, status.status,

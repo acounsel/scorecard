@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-02 22:57-0700\n"
+"POT-Creation-Date: 2020-06-16 22:44-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,10 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: django_scorecard/settings/base.py:104
+#: django_scorecard/settings/base.py:105
 msgid "English"
 msgstr ""
 
-#: django_scorecard/settings/base.py:105
+#: django_scorecard/settings/base.py:106
 msgid "Mongolian"
 msgstr ""

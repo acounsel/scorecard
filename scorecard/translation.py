@@ -5,9 +5,10 @@ from .models import Document
 
 @register(Overview)
 class OverviewTranslationOptions(TranslationOptions):
-    fields = ('name', 'subtitle', 'story_part1', 'story_part2', 'story_part3',
-        'achievements_text', 'challenges_text',
-        'commitment_chart_text', 'about_us', 'methodology')
+    fields = ('name', 'subtitle', 'story_part1', 'story_part2', 
+        'story_part3', 'achievements_text', 'challenges_text',
+        'commitment_chart_text', 'about_us', 'methodology', 
+        'report_name', 'report')
 
 @register(CommitmentCategory)
 class CommitmentCategoryOptions(TranslationOptions):
@@ -15,8 +16,7 @@ class CommitmentCategoryOptions(TranslationOptions):
 
 @register(Commitment)
 class CommitmentOptions(TranslationOptions):
-    fields = ('name', 'description', 'original_timeline',
-        'order_num', 'order_letter')
+    fields = ('name', 'description', 'original_timeline')
 
 @register(Status)
 class StatusOptions(TranslationOptions):
@@ -36,4 +36,4 @@ class RecommendationOptions(TranslationOptions):
 
 @register(Document)
 class DocumentOptions(TranslationOptions):
-    fields = ('name', 'description')
+    fields = ('name', 'description', 'document')
