@@ -13,6 +13,9 @@
               {{ language.name_translated }}
             </option>
         {% endfor %} -->
+        <p>lang code: {{ LANGUAGE_CODE }}</p>
+        <p>available: {{ LANGUAGES }}</p>
+        <p>langs: {{ languages }}</p>
         <option value="en"{% if LANGUAGE_CODE == 'mn' %} selected{% endif %}>
           English
         </option>
@@ -22,6 +25,7 @@
       </select>
     </div>
     <div class="col">
+      <!-- <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}" /> -->
       <input class="Translate bg-dark" type="submit" value="{% if 'en' in LANGUAGE_CODE %}Монгол{% else %}English{% endif %}">
     </div>
   </div>
