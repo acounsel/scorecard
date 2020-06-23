@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-23 15:11-0700\n"
-"PO-Revision-Date: 2020-06-23 15:14-0753\n"
+"PO-Revision-Date: 2020-06-23 16:10-0753\n"
 "Last-Translator: b'  <samer@accountabilitycounsel.org>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -66,31 +66,31 @@ msgstr "Үүрэг Амлалтын Хүснэгт"
 #: scorecard/templates/scorecard/commitment_list.html:97
 #: scorecard/templates/scorecard/overview_detail.html:12
 msgid "Overview"
-msgstr ""
+msgstr "Ерөнхий Тойм"
 
 #: scorecard/templates/addins/navbar.html:27
 #: scorecard/templates/scorecard/overview_detail.html:13
 msgid "The Story"
-msgstr ""
+msgstr "Түүх өгүүлэх нь"
 
 #: scorecard/templates/addins/navbar.html:28
 #: scorecard/templates/scorecard/achievements.html:109
 msgid "Achievements to Date"
-msgstr ""
+msgstr "Өнөөг Хүртэлх Ололт Амжилт"
 
 #: scorecard/templates/addins/navbar.html:29
 #: scorecard/templates/scorecard/overview_detail.html:30
 msgid "Challenges Ahead"
-msgstr ""
+msgstr "Тулгарч буй Бэрхшээлүүд"
 
 #: scorecard/templates/addins/navbar.html:30
 #: scorecard/templates/scorecard/overview_detail.html:57
 msgid "Recommendations"
-msgstr ""
+msgstr "Зөвлөмжүүд"
 
 #: scorecard/templates/base.html:15 scorecard/templates/base.html:33
 msgid "From Paper to Progress"
-msgstr ""
+msgstr "Үгнээс үйл хэрэг рүү"
 
 #: scorecard/templates/base.html:16
 msgid ""
@@ -106,74 +106,76 @@ msgstr ""
 
 #: scorecard/templates/scorecard/achievements.html:130
 msgid "Previous"
-msgstr ""
+msgstr "Өмнөх"
 
 #: scorecard/templates/scorecard/achievements.html:134
 msgid "Next"
-msgstr ""
+msgstr "Дараах"
 
 #: scorecard/templates/scorecard/commitment_list.html:10
 msgid "Download Commitments Chart"
-msgstr ""
+msgstr "Үүрэг Амлалтын Хүснэгтийг татаж авах"
 
 #: scorecard/templates/scorecard/commitment_list.html:29
 msgid "* Denotes commitments listed in both Agreement 1 and Agreement 2."
 msgstr ""
+"* Ийм тэмдэглэгээтэй нь Гэрээ 1 ба Гэрээ 2 аль алинд тусгагдсан үүрэг амлалт"
+" болно."
 
 #: scorecard/templates/scorecard/commitment_list.html:32
 #: scorecard/templates/scorecard/commitment_list.html:54
 msgid "About this commitment"
-msgstr ""
+msgstr "нэ Үүрэг Амлалтын Тухай"
 
 #: scorecard/templates/scorecard/commitment_list.html:35
 #: scorecard/templates/scorecard/commitment_list.html:56
 msgid "Implementation status of this commitment"
-msgstr ""
+msgstr "Энэ Үүрэг Амлалтын Хэрэгжилтийн Байдал"
 
 #: scorecard/templates/scorecard/commitment_list.html:39
 #: scorecard/templates/scorecard/commitment_list.html:59
 msgid "Original Timeline"
-msgstr ""
+msgstr "Анх Товлосон Хугацаа"
 
 #: scorecard/templates/scorecard/commitment_list.html:77
 #: scorecard/templates/scorecard/overview_detail.html:99
 msgid "Not Started"
-msgstr ""
+msgstr "Эхлээгүй"
 
 #: scorecard/templates/scorecard/commitment_list.html:82
 #: scorecard/templates/scorecard/overview_detail.html:100
 msgid "Delayed"
-msgstr ""
+msgstr "Хоцорч байгаа"
 
 #: scorecard/templates/scorecard/commitment_list.html:87
 #: scorecard/templates/scorecard/overview_detail.html:101
 msgid "In Progress"
-msgstr ""
+msgstr "Хэрэгжиж байгаа"
 
 #: scorecard/templates/scorecard/commitment_list.html:90
 #: scorecard/templates/scorecard/overview_detail.html:102
 msgid "Completed"
-msgstr ""
+msgstr "Биелсэн"
 
 #: scorecard/templates/scorecard/document_list.html:5
 msgid "Case Documents"
-msgstr ""
+msgstr "Гомдлын Бичиг Баримтууд"
 
 #: scorecard/templates/scorecard/document_list.html:11
 msgid "Document"
-msgstr ""
+msgstr "Бичиг Баримт"
 
 #: scorecard/templates/scorecard/document_list.html:12
 msgid "Description"
-msgstr ""
+msgstr "Агуулга"
 
 #: scorecard/templates/scorecard/document_list.html:13
 msgid "Date"
-msgstr ""
+msgstr "Огноо"
 
 #: scorecard/templates/scorecard/methodology.html:5
 msgid "About &amp; Methodology"
-msgstr ""
+msgstr "Аккаунтбилити Коунсел болон Аргачлалын тухай"
 
 #: scorecard/templates/scorecard/overview_detail.html:50
 msgid "Status of Commitments"
@@ -181,4 +183,4 @@ msgstr ""
 
 #: scorecard/templates/scorecard/overview_detail.html:98
 msgid "N/A"
-msgstr ""
+msgstr "Байхгүй"
