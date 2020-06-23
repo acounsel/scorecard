@@ -149,7 +149,8 @@
 {% block javascript %}
 <script>
     $('#achievements_carousel').carousel({ 
-        interval: false,
+        interval: 6000,
+        pause: "hover"
       });
       $('.carousel .carousel-item').each(function(){
         var next = $(this).next();
