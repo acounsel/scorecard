@@ -25,14 +25,16 @@
           <div class="Commitment-status {{ commitment.get_status.get_status_display }} mr-3 my-3" title="{{ commitment.get_status.get_status_display }}">
             <div class="Commitment-status--adjustment"></div>
           </div>
-          <div class="Commitment-number py-3 pl-3">{{ commitment.order_num }}{{ commitment.order_letter }}.</div>
+          <div class="Commitment-number p-3">{{ commitment.order_num }}{{ commitment.order_letter }}.</div>
           <div class="Commitment-name py-3 pr-4"{% if "*" in commitment.name %} title="{% trans '* Denotes commitments listed in both Agreement 1 and Agreement 2.' %}"{% endif %}>{{ commitment.name }}</div>
         </div>
         <div class="Commitment-description-mobile">
           <p class="font-weight-bold">{% trans "About this commitment" %}</p>
           <p class="Commitment-description">{{ commitment.description|safe }}</p>
+          {% if commitment.get_status.description %}
           <p class="font-weight-bold">{% trans "Implementation status of this commitment" %}</p>
           <p class="Commitment-description">{{ commitment.get_status.description|safe }}</p>
+          {% endif %}
           <hr class="Commitment-description-separator">
           <p class="Commitment-description"><span class=" text-uppercase pr-3">{% trans "Original Timeline" %}: </span><strong>{{ commitment.original_timeline }}</strong></p>
           {% for status in commitment.status_set.all %}
