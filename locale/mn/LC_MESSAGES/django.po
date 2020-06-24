@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-06-23 15:11-0700\n"
+"POT-Creation-Date: 2020-06-23 17:03-0700\n"
 "PO-Revision-Date: 2020-06-23 16:10-0753\n"
 "Last-Translator: b'  <samer@accountabilitycounsel.org>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -119,8 +119,8 @@ msgstr "Үүрэг Амлалтын Хүснэгтийг татаж авах"
 #: scorecard/templates/scorecard/commitment_list.html:29
 msgid "* Denotes commitments listed in both Agreement 1 and Agreement 2."
 msgstr ""
-"* Ийм тэмдэглэгээтэй нь Гэрээ 1 ба Гэрээ 2 аль алинд тусгагдсан үүрэг амлалт"
-" болно."
+"* Ийм тэмдэглэгээтэй нь Гэрээ 1 ба Гэрээ 2 аль алинд тусгагдсан үүрэг амлалт "
+"болно."
 
 #: scorecard/templates/scorecard/commitment_list.html:32
 #: scorecard/templates/scorecard/commitment_list.html:54

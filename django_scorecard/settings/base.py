@@ -14,6 +14,8 @@ def get_env_variable(var_name):
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+SITE_ROOT = os.path.dirname(os.path.realpath(__name__))
+
 SECRET_KEY = get_env_variable('SECRET_KEY')
 
 ADMINS = (
@@ -98,7 +100,9 @@ USE_L10N = True
 
 USE_TZ = True
 
-LOCALE_PATHS = [os.path.join(BASE_DIR, 'locale'),]
+LOCALE_PATHS = [
+    os.path.join(SITE_ROOT, 'locale'),
+]
 
 gettext = lambda s: s
 LANGUAGES = (
