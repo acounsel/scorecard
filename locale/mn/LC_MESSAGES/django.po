@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-23 17:03-0700\n"
-"PO-Revision-Date: 2020-06-23 16:10-0753\n"
+"PO-Revision-Date: 2020-06-23 17:17-0753\n"
 "Last-Translator: b'  <samer@accountabilitycounsel.org>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -97,12 +97,16 @@ msgid ""
 "Tracking agreements between nomadic herders and Oyu Tolgoi, Mongolias "
 "largest copper mine"
 msgstr ""
+"Нүүдэлчин малчид ба Монгол улсын томоохон уул уурхайн компанийн хооронд "
+"байгуулсан гэрээний хэрэгжилтийн байдал"
 
 #: scorecard/templates/base.html:34
 msgid ""
 "Tracking agreements between nomadic herders and Mongolias largest copper "
 "mine."
 msgstr ""
+"Нүүдэлчин малчид ба Монгол улсын томоохон уул уурхайн компанийн хооронд "
+"байгуулсан гэрээний хэрэгжилтийн байдал"
 
 #: scorecard/templates/scorecard/achievements.html:130
 msgid "Previous"
@@ -119,8 +123,8 @@ msgstr "Үүрэг Амлалтын Хүснэгтийг татаж авах"
 #: scorecard/templates/scorecard/commitment_list.html:29
 msgid "* Denotes commitments listed in both Agreement 1 and Agreement 2."
 msgstr ""
-"* Ийм тэмдэглэгээтэй нь Гэрээ 1 ба Гэрээ 2 аль алинд тусгагдсан үүрэг амлалт "
-"болно."
+"* Ийм тэмдэглэгээтэй нь Гэрээ 1 ба Гэрээ 2 аль алинд тусгагдсан үүрэг амлалт"
+" болно."
 
 #: scorecard/templates/scorecard/commitment_list.html:32
 #: scorecard/templates/scorecard/commitment_list.html:54
@@ -179,7 +183,7 @@ msgstr "Аккаунтбилити Коунсел болон Аргачлалы�
 
 #: scorecard/templates/scorecard/overview_detail.html:50
 msgid "Status of Commitments"
-msgstr ""
+msgstr "Үүрэг Амлалтын Хэрэгжилтийн Байдал"
 
 #: scorecard/templates/scorecard/overview_detail.html:98
 msgid "N/A"

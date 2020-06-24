@@ -1,40 +1,33 @@
 {% load static %}
 {% load admin_urls %}
 {% load i18n %}
-<div class="TitleBar d-flex align-items-start flex-column flex-lg-row bg-dark">
-  <div class="LogoBar navbar navbar-dark navbar-expand-lg">
-    <a class="navbar-brand" href="https://www.accountabilitycounsel.org"><img class="Logo" src="https://scorecard-static.s3-us-west-1.amazonaws.com/Accountability+Counsel_Logo_White2.png"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  </div>
-  <div class="d-flex flex-column mr-auto">
-    <h1><a class="h1 Title LightBlue" href="{% url 'home' %}">{{ overview.name }}</a></h1>
-    <h2 class="Subtitle">{{ overview.subtitle }}</h2>
-  </div>
   {% include 'addins/change_language.html' %}
-  <!-- <a href="" class="Translate">Монгол</a> -->
-
-</div>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav w-100">
-      <li class="nav-item dropdown mr-3 ml-auto">
-        <a class="nav-link {% if title == 'Overview' %}Active{% endif %}" href="{% url 'home' %}" id="navbarDropdownMenuLink" role="button" aria-haspopup="true" aria-expanded="false">
-          {% trans "Overview" %}
-        </a>
-        <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuOverview">
-          <a class="dropdown-item" href="{% if title == 'Commitments' %}{% url 'home' %}{% endif %}#story1">{% trans "The Story" %}</a>
-          <a class="dropdown-item" href="{% if title == 'Commitments' %}{% url 'home' %}{% endif %}#achievements">{% trans "Achievements to Date" %}</a>
-          <a class="dropdown-item" href="{% if title == 'Commitments' %}{% url 'home' %}{% endif %}#challenges">{% trans "Challenges Ahead" %}</a>
-          <a class="dropdown-item" href="{% if title == 'Commitments' %}{% url 'home' %}{% endif %}#recommendations">{% trans "Recommendations" %}</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link {% if title == 'Commitments' %}Active{% endif %}" href="{% url 'commitment-list' %}" id="navbarCommitments" role="button">
-          {% trans "Commitments" %}
-        </a>
-      </li>
-    </ul>
-  </div>
-</nav>
+  <nav class="TitleBar align-items-start navbar navbar-dark navbar-expand-xl flex-column flex-lg-row">
+    <div class="LogoBar d-flex justify-content-between">
+      <a class="navbar-brand" href="https://www.accountabilitycounsel.org"><img class="Logo" src="https://scorecard-static.s3-us-west-1.amazonaws.com/Accountability+Counsel_Logo_White2.png"></a>
+    </div>
+    <div class="d-flex flex-column mr-auto">
+      <h1><a class="h1 Title LightBlue" href="{% url 'home' %}">{{ overview.name }}</a></h1>
+      <h2 class="Subtitle">{{ overview.subtitle }}</h2>
+    </div>
+    <div class="align-self-end" id="navbarNav">
+      <ul class="navbar-nav navbar-expand-all w-100">
+        <li class="nav-item dropdown mr-3 ml-auto">
+          <a class="nav-link {% if title == 'Overview' %}Active{% endif %}" href="{% url 'home' %}" id="navbarDropdownMenuLink" role="button" aria-haspopup="true" aria-expanded="false">
+            {% trans "Overview" %}
+          </a>
+          <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuOverview">
+            <a class="dropdown-item" href="{% if title == 'Commitments' %}{% url 'home' %}{% endif %}#story1">{% trans "The Story" %}</a>
+            <a class="dropdown-item" href="{% if title == 'Commitments' %}{% url 'home' %}{% endif %}#achievements">{% trans "Achievements to Date" %}</a>
+            <a class="dropdown-item" href="{% if title == 'Commitments' %}{% url 'home' %}{% endif %}#challenges">{% trans "Challenges Ahead" %}</a>
+            <a class="dropdown-item" href="{% if title == 'Commitments' %}{% url 'home' %}{% endif %}#recommendations">{% trans "Recommendations" %}</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {% if title == 'Commitments' %}Active{% endif %}" href="{% url 'commitment-list' %}" id="navbarCommitments" role="button">
+            {% trans "Commitments" %}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </nav>

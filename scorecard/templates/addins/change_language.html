@@ -1,6 +1,5 @@
 {% load i18n %}
-{{ redirect_to }}
-<form id="id_translateForm" class="form-inline my-2 my-lg-0" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+<form id="id_translateForm" style="position: absolute; right:50px; top: 30px;" class="" action="{% url 'set_language' %}" method="post">{% csrf_token %}
   <input name="next" type="hidden" value="{{ request.get_full_path|slice:'3:' }}">
   <div class="row">
     <div class="col">

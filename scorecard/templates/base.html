@@ -111,36 +111,37 @@
         color: #E4E4E4;
       }
       .TitleBar {
-        padding: 45px 50px 0 70px;
+        padding: 3rem 3rem 0;
+        width: 100%;
       }
       .White {
         color: #FFFFFF;
       }
-      .navbar {
+/*      .navbar {
         padding: 0 50px 0 0;
+      }*/
+      .navbar .nav-item {
+        color: #FFFFFF !important;
+        font-size: 21px;
+        text-transform: uppercase;
+        font-weight: 600;
+        padding: 0;
       }
-        .navbar .nav-item {
-          color: #FFFFFF !important;
-          font-size: 21px;
-          text-transform: uppercase;
-          font-weight: 600;
-          padding: 0;
+        .navbar .nav-item:first-of-type {
+          padding-right: 50px;
         }
-          .navbar .nav-item:first-of-type {
-            padding-right: 50px;
-          }
-        .navbar .nav-item .nav-link {
+      .navbar .nav-item .nav-link {
+        color: #FFFFFF;
+        padding: 0 0 15px;
+        border-bottom: 10px solid #494949;
+        text-decoration: none;
+        transition: all 0.4s;
+      }
+        .navbar .nav-item .nav-link:hover,
+        .navbar .nav-item .nav-link.Active {
+          border-bottom: 10px solid #FFCC00;
           color: #FFFFFF;
-          padding: 0 0 15px;
-          border-bottom: 10px solid #494949;
-          text-decoration: none;
-          transition: all 0.4s;
         }
-          .navbar .nav-item .nav-link:hover,
-          .navbar .nav-item .nav-link.Active {
-            border-bottom: 10px solid #FFCC00;
-            color: #FFFFFF;
-          }
       .bg-light {
         background-color: #F9F7F4 !important;
       }
@@ -168,7 +169,7 @@
         .Subtitle {
           color: white;
           font-size: 1.3rem;
-          padding: 0;
+          padding: 0 0 3rem;
           text-transform: none
         }
       .Translate {
@@ -561,11 +562,9 @@
         .LogoBar {
           padding: 0;
           width: 100%;
-          align-items: flex-start;
+          align-items: center;
         }
-        .TitleBar {
-          padding: 20px;
-        }
+
       }
       @media only screen and (max-width: 800px) {
         .LogoBar {
@@ -575,19 +574,21 @@
           padding-bottom: 30px;
         }
         .Title {
-          font-size: 40px;
+          font-size: 2rem;
         }
         .Subtitle {
-          font-size: 24px;
+          font-size: 1.3rem;
           line-height: 36px;
         }
         .VideoContainer img {
           min-height: 700px;
         }
-        .navbar {
-          padding: 0;
+        .TitleBar {
+          padding: 1.5rem 1.5rem 0;
         }
-
+          #navbarNav .navbar-nav {
+            flex-direction: row;
+          }
           .navbar-nav .nav-item, .navbar .nav-item:first-of-type {
             margin: 0 !important;
             padding: 0 20px;
@@ -645,6 +646,9 @@
           padding: 0 20px;
           margin-top: 0;
         }
+        .SectionContent.Commitment-category-list {
+          padding: 0;
+        }
         .Commitment-category {
           padding: 0 20px;
         }
@@ -674,7 +678,7 @@
         }
       }
     </style>
-    <header>
+    <header class="bg-dark">
       {% include 'addins/navbar.html' %}
       {% block header %}
       {% endblock %}
