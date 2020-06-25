@@ -67,6 +67,7 @@ class CommitmentList(ListView):
             order_num=self.request.GET.get('commitment'),
             order_letter=self.request.GET.get('section')
         )
+        context['redirect_to'] = reverse('home')
         return context
 
     def get_active_commitment(self, commitments, order_num, 
