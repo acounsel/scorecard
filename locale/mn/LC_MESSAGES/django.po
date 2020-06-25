@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2020-06-23 17:03-0700\n"
-"PO-Revision-Date: 2020-06-23 17:17-0753\n"
+"PO-Revision-Date: 2020-06-24 18:45-0753\n"
 "Last-Translator: b'  <samer@accountabilitycounsel.org>'\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -56,11 +56,11 @@ msgstr "Татаж авах"
 
 #: scorecard/templates/addins/footer.html:18
 msgid "Commitments Chart PDF"
-msgstr "Үүрэг Амлалтын Хүснэгт"
+msgstr "Үүрэг Амлалтын Хүснэгт PDF"
 
 #: scorecard/templates/addins/footer.html:19
 msgid "Commitments Chart CSV"
-msgstr "Үүрэг Амлалтын Хүснэгт"
+msgstr "Үүрэг Амлалтын Хүснэгт CSV"
 
 #: scorecard/templates/addins/navbar.html:24
 #: scorecard/templates/scorecard/commitment_list.html:97
