@@ -9,7 +9,6 @@
         <thead>
           <tr>
             <th scope="col">{% trans "Document" %}</th>
-            <th scope="col">{% trans "Description" %}</th>
             <th scope="col">{% trans "Date" %}</th>
           </tr>
         </thead>
@@ -17,7 +16,6 @@
           {% for document in document_list %}
             <tr>
               <th scope="row"><a class="text-dark" target="_blank" href="{{ document.document.url }}">{{ document.name }}</a></th>
-              <td><a class="text-dark" target="_blank" href="{{ document.document.url }}">{{ document.description }}</a></td>
               <td><a class="text-dark" target="_blank" href="{{ document.document.url }}">{{ document.date|date:"M Y" }}</a></td>
             </tr>
           {% endfor %}

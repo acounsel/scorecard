@@ -171,8 +171,8 @@ class Overview(TimeStampedModel):
             queryset = self.commitment_set.all()
         rows = [
             ['category', 'id', 'commitment', 'description', 
-                'original_timeline', 'latest_status', 
-                'status_date', 'status_description', 
+                'original_timeline', 'status_date', 
+                'latest_status', 'status_description', 
                 'previous_status_date', 'previous status', 
                 'previous_status_description',
             ],
