@@ -2,6 +2,7 @@ from django.db.models import Count
 from django.http import FileResponse
 from django.shortcuts import render
 from django.urls import reverse
+from django.utils.translation import activate
 from django.views.generic import View, DetailView, ListView
 
 from .models import Overview, Commitment, Status, Achievement
@@ -15,6 +16,9 @@ class Home(DetailView):
         return Overview.objects.first()
 
     def get_context_data(self, **kwargs):
+        if 'gtzyavts' in self.request.META['HTTP_HOST']:
+            if '/en/' not in self.request.path:
+                activate('mn') 
         context = super().get_context_data(**kwargs)
         context.update({
             'achievement_list': Achievement.objects.all(),
