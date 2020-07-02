@@ -67,6 +67,10 @@
 {% endblock %}
 {% block javascript %}
   <script>
+    $( '.Challenge:first' ).addClass( 'Open' );
+    var text = $( '.Challenge:first' ).find( '.Challenge-description' ).html()
+    $( '.Challenge:first' ).nextAll( '.ChallengeDescriptions:first' ).html( text );
+    $( '.Challenge:first' ).nextAll( '.ChallengeDescriptions:first' ).show();
     $( 'body' ).on( 'click', '.Challenge:not(.Open)', function() {
       // $( this ).find( '.Challenge-description' ).slideToggle( 'slow' );
       $( '.Challenge.Open' ).removeClass( 'Open' );
