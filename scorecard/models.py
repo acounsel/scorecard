@@ -282,7 +282,7 @@ class Achievement(OverviewModel):
 
 class Challenge(OverviewModel):
 
-   pass
+    pass
 
 class Recommendation(OverviewModel):
 
