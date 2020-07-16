@@ -10,7 +10,7 @@ from django_scorecard import storage_backends
 
 from model_utils.models import StatusModel, TimeStampedModel
 from model_utils import Choices
-from reportlab.pdfgen import canvas
+from .pdf_builder import export_pdf
 
 class Echo:
     """An object that implements just the write method
@@ -157,14 +157,8 @@ class Overview(TimeStampedModel):
         return response
 
     def export_pdf(self):
-        buffer = io.BytesIO()
-        p = canvas.Canvas(buffer)
-        p.drawString(50, 780, self.name)
-        p.drawString(50, 750, self.subtitle)
-        p.showPage()
-        p.save()
-        buffer.seek(0)
-        return buffer
+        response = export_pdf(self)
+        return response
 
     def get_export_rows(self, queryset=None):
         if not queryset:

@@ -97,8 +97,8 @@ class CommitmentPDFExport(CommitmentList):
         resp = super().get(request, **kwargs)
         context = super().get_context_data(**kwargs)
         response = context['overview'].export_pdf()
-        return FileResponse(response, 
-            as_attachment=True, filename='commitments.pdf')
+        # return FileResponse(response, 
+        #     as_attachment=True, filename='commitments.pdf')
         return response
 
 class DocumentList(ListView):
