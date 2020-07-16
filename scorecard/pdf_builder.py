@@ -19,7 +19,7 @@ from reportlab.lib.units import mm, inch, cm
 
 
 
-reportlab.rl_config.TTFSearchPath.append(str(settings.BASE_DIR) + '/static/fonts')
+reportlab.rl_config.TTFSearchPath.append(str(settings.STATICFILES_DIRS) + '/fonts')
 pdfmetrics.registerFont(TTFont("Fjalla-One", "FjallaOne-Regular.ttf"))
 
 def _header(canvas, doc):
