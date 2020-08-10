@@ -5,7 +5,8 @@ from django.conf import settings
 from django.http import HttpResponse
 
 from reportlab import platypus
-from reportlab.platypus import Paragraph, KeepTogether, Frame, KeepInFrame, Spacer, Image, Table, TableStyle, SimpleDocTemplate
+from reportlab.platypus import Paragraph, KeepTogether, Frame, KeepInFrame
+from reportlab.platypus import Spacer, Image, Table, TableStyle, SimpleDocTemplate
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.pdfmetrics import registerFont, registerFontFamily
 from reportlab.pdfgen import canvas
@@ -17,18 +18,22 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle, StyleSheet
 from reportlab.lib.enums import TA_JUSTIFY, TA_LEFT, TA_CENTER
 from reportlab.lib.units import mm, inch, cm
 
-
+s3_url = 'https://scorecard-static.s3-us-west-1.amazonaws.com/'
+url_loc = 'media/public/'
+file_url = s3_url + url_loc
 
 reportlab.rl_config.TTFSearchPath.append(
     'https://s3.console.aws.amazon.com/s3/object/scorecard-static/media/public/')
-pdfmetrics.registerFont(TTFont("Fjalla-One", "FjallaOne-Regular.ttf"))
+# pdfmetrics.registerFont(TTFont("Fjalla-One", "FjallaOne-Regular.ttf"))
 
 def _header(canvas, doc):
     # Save the state of our canvas so we can draw on it
     canvas.saveState()
 
     # Header
-    header = Image('https://scorecard-static.s3-us-west-1.amazonaws.com/media/public/Accountability+Counsel_Logo_Color+(2).png', width=112.3, height=29)
+    header_url = 'Accountability+Counsel_Logo_Color+(2).png'
+    header = Image('{0}{1}'.format(
+        file_url, header_url), width=112.3, height=29)
     header.hAlign = 'RIGHT'
 
     w, h = header.wrap(doc.width, doc.topMargin)
@@ -66,7 +71,8 @@ def export_pdf(overview):
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename=commitments.pdf'
         
-    image = 'https://scorecard-static.s3-us-west-1.amazonaws.com/media/public/Accountability+Counsel_Logo_Color+(2).png'
+    image = '{}Accountability+Counsel_Logo_Color+(2).png'.format(
+        file_url)
 
     #Create all different font styles
     styles = getSampleStyleSheet()
@@ -105,7 +111,8 @@ def export_pdf(overview):
 
 
     # Create PDF
-    pdf = SimpleDocTemplate(response, showBoundary=0, leftMargin=0.9 * cm, rightMargin=0.9*cm, topMargin=2.5*cm, bottomMargin=1*cm, pagesize=landscape(letter))
+    pdf = SimpleDocTemplate(response, showBoundary=0, leftMargin=0.9 * cm, 
+        rightMargin=0.9*cm, topMargin=2.5*cm, bottomMargin=1*cm, pagesize=landscape(letter))
 
     # Create header with titles and legend
     story = []
@@ -114,7 +121,7 @@ def export_pdf(overview):
     story.append(Paragraph("<strong>{}</strong>".format(overview.subtitle),subtitle1_style))
     story.append(Spacer(1,.18*inch))
     story.append(Paragraph("<strong>Status of Commitments as of May 2020</strong>",subtitle2_style))
-    im = Image('https://scorecard-static.s3.us-west-1.amazonaws.com/media/public/graphics.jpg', width=360, height=41.076)
+    im = Image('{}graphics.jpg'.format(file_url), width=360, height=41.076)
     im.hAlign = 'RIGHT'
     story.append(im)
         
