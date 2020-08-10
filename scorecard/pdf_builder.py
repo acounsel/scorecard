@@ -245,7 +245,8 @@ def export_pdf(overview):
         row_data.append(status_commitment)
         row_data.append(timeline)
         row_data.append(status_displays[0])
-        row_data.append(status_displays[1])
+        if len(status_displays) > 1:
+            row_data.append(status_displays[1])
         total_data.append(row_data)
     table = Table(total_data, colWidths=[30, 81, 174, 290, 60, 47, 47])
     styling = [
