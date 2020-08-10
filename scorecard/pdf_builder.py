@@ -161,6 +161,7 @@ def export_pdf(overview):
     }
     #iterate through data
     for commitment in overview.commitment_set.all():
+        print(commitment)
         row_data = []
         #Input the category row
         new_category = False
