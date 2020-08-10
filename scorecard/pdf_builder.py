@@ -226,28 +226,30 @@ def export_pdf(overview):
         icon_url = 'https://scorecard-static.s3-us-west-1.amazonaws.com/media/public/'
         status_displays = []
         icon_statuses = ('not_started', 'delayed', 'in_progress', 'completed')
-        for status in statuses:
-            print(status.status)
-            if status.status in icon_statuses:
-                display_status = Image(
-                    "{0}{1}.jpg".format(
-                        icon_url,
-                        status.status, 
-                        width=25, height=25
-                    )
-                )
-            else:
-                display_status = Paragraph(
-                    status.get_status_display(), styleN)
-            status_displays.append(display_status)
+        # for status in statuses:
+        #     print(status.status)
+        #     if status.status in icon_statuses:
+        #         display_status = Image(
+        #             "{0}{1}.jpg".format(
+        #                 icon_url,
+        #                 status.status, 
+        #                 width=25, height=25
+        #             )
+        #         )
+        #     else:
+        #         display_status = Paragraph(
+        #             status.get_status_display(), styleN)
+        #     status_displays.append(display_status)
         row_data.append(order)
         row_data.append(commitment_name)
         row_data.append(about_commitment)
         row_data.append(status_commitment)
         row_data.append(timeline)
-        row_data.append(status_displays[0])
-        if len(status_displays) > 1:
-            row_data.append(status_displays[1])
+        row_data.append('')
+        row_data.append('')
+        # row_data.append(status_displays[0])
+        # if len(status_displays) > 1:
+        #     row_data.append(status_displays[1])
         total_data.append(row_data)
     table = Table(total_data, colWidths=[30, 81, 174, 290, 60, 47, 47])
     styling = [
