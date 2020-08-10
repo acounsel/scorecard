@@ -90,7 +90,7 @@ def export_pdf(overview):
     style_category = ParagraphStyle('category_style', parent=styles['category_style'])
     styles.add(ParagraphStyle(name='Breadpointlist_style',
                               fontFamily='Montserrat',
-                              fontSize=10,
+                              fontSize=8,
                               leading=12,
                               wordWrap='LTR',
                               ))
