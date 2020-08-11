@@ -27,8 +27,6 @@ file_url = s3_url + url_loc
 # )
 reportlab.rl_config.TTFSearchPath.append(str(settings.BASE_DIR))
 
-print(str(settings.BASE_DIR))
-
 pdfmetrics.registerFont(TTFont("Fjalla-One", "FjallaOne-Regular.ttf"))
 pdfmetrics.registerFont(TTFont("NotoSansMongolian", "NotoSansMongolian-Regular.ttf"))
 pdfmetrics.registerFont(TTFont("DejaVuSans", "DejaVuSans.ttf"))
@@ -127,7 +125,6 @@ def export_pdf(overview, language='mn'):
             counter += 1
         row_data = get_commitment_row(commitment, language, 
             styles['Breadpointlist_style'])
-        print(row_data)
         total_data.append(row_data)
     table = Table(total_data, colWidths=[30, 81, 174, 290, 60, 47, 47])
     styling = [
@@ -326,23 +323,23 @@ def clean_status(status):
         return ''
 
 def get_status_displays(statuses, style):
-    # status_displays = []
-    # icon_statuses = ('not_started', 'delayed', 
-    #     'in_progress', 'completed')
-    # for status in statuses:
-    #     if status.status in icon_statuses:
-    #         display_status = Image(
-    #             "{0}{1}.jpg".format(
-    #                 file_url,
-    #                 status.status, 
-    #                 width=25, height=25
-    #             )
-    #         )
-    #     else:
-    #         display_status = Paragraph(
-    #             status.get_status_display(), style)
-    #     status_displays.append(display_status)
-    # if len(status_displays) < 2:
-    #     status_displays.append('')
-    # return status_displays
+    status_displays = []
+    icon_statuses = ('not_started', 'delayed', 
+        'in_progress', 'completed')
+    for status in statuses:
+        if status.status in icon_statuses:
+            display_status = Image(
+                "{0}{1}.jpg".format(
+                    file_url,
+                    status.status, 
+                    width=25, height=25
+                )
+            )
+        else:
+            display_status = Paragraph(
+                status.get_status_display(), style)
+        status_displays.append(display_status)
+    if len(status_displays) < 2:
+        status_displays.append('')
+    return status_displays
     return ['','']
