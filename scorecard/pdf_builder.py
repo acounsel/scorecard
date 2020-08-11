@@ -309,16 +309,17 @@ def get_commitment_status(commitment, language, style):
     return platypus.Paragraph(status, style)
 
 def clean_status(status):
-    status = status.replace('</p><p>', '<br />\n <br />\n')
-    status = status.replace("</p> <p>", '<br />\n <br />\n')
-    status = status.replace("ОТ", "OT")
-    if "href" in status:
-        status = status.replace(" http://ot.mn/reports/</a> for English", 
-            "English</a>")
-        status = status.replace("http://ot.mn/тайлан</a> for Mongolian", 
-            "Mongolian</a>")
-        status = status.replace("\">", "\" color=\"#2171c7\"><u>")
-        status = status.replace("</a>", "</u></a>")
+    if status:
+        status = status.replace('</p><p>', '<br />\n <br />\n')
+        status = status.replace("</p> <p>", '<br />\n <br />\n')
+        status = status.replace("ОТ", "OT")
+        if "href" in status:
+            status = status.replace(" http://ot.mn/reports/</a> for English", 
+                "English</a>")
+            status = status.replace("http://ot.mn/тайлан</a> for Mongolian", 
+                "Mongolian</a>")
+            status = status.replace("\">", "\" color=\"#2171c7\"><u>")
+            status = status.replace("</a>", "</u></a>")
     return status
 
 def get_status_displays(statuses, style):
