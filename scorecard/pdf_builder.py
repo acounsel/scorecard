@@ -165,7 +165,7 @@ def get_styles():
     styles.add(ParagraphStyle(
         name='Breadpointlist_style',
         fontName='DejaVuSans',
-        fontSize=5,
+        fontSize=7,
         leading=12,
         wordWrap='LTR',))
     styles.add(ParagraphStyle(
@@ -195,12 +195,13 @@ def create_header(overview, language, title_style, style1, style2):
     story.append(Spacer(1,.18*inch))
     if language == 'mn':
         h3 = "<strong>Үүрэг Амлалтын Хэрэгжилтийн Байдал 2020</strong>"
+        img = Image('{}status_key.jpg'.format(file_url), width=480, height=41.076)
     else:
         h3 = "<strong>Status of Commitments as of May 2020</strong>"
+        img = Image('{}graphics.jpg'.format(file_url), width=360, height=41.076)
     story.append(Paragraph(h3, style2))
-    im = Image('{}graphics.jpg'.format(file_url), width=360, height=41.076)
-    im.hAlign = 'RIGHT'
-    story.append(im)
+    img.hAlign = 'RIGHT'
+    story.append(img)
     return story
 
 def get_title_row(language, style):
