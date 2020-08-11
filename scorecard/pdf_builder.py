@@ -81,7 +81,10 @@ def get_field(obj, field, language):
 def export_pdf(overview, language='mn'):
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename=commitments.pdf'
-        
+    pdf = create_pdf(overview, language, response)
+    return response
+
+def create_pdf(overview, language, response):
     image = '{}Accountability+Counsel_Logo_Color+(2).png'.format(
         file_url)
     styles = get_styles()
@@ -141,8 +144,7 @@ def export_pdf(overview, language='mn'):
     #Build PDF with logo header and page numbers
     pdf.build(story, onFirstPage=_header, onLaterPages=_header,
                   canvasmaker=PageNumbers)
-
-    return response
+    return pdf
 
 def get_styles():
     #Create all different font styles
@@ -332,7 +334,7 @@ def get_status_displays(statuses, style):
                 "{0}{1}.jpg".format(
                     file_url,
                     status.status, 
-                    width=25, height=25
+                    width=5, height=5
                 )
             )
         else:
