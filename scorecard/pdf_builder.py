@@ -303,13 +303,10 @@ def get_commitment_name(commitment, language, style):
     return platypus.Paragraph(name, style)
 
 def get_commitment_status(commitment, language, style):
-    if commitment.get_status():
-        status = get_field(commitment.get_status(), 'description', 
-            language)
-        status = clean_status(status)
-        return platypus.Paragraph(status, style)
-    else:
-        return ''
+    status = get_field(commitment.get_status(), 'description', 
+        language)
+    status = clean_status(status)
+    return platypus.Paragraph(status, style)
 
 def clean_status(status):
     if status:
@@ -323,7 +320,9 @@ def clean_status(status):
                 "Mongolian</a>")
             status = status.replace("\">", "\" color=\"#2171c7\"><u>")
             status = status.replace("</a>", "</u></a>")
-    return status
+        return status
+    else:
+        return ''
 
 def get_status_displays(statuses, style):
     # status_displays = []
