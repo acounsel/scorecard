@@ -303,10 +303,13 @@ def get_commitment_name(commitment, language, style):
     return platypus.Paragraph(name, style)
 
 def get_commitment_status(commitment, language, style):
-    status = get_field(commitment.get_status(), 'description', 
-        language)
-    status = clean_status(status)
-    return platypus.Paragraph(status, style)
+    if commitment.get_status():
+        status = get_field(commitment.get_status(), 'description', 
+            language)
+        status = clean_status(status)
+        return platypus.Paragraph(status, style)
+    else:
+        return ''
 
 def clean_status(status):
     if status:
