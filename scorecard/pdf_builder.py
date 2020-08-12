@@ -21,7 +21,35 @@ from reportlab.lib.units import mm, inch, cm
 s3_url = 'https://scorecard-static.s3-us-west-1.amazonaws.com/'
 url_loc = 'media/public/'
 file_url = s3_url + url_loc
+col_widths = [30, 81, 174, 290, 60, 47, 47]
 
+table_styles = {
+    'header': [
+        ("GRID", (0, 0), (-1, -1), 0.2*mm, '#a0a0a4'),
+        ('VALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('HALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('BACKGROUND', (0, 0), (-1, 0), '#70747c'),
+    ],
+    'body': [
+        ("GRID", (0, 0), (-1, -1), 0.2 * mm, '#a0a0a4'),
+        ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+        ('HALIGN', (0, 0), (-1, -1), 'LEFT'),
+        ('VALIGN', (0, 6), (-1, 7), 'TOP'),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 5),
+    ],
+    'category': [
+        ("GRID", (0, 0), (-1, -1), 0.2*mm, '#a0a0a4'),
+        ('SPAN', (0, 0), (6, 0)),
+        ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+        ('BACKGROUND', (0, 0), (-1, 0), '#007D8A'),
+    ],
+    'category2': [
+        ("GRID", (0, 0), (-1, -1), 0.2*mm, '#a0a0a4'),
+        ('VALIGN', (0, 0), (-1, -1), 'TOP'),
+        ('HALIGN', (0, 0), (-1, -1), 'CENTER'),
+        ('BOTTOMPADDING', (0, 0), (-1, -1), 7),
+    ]
+}
 # reportlab.rl_config.TTFSearchPath.append(
 #     'https://scorecard-static.s3-us-west-1.amazonaws.com/media/public/'
 # )
@@ -78,7 +106,7 @@ class PageNumbers(canvas.Canvas):
 def get_field(obj, field, language):
     return getattr(obj, '{}_{}'.format(field, language))
 
-def export_pdf(overview, language='mn'):
+def export_pdf(overview, language='en'):
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename=commitments.pdf'
     pdf = create_pdf(overview, language, response)
@@ -99,20 +127,9 @@ def create_pdf(overview, language, response):
         styles['subtitle2_style']) 
     counter = 2
     #create header row
-    total_data = get_title_row(language, styles['header_style'])
-    table = Table(total_data, 
-        colWidths=[30, 81, 174, 290, 60, 47, 47], 
-        rowHeights=[60]
-    )
-    styling = [
-        ('BACKGROUND', (0, 0), (-1, 0), '#70747c'),
-        ("GRID", (0, 0), (-1, -1), 0.2*mm, '#a0a0a4'),
-        ('VALIGN', (0, 0), (-1, -1), 'CENTER'),
-        ('HALIGN', (0, 0), (-1, -1), 'CENTER'),
-    ]
-    style = TableStyle(styling)
-    table.setStyle(style)
-    story.append(table)
+    table = get_table_header(
+        language, styles['header_style'])
+    story = set_table(table, table_styles['header'], story)
     total_data = []
     category_bools = get_category_bools()
     #iterate through data
@@ -129,18 +146,8 @@ def create_pdf(overview, language, response):
         row_data = get_commitment_row(commitment, language, 
             styles['Breadpointlist_style'])
         total_data.append(row_data)
-    table = Table(total_data, colWidths=[30, 81, 174, 290, 60, 47, 47])
-    styling = [
-        ("GRID", (0, 0), (-1, -1), 0.2 * mm, '#a0a0a4'),
-        ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-        ('HALIGN', (0, 0), (-1, -1), 'LEFT'),
-        ('VALIGN', (0, 6), (-1, 7), 'TOP'),
-        ('BOTTOMPADDING', (0, 0), (-1, -1), 5),
-    ]
-    style = TableStyle(styling)
-    table.setStyle(style)
-    story.append(table)
-
+    table = Table(total_data, colWidths=col_widths)
+    story = set_table(table, table_styles['body'], story)
     #Build PDF with logo header and page numbers
     pdf.build(story, onFirstPage=_header, onLaterPages=_header,
                   canvasmaker=PageNumbers)
@@ -203,7 +210,21 @@ def create_header(overview, language, title_style, style1, style2):
     story.append(img)
     return story
 
-def get_title_row(language, style):
+def set_table(table, styling, story):
+    style = TableStyle(styling)
+    table.setStyle(style)
+    story.append(table)
+    return story
+
+def get_table_header(language, style):
+    row_data = get_title_data(language, style)
+    table = Table(row_data, 
+        colWidths=col_widths, 
+        rowHeights=[60]
+    )
+    return table
+
+def get_title_data(language, style):
     row_data = []
     if language == 'mn':
         headers = ('#', 'Үүрэг Амлалтууд', 
@@ -211,7 +232,7 @@ def get_title_row(language, style):
             'Анх Товлосон Хугацаа', '2019', '2020'
         )
     else:
-        header = ('#', 'Commitment', 'About the Commitment',
+        headers = ('#', 'Commitment', 'About the Commitment',
         'Status of Commitment', 'Original Timeline', '2019 Status',
         '2020 Status')
     for header_text in headers:
@@ -247,15 +268,8 @@ def category_header_check(commitment, category_bools):
 def add_category_header(counter, commitment, total_data, 
     story, language, style):
     if counter > 2:
-        table = Table(total_data, colWidths=[30, 81, 174, 290, 60, 47, 47])
-        styling = [
-            ("GRID", (0, 0), (-1, -1), 0.2*mm, '#a0a0a4'),
-            ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-            ('HALIGN', (0, 0), (-1, -1), 'CENTER'),
-            ('BOTTOMPADDING', (0, 0), (-1, -1), 7),
-        ]
-        table.setStyle(TableStyle(styling))
-        story.append(table)
+        table = Table(total_data, colWidths=col_widths)
+        story = set_table(table, table_styles['category2'], story)
         total_data = []
     row_data = []
     row_data.append(Paragraph(
@@ -264,17 +278,9 @@ def add_category_header(counter, commitment, total_data,
     for i in range(0, 6):
         row_data.append(Paragraph("", style))
     total_data.append(row_data)
-    table = Table(total_data, colWidths=[30, 81, 174, 290, 60, 47, 47], 
+    table = Table(total_data, colWidths=col_widths, 
         rowHeights=[35])
-    #[35, 95, 145, 300, 60, 45, 45]
-    styling = [
-        ("GRID", (0, 0), (-1, -1), 0.2*mm, '#a0a0a4'),
-        ('SPAN', (0, 0), (6, 0)),
-        ('VALIGN', (0, 0), (-1, -1), 'TOP'),
-        ('BACKGROUND', (0, 0), (-1, 0), '#007D8A'),
-    ]
-    table.setStyle(TableStyle(styling))
-    story.append(table)
+    story = set_table(table, table_styles['category'], story)
     total_data = []
     return total_data, story
 
@@ -333,9 +339,8 @@ def get_status_displays(statuses, style):
             display_status = Image(
                 "{0}{1}.jpg".format(
                     file_url,
-                    status.status, 
-                    width=5, height=5
-                )
+                    status.status),
+                width=25, height=25
             )
         else:
             display_status = Paragraph(

@@ -156,8 +156,8 @@ class Overview(TimeStampedModel):
         response['Content-Disposition'] = cont_disp
         return response
 
-    def export_pdf(self):
-        response = export_pdf(self)
+    def export_pdf(self, language='en'):
+        response = export_pdf(self, language=language)
         return response
 
     def get_export_rows(self, queryset=None):

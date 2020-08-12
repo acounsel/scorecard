@@ -6,9 +6,11 @@
   <h1 class="Tab-Overview">{% trans "Commitments" %}
 </h1>
 </div>
+{% get_current_language as LANGUAGE_CODE %}
 <div class="SectionContent Commitments my-5">
-  <div class="font-weight-bold text-uppercase text-right mb-3">{% trans "Download Commitments Chart" %}
-    <a href="https://scorecard-static.s3-us-west-1.amazonaws.com/media/public/2020+TPC+Commitments+PDF.pdf" class="Icon-download"><i class="fas fa-file-pdf fa-fw"></i></a>
+  <div class="font-weight-bold text-uppercase text-right mb-3">
+    {% trans "Download Commitments Chart" %}
+    <a href="{% url 'export-pdf' %}?lang={{ LANGUAGE_CODE|slice:":2" }}" class="Icon-download"><i class="fas fa-file-pdf fa-fw"></i></a>
     <a href="{% url 'export' %}" class="Icon-download"><i class="fas fa-file-csv fa-fw"></i></a>
   </div>
   {% regroup commitment_list by category as category_list %}

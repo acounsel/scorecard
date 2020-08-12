@@ -96,7 +96,8 @@ class CommitmentPDFExport(CommitmentList):
     def get(self, request, **kwargs):
         resp = super().get(request, **kwargs)
         context = super().get_context_data(**kwargs)
-        response = context['overview'].export_pdf()
+        response = context['overview'].export_pdf(
+            language=request.GET.get('lang'))
         # return FileResponse(response, 
         #     as_attachment=True, filename='commitments.pdf')
         return response
