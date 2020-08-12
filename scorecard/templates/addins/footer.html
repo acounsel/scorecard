@@ -1,4 +1,5 @@
 {% load i18n %}
+{% get_current_language as LANGUAGE_CODE %}
 <div class="container">
 <!--   <p class="White text-center text-uppercase font-weight-bold">{% trans "For More Information" %}</p> -->
   <div class="d-flex align-items-start flex-column flex-md-row text-white">
@@ -15,7 +16,7 @@
     </div>
     <div class="Footer-info d-flex flex-column">
       <p>{% trans "Download" %}</p>
-      <a href="https://scorecard-static.s3-us-west-1.amazonaws.com/media/public/2020+TPC+Commitments+PDF.pdf">{% trans "Commitments Chart PDF" %}</a>
+      <a href="{% url 'export-pdf' %}?lang={{ LANGUAGE_CODE|slice:':2' }}">{% trans "Commitments Chart PDF" %}</a>
       <a href="{% url 'export' %}">{% trans "Commitments Chart CSV" %}</a>
     </div>
   </div>
