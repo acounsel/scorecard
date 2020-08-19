@@ -157,7 +157,7 @@ class Overview(TimeStampedModel):
         return response
 
     def export_pdf(self, language='en'):
-        response = export_pdf(self, language=language)
+        response = export_pdf(ov_id=self.id, language=language)
         return response
 
     def get_export_rows(self, queryset=None):

@@ -18,6 +18,8 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle, StyleSheet
 from reportlab.lib.enums import TA_JUSTIFY, TA_LEFT, TA_CENTER
 from reportlab.lib.units import mm, inch, cm
 
+from .task import pdf_creator
+
 s3_url = 'https://scorecard-static.s3-us-west-1.amazonaws.com/'
 url_loc = 'media/public/'
 file_url = s3_url + url_loc
@@ -106,10 +108,10 @@ class PageNumbers(canvas.Canvas):
 def get_field(obj, field, language):
     return getattr(obj, '{}_{}'.format(field, language))
 
-def export_pdf(overview, language='en'):
+def export_pdf(ov_id, language='en'):
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'attachment; filename=commitments.pdf'
-    pdf = create_pdf(overview, language, response)
+    pdf = pdf_creator.delay(ov_id, language, response)
     return response
 
 def create_pdf(overview, language, response):
