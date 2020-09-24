@@ -105,8 +105,8 @@
 </style>
 
 {% block body %}
-  <div id="achievements" class="Section">
-    <h2 class="text-center Yellow mb-5">{% trans "Achievements to Date" %}</h2>
+  <div id="achievements" class="Section bg-dark">
+    <h2 class="text-center LightBlue mb-5">{% trans "Achievements to Date" %}</h2>
     <div class="container my-3">
       <div class="row mx-auto my-auto">
         <div id="achievements_carousel" class="carousel slide w-100" data-ride="carousel">
@@ -142,7 +142,14 @@
       </div>
     </div>
     <hr class="AccentBar"></hr>
-    <h3 class="SectionContent LightGray mt-5">{{ overview.achievements_text }}</h3>
+    <div class="SectionContent LightGray mt-5 text-white">{{ overview.challenges_text|safe }}
+      <div class="ChartArea bg-white pl-5 pr-3 pt-4 pb-5 mt-5">
+        <h4 class="pt-2">{% trans "Status of Commitments" %}</h4>
+        <div id="id_commitmentChart" width="100%"></div>
+        <p class="text-dark">{{ overview.commitment_chart_text }}</p>
+      </div>
+    </div>
+
   </div>
 {% endblock %}
 

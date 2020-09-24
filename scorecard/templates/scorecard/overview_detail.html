@@ -25,9 +25,8 @@
       <p>{{ overview.story_part3|safe }}</p>
     </div>
   </div>
-  {% include 'scorecard/achievements.html' %}
-  <div id="challenges" class="Section bg-dark">
-    <h2 class="text-center LightBlue mb-5">{% trans "Challenges Ahead" %}</h2>
+  <div id="challenges" class="Section">
+    <h2 class="text-center Yellow mb-5">{% trans "Challenges Ahead" %}</h2>
     <div class="SectionContent Grid">
       {% for challenge in challenge_list %}
       {% if challenge.name %}
@@ -45,14 +44,10 @@
     </div>
     <hr class="AccentBar"></hr>
     <div class="SectionContent text-white p-3">
-      {{ overview.challenges_text|safe }}
-      <div class="ChartArea bg-white pl-5 pr-3 pt-4 pb-5 mt-5">
-        <h4 class="pt-2">{% trans "Status of Commitments" %}</h4>
-        <div id="id_commitmentChart" width="100%"></div>
-        <p class="text-dark">{{ overview.commitment_chart_text }}</p>
-      </div>
+      <h3>{{ overview.achievements_text }}</h3>
     </div>
   </div>
+  {% include 'scorecard/achievements.html' %}
   <div id="recommendations" class="Section bg-bluegreen">
     <h2 class="text-center Yellow mb-5">{% trans "Recommendations" %}</h2>
     <div class="SectionContent p-3">
