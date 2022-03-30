@@ -23,6 +23,8 @@ ADMINS = (
     ('Marisa', 'marisa@accountabilitycounsel.org')
 )
 
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
 INSTALLED_APPS = [
     'modeltranslation',
     'django.contrib.admin',

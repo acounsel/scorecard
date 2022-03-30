@@ -202,10 +202,10 @@ class Commitment(models.Model):
         max_length=255,blank=True)
     order_num = models.PositiveSmallIntegerField(default=0)
     order_letter = models.CharField(max_length=3, blank=True)
-    has_detailed_plan = models.NullBooleanField()
-    has_approved_funding = models.NullBooleanField()
-    has_begun_implementation = models.NullBooleanField()
-    is_complete = models.NullBooleanField()
+    has_detailed_plan = models.BooleanField(blank=True, null=True)
+    has_approved_funding = models.BooleanField(blank=True, null=True)
+    has_begun_implementation = models.BooleanField(blank=True, null=True)
+    is_complete = models.BooleanField(blank=True, null=True)
 
     class Meta:
         ordering = ('order_num', 'id', 'order_letter')
